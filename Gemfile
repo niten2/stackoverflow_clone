@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby "2.2.2"
 gem 'rails', '4.2.4'
+gem 'pg'
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -9,7 +10,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem "slim-rails"
-gem "simple_form"
+# gem "simple_form"
 
 group :development, :test do
 
@@ -24,10 +25,8 @@ group :development, :test do
   gem "database_cleaner"
   gem 'faker'
   gem 'fuubar'
-  gem 'sqlite3'
   gem 'taps'
   gem 'rvm'
-
   # guard
   gem 'guard'
   gem 'guard-rspec'
@@ -41,6 +40,7 @@ group :development, :test do
 
   gem 'rubocop', require: false
   gem 'rubocop-rspec'
+  gem 'parser', '~> 2.2.2.5'
 
   gem "awesome_print", require:"ap"
 
@@ -60,4 +60,3 @@ group :development do
   gem 'spring'
 end
 
-gem 'sqlite3'
