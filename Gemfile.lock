@@ -271,9 +271,6 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (3.0.1)
       activesupport (>= 4.0.0)
-    simple_form (3.2.0)
-      actionpack (~> 4.0)
-      activemodel (~> 4.0)
     sinatra (1.0)
       rack (>= 1.0)
     slim (3.0.6)
@@ -355,7 +352,6 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   shoulda-matchers (~> 3.0)
-  simple_form
   slim-rails
   spork-rails
   spring

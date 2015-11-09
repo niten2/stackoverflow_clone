@@ -9,10 +9,11 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem "slim-rails"
-gem "simple_form"
+# gem "simple_form"
 
 group :development, :test do
 
+  gem 'sqlite3'
   # test
   gem 'rspec-rails'
   gem 'factory_girl_rails'
@@ -24,10 +25,8 @@ group :development, :test do
   gem "database_cleaner"
   gem 'faker'
   gem 'fuubar'
-  gem 'sqlite3'
   gem 'taps'
   gem 'rvm'
-
   # guard
   gem 'guard'
   gem 'guard-rspec'
@@ -60,4 +59,3 @@ group :development do
   gem 'spring'
 end
 
-gem 'sqlite3'
