@@ -1,0 +1,6 @@
+- if resource.errors.any?
+  #error_explanation.center
+    h5 = "Произошли следующие ошибки:"
+    ul
+      - resource.errors.full_messages.each do |message|
+        li = message
