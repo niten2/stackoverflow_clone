@@ -157,6 +157,8 @@ GEM
     lumberjack (1.0.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    materialize-sass (0.97.1)
+      sass (~> 3.3)
     meta_request (0.3.4)
       callsite (~> 0.0, >= 0.0.11)
       rack-contrib (~> 1.1)
@@ -339,6 +341,7 @@ DEPENDENCIES
   guard-zeus
   jbuilder (~> 2.0)
   jquery-rails
+  materialize-sass
   meta_request
   parser (~> 2.2.2.5)
   peek

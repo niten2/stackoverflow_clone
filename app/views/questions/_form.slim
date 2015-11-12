@@ -1,0 +1,13 @@
+= form_for(@question) do |f|
+  = render 'common/errors', resource: @question
+  .offset-s2.input-field.col.s4
+    label for="textarea1" Тема
+    = f.text_field :title, :class => "materialize-textarea", :id => "textarea1"
+  .input-field.col.s4
+    label for="textarea2" Содержание
+    = f.text_field :content, :class => "materialize-textarea", :id => "textarea2"
+  / .center = f.text_field :title, class: "form-control"
+  / .center = f.text_field :content, class: "form-control"
+  .clearfix
+  br
+  .center = f.submit "#{@question.new_record? ? 'Создать' : 'Обновить'}", class: "btn"

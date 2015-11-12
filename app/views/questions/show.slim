@@ -1,0 +1,20 @@
+.center
+  | Тема вопроса:
+  =< @question.title
+
+.center
+  | Содержание:
+  =< @question.content
+.center = button_to "Редактировать вопрос", edit_question_path, method: :get, class: "btn"
+br
+.center Ответы:
+- @question.answers.each do |answer|
+  .offset-s3.col.s4 = answer.content
+  .col.s2 = link_to "Редактировать", edit_question_answer_path(@question, id: answer.id), method: :get
+  .col.s2 = link_to "Удалить", question_answer_path(@question, id: answer.id), method: :delete
+  .clearfix
+  br
+
+.center = button_to "Ответить", new_question_answer_path(@question), method: :get, class: "btn"
+br
+.center = button_to "Назад", questions_path, method: :get, class: "btn"
