@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
 
+  login_user
+
+  let(:user) { create :user }
   let(:question) { create(:question) }
 
   describe 'GET #index' do

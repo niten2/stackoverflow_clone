@@ -8,6 +8,10 @@
 #   watch(%r{^(config|lib)/.*})
 # end
 
+# guard :shell do
+#   watch(/(.*).txt/) {|m| `tail #{m[0]}` }
+# end
+
 # guard :bundler do
 #   require 'guard/bundler'
 #   require 'guard/bundler/verify'
@@ -90,9 +94,6 @@ guard :rspec, cmd: "bundle exec rspec" do
   end
 end
 
-# guard :shell do
-#   watch(/(.*).txt/) {|m| `tail #{m[0]}` }
-# end
 
 # guard 'zeus' do
 #   require 'ostruct'
@@ -127,3 +128,14 @@ end
 #   end
 
 # end
+
+guard :spork, :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAILS_ENV' => 'test' } do
+  watch('config/application.rb')
+  watch('config/environment.rb')
+  watch('config/environments/test.rb')
+  watch(%r{^config/initializers/.+\.rb$})
+  watch('Gemfile.lock')
+  watch('spec/spec_helper.rb') { :rspec }
+  watch('test/test_helper.rb') { :test_unit }
+  watch(%r{features/support/}) { :cucumber }
+end

@@ -10,14 +10,6 @@ FactoryGirl.define do
       admin true
     end
 
-    factory :user_with_question do
-      question
-    end
-
-    factory :user_with_answer do
-      answer
-    end
-
   end
 
 end

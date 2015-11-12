@@ -14,7 +14,7 @@ nav
     ul.right
       / li
         / = link_to "Описание", description_path
-      / li
+      li
         = current_user.email
       li
         -if user_signed_in?

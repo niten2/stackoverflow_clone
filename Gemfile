@@ -35,17 +35,20 @@ group :development, :test do
   gem 'taps'
   # gem 'rvm'
 
+  # gem "spork-rails"
 
   # guard
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-rails'
-  gem 'guard-bundler'
-  gem 'guard-migrate'
+  gem 'guard-spork'
+  # gem 'guard-bundler'
+  # gem 'guard-migrate'
   # gem "guard-rubocop"
-  gem 'guard-zeus'
-  gem 'guard-shell'
+  # gem 'guard-shell'
+  # gem 'guard-zeus'
+
 
   gem 'rubocop', require: false
   gem 'rubocop-rspec'

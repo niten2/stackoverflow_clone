@@ -1,25 +1,30 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# feature 'Действия гостя', %q{
-#   Гость может просматривать вопросы и ответы
-#   но не может воздавать вопросы и отвечать на существующие вопросы
-# } do
+feature 'Действия гостя', %q{
+  Гость может просматривать вопросы и ответы
+  но не может воздавать вопросы и отвечать на существующие вопросы
+} do
 
-#   scenario 'Гость пробует создать вопрос' do
-#     visit '/questions'
-#     click_on 'Создать вопрос'
+  given!(:question) { create(:question) }
 
-#     expect(page).to have_content 'Сначала вам необходимо зарегестрироваться.'
-#   end
+  scenario 'Гость пробует создать вопрос' do
+    visit '/questions'
+    click_on 'Создать вопрос'
 
-#   scenario 'Гость пробует ответить на вопрос' do
-#     visit '/questions/1'
-#     click_on 'Создать вопрос'
+    expect(page).to have_content 'Вам необходимо войти в систему или зарегистрироваться.'
+  end
 
-#     expect(page).to have_content 'Сначала вам необходимо зарегестрироваться.'
-#   end
+  scenario 'Гость пробует ответить на вопрос' do
+    visit question_path(question)
+    click_on 'Ответить'
 
-#   scenario 'Гость может просматривать список вопросов' do
-#   end
+    expect(page).to have_content 'Вам необходимо войти в систему или зарегистрироваться.'
+  end
 
-# end
+  scenario 'Гость может просматривать список вопросов' do
+    visit questions_path
+
+    expect(page).to have_content question.title
+  end
+
+end

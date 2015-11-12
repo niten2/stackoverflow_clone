@@ -6,12 +6,24 @@
   | Содержание:
   =< @question.content
 .center = button_to "Редактировать вопрос", edit_question_path, method: :get, class: "btn"
+- if @question.user == current_user
+  br
+  .center = button_to "Удалить вопрос", question_path, method: :delete, class: "btn"
 br
-.center Ответы:
+.offset-s1.col.s4 Ответ:
+.col.s2 Пользователь:
+.clearfix
+
 - @question.answers.each do |answer|
-  .offset-s3.col.s4 = answer.content
-  .col.s2 = link_to "Редактировать", edit_question_answer_path(@question, id: answer.id), method: :get
-  .col.s2 = link_to "Удалить", question_answer_path(@question, id: answer.id), method: :delete
+  .offset-s1.col.s4 = answer.content
+  .col.s2
+    -if answer.user.present?
+      = answer.user.email
+    -else
+      | Нет
+  - if answer.user == current_user
+    .col.s2 = link_to "Редактировать", edit_question_answer_path(@question, id: answer.id), method: :get
+    .col.s2 = link_to "Удалить", question_answer_path(@question, id: answer.id), method: :delete
   .clearfix
   br
 

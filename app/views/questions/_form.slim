@@ -1,7 +1,7 @@
 = form_for(@question) do |f|
   = render 'common/errors', resource: @question
   .offset-s2.input-field.col.s4
-    label for="textarea1" Тема
+    = label :title, "Тема", for: "textarea1"
     = f.text_field :title, :class => "materialize-textarea", :id => "textarea1"
   .input-field.col.s4
     label for="textarea2" Содержание
