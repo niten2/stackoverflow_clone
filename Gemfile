@@ -12,6 +12,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'spring', group: :development
 gem "slim-rails"
 gem 'materialize-sass'
+gem 'devise'
+
 # gem "simple_form"
 
 group :development, :test do
@@ -20,15 +22,20 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers', '~> 3.0'
-  gem 'rspec-activemodel-mocks'
-  gem "spork-rails"
-  gem 'cucumber-rails', :require => false
   gem 'capybara'
+  gem 'launchy'
+
+  # gem 'rspec-activemodel-mocks'
+  # gem "spork-rails"
+  # gem 'cucumber-rails', :require => false
+  # gem 'capybara'
   gem "database_cleaner"
   gem 'faker'
   gem 'fuubar'
   gem 'taps'
-  gem 'rvm'
+  # gem 'rvm'
+
+
   # guard
   gem 'guard'
   gem 'guard-rspec'
