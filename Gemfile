@@ -42,7 +42,9 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-rails'
-  gem 'guard-spork'
+
+  gem 'spork-rails'
+  # gem 'guard-spork'
   # gem 'guard-bundler'
   # gem 'guard-migrate'
   # gem "guard-rubocop"

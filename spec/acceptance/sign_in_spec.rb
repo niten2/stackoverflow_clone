@@ -1,18 +1,15 @@
 require 'rails_helper'
 
-feature 'Siging in', %q{
-  Для того что бы можно было задавать
-  вопросы пользователь должен войти в систему
- } do
+feature 'Siging in', %q{In order to be able to ask questions, the user must log in} do
 
   given(:user) { create(:user) }
 
-  scenario "Существующий пользователь входит в учетную запись" do
+  scenario "existing User Account Login" do
     sign_in(user)
     expect(page).to have_content 'Вы успешно вошли.'
   end
 
-  scenario 'Несуществующий пользователь пробует войти в учетную запись' do
+  scenario 'non-existent user tries to log in to your account' do
     visit new_user_session_path
     fill_in 'Email', with: 'wrong@user.com'
     fill_in 'Password', with: '12345'

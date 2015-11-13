@@ -1,12 +1,11 @@
 require 'rails_helper'
 
-feature 'Create question', %q{
-  Действия пользователя:
-  Пользователь может создавать вопрос
-  Пользователь может просматривать список вопросов
-  Пользователь может написать ответ на вопрос
-  Пользователь может просматривать вопрос и ответы к нему.
-  Пользователь может удалить свой вопрос или ответ, но не может удалить чужой вопрос/ответ
+feature 'User action', %q{
+   The user can create a question
+   The user can view a list of questions
+   The user can write an answer to the question
+   The user can view the question and answer to it.
+   You can delete your question or answer, but can not remove someone else's question / answer
 } do
 
   given!(:current_user) { create(:user) }
@@ -18,7 +17,7 @@ feature 'Create question', %q{
   given!(:answer) { create(:answer) }
   given!(:other_answer) { create(:answer, question: other_question) }
 
-  scenario 'Пользователь создает вопрос' do
+  scenario 'user creates a question' do
     sign_in(current_user)
 
     visit '/questions'
@@ -30,13 +29,13 @@ feature 'Create question', %q{
     expect(page).to have_content 'Вопрос создан'
   end
 
-  scenario 'Пользователь может просматривать список вопросов' do
+  scenario 'user can view a list of questions' do
     visit questions_path
 
     expect(page).to have_content question.title
   end
 
-  scenario 'Пользователь может просматривать вопрос и ответы к нему' do
+  scenario 'user can view the question and the answers thereto' do
     visit question_path(answer.question)
 
     expect(page).to have_content answer.question.title
@@ -45,7 +44,7 @@ feature 'Create question', %q{
 
   end
 
-  scenario 'Пользователь может написать ответ на любой вопрос' do
+  scenario 'user can write an answer to any question' do
     sign_in(current_user)
 
     visit question_path(question)
@@ -62,7 +61,7 @@ feature 'Create question', %q{
 
   end
 
-  scenario 'Пользователь может удалить свой вопрос или ответ' do
+  scenario 'user can delete your question or answer' do
     sign_in(current_user)
     visit question_path(question)
 
@@ -72,7 +71,7 @@ feature 'Create question', %q{
 
   end
 
-  scenario 'Пользователь пробует удалить чужой вопрос или ответ' do
+  scenario 'user tries to delete a foreign question or answer' do
     sign_in(current_user)
     visit question_path(other_question)
 
@@ -81,6 +80,28 @@ feature 'Create question', %q{
     expect(page).to have_content other_answer.content
     expect(page).to_not have_content "Удалить"
 
+  end
+
+  scenario "user tries to create an issue with invalid data" do
+    sign_in(current_user)
+
+    visit questions_path
+
+    click_on "Создать вопрос"
+    click_on "Создать"
+
+    expect(page).to have_content "Произошли следующие ошибки"
+  end
+
+  scenario "user tries to create a response with an invalid data" do
+    sign_in(current_user)
+
+    visit question_path(question)
+
+    click_on "Ответить"
+    click_on "Ответить"
+
+    expect(page).to have_content "Произошли следующие ошибки"
   end
 
 end

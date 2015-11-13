@@ -1,12 +1,12 @@
 .center
   | Тема вопроса:
-  =< @question.title
-
+  - if @question.title.present?
+    =< @question.title
 .center
   | Содержание:
   =< @question.content
 .center = button_to "Редактировать вопрос", edit_question_path, method: :get, class: "btn"
-- if @question.user == current_user
+- if @question.try(:user_id) == current_user.try(:id)
   br
   .center = button_to "Удалить вопрос", question_path, method: :delete, class: "btn"
 br
@@ -21,7 +21,7 @@ br
       = answer.user.email
     -else
       | Нет
-  - if answer.user == current_user
+  - if @question.try(:user_id) == current_user.try(:id)
     .col.s2 = link_to "Редактировать", edit_question_answer_path(@question, id: answer.id), method: :get
     .col.s2 = link_to "Удалить", question_answer_path(@question, id: answer.id), method: :delete
   .clearfix

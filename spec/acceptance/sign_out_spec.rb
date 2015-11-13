@@ -1,12 +1,10 @@
 require 'rails_helper'
 
-feature 'Siging out', %q{
-  После регистрации пользователь может выйти из системы
- } do
+feature 'Siging out', %q{After registration, the user can exit the system} do
 
   given(:user) { create(:user) }
 
-  scenario "Существующий пользователь выходит из учетной записи" do
+  scenario "existing user exits the account" do
     sign_in(user)
     visit root_path
     click_on 'Выйти'

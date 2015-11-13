@@ -1,11 +1,8 @@
 require 'rails_helper'
 
-feature 'Регистрация пользователя', %q{
-  Для того что бы войти в систему
-  пользователь должен зарегестрироваться
- } do
+feature 'User registration', %q{To log in, the user must create an account} do
 
-  scenario 'Несуществующий пользователь регистрируется' do
+  scenario 'non-existent user logs' do
     visit new_user_registration_path
     fill_in 'Email', with: 'wrong@user.com'
     fill_in 'Password', with: '12345678'
@@ -15,7 +12,7 @@ feature 'Регистрация пользователя', %q{
     expect(page).to have_content 'Добро пожаловать! Вы успешно зарегистрировались.'
   end
 
-  scenario 'Несуществующий пользователь пробует зарегестрироваться' do
+  scenario 'user tries to create a non-existent' do
     visit new_user_registration_path
     click_on 'Зарегестрироваться'
 
