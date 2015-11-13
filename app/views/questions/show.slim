@@ -6,7 +6,7 @@
   | Содержание:
   =< @question.content
 .center = button_to "Редактировать вопрос", edit_question_path, method: :get, class: "btn"
-- if @question.try(:user_id) == current_user.try(:id)
+- if @question.user_id == current_user.try(:id)
   br
   .center = button_to "Удалить вопрос", question_path, method: :delete, class: "btn"
 br
@@ -21,7 +21,7 @@ br
       = answer.user.email
     -else
       | Нет
-  - if @question.try(:user_id) == current_user.try(:id)
+  - if @question.user_id == current_user.try(:id)
     .col.s2 = link_to "Редактировать", edit_question_answer_path(@question, id: answer.id), method: :get
     .col.s2 = link_to "Удалить", question_answer_path(@question, id: answer.id), method: :delete
   .clearfix
