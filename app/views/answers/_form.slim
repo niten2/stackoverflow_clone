@@ -1,8 +1,6 @@
-= form_for [@question, @answer] do |f|
-  = render 'common/errors', resource: @answer
-  .offset-s4.input-field.col.s4
-    label for="textarea1" Ответ
-    = f.text_field :content, :class => "materialize-textarea", :id => "textarea1"
-  / .actions = f.submit "#{@answer.new_record? ? 'Создать' : 'Обновить'}", class: "btn"
+= form_for [question, answer], remote: true do |f|
+  .input-field.offset-s3.col.s5
+    = f.label :content, "Содержание ответа"
+    = f.text_area :content, class: "materialize-textarea", id: "textarea2"
   .clearfix
-  .center = f.submit "Ответить", class: "btn"
+  .center = f.submit 'Ответить', class: "btn"

@@ -10,23 +10,14 @@
   br
   .center = button_to "Удалить вопрос", question_path, method: :delete, class: "btn"
 br
-.offset-s1.col.s4 Ответ:
-.col.s2 Пользователь:
-.clearfix
+#answers
+  = render @question.answers
 
-- @question.answers.each do |answer|
-  .offset-s1.col.s4 = answer.content
-  .col.s2
-    -if answer.user.present?
-      = answer.user.email
-    -else
-      | Нет
-  - if @question.user_id == current_user.try(:id)
-    .col.s2 = link_to "Редактировать", edit_question_answer_path(@question, id: answer.id), method: :get
-    .col.s2 = link_to "Удалить", question_answer_path(@question, id: answer.id), method: :delete
+= form_for [@question, @answer], remote: true do |f|
+  .input-field.offset-s3.col.s5
+    = f.label :content, "Содержание ответа"
+    = f.text_area :content, class: "materialize-textarea", id: "textarea2"
   .clearfix
-  br
-
-.center = button_to "Ответить", new_question_answer_path(@question), method: :get, class: "btn"
+  .center = f.submit 'Ответить', class: "btn"
 br
 .center = button_to "Назад", questions_path, method: :get, class: "btn"

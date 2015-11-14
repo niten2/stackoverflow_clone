@@ -11,15 +11,13 @@ class AnswersController < ApplicationController
   end
 
   def create
+    # @question = Question.find(params[:question_id])
     @answer = @question.answers.new(answer_params)
     @answer.user = current_user
-
-    if @answer.save
-      flash[:notice] = "Вы ответили"
-      redirect_to @question
-    else
-      render :new
-    end
+    @answer.save
+    # @answer = @question.answers.new(answer_params)
+    # @answer.user = current_user
+    # @answer.save
   end
 
   def update
