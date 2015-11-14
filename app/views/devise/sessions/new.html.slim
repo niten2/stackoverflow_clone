@@ -1,0 +1,39 @@
+h2.center Войти
+.col.s4
+  / .center
+  /   br
+  /   br
+  /   | Описание проекта:
+  /   =< link_to "здесь", description_path
+  /   br
+  /   | Код проекта:
+  /   =< link_to "здесь", "https://github.com/niten2/system-for-antikafe"
+  /   br
+  /   br
+  /   | Логин от демо версии:
+  /   = " "
+  /   br
+  /   strong test@test.com
+  /   br
+  /   | Пароль:
+  /   = " "
+  /   br
+  /   strong 12345678
+.offset-s4.col.s4
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .field
+      = f.label :email
+      br/
+      = f.email_field :email, autofocus: true
+    .field
+      = f.label :password
+      br/
+      = f.password_field :password, autocomplete: "off"
+    - if devise_mapping.rememberable?
+      .field
+        = f.check_box :remember_me
+        = f.label :remember_me
+    .actions
+      br
+      .center = f.submit "Войти", class: "btn"
+  = render "devise/shared/links"

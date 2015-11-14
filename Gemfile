@@ -12,6 +12,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'spring', group: :development
 gem "slim-rails"
 gem 'materialize-sass'
+gem 'devise'
+
 # gem "simple_form"
 
 group :development, :test do
@@ -20,25 +22,35 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers', '~> 3.0'
-  gem 'rspec-activemodel-mocks'
-  gem "spork-rails"
-  gem 'cucumber-rails', :require => false
   gem 'capybara'
+  gem 'launchy'
+
+  # gem 'rspec-activemodel-mocks'
+  # gem "spork-rails"
+  # gem 'cucumber-rails', :require => false
+  # gem 'capybara'
   gem "database_cleaner"
   gem 'faker'
   gem 'fuubar'
   gem 'taps'
-  gem 'rvm'
+  # gem 'rvm'
+
+  # gem "spork-rails"
+
   # guard
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-rails'
-  gem 'guard-bundler'
-  gem 'guard-migrate'
+
+  gem 'spork-rails'
+  # gem 'guard-spork'
+  # gem 'guard-bundler'
+  # gem 'guard-migrate'
   # gem "guard-rubocop"
-  gem 'guard-zeus'
-  gem 'guard-shell'
+  # gem 'guard-shell'
+  # gem 'guard-zeus'
+
 
   gem 'rubocop', require: false
   gem 'rubocop-rspec'

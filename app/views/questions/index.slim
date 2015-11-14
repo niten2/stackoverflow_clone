@@ -1,7 +1,9 @@
 h3 Список вопросов:
 br
+.offset-s3.col.s3 Имя
+.col.s3 Автор
 = render @questions
 br
 br
-.center = link_to "Создать новый", new_question_path
+.center = link_to "Создать вопрос", new_question_path
 / = render "common/come_back"

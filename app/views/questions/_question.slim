@@ -1,6 +1,14 @@
+
 .offset-s3.col.s3
   => link_to "#{question.title}", question
 / => link_to "Редактирование", edit_question_path(question)
 .col.s3
-  => link_to "Удалить", question, method: :delete
+  -if question.user.present?
+    = question.user.email
+  -else
+    | Нет
+
+- if question.user == current_user
+  .col.s3
+    => link_to "Удалить", question, method: :delete
 .clearfix

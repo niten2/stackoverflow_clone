@@ -1,3 +1,16 @@
+require 'spork'
+
+Spork.prefork do
+
+end
+
+Spork.each_run do
+
+end
+
+
+require 'rubygems'
+
 RSpec.configure do |config|
 
   config.expect_with :rspec do |expectations|

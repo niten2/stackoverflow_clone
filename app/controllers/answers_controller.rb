@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_question, only: [:create, :new, :destroy, :edit, :update]
   before_action :set_answer, only: [:destroy, :edit, :update]
 
@@ -11,6 +12,8 @@ class AnswersController < ApplicationController
 
   def create
     @answer = @question.answers.new(answer_params)
+    @answer.user = current_user
+
     if @answer.save
       flash[:notice] = "Вы ответили"
       redirect_to @question
