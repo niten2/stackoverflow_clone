@@ -9,12 +9,10 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'spring', group: :development
 gem "slim-rails"
 gem 'materialize-sass'
 gem 'devise'
-
-# gem "simple_form"
+gem "simple_form"
 
 group :development, :test do
 
@@ -23,50 +21,50 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers', '~> 3.0'
   gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'launchy'
-
-  # gem 'rspec-activemodel-mocks'
-  # gem "spork-rails"
-  # gem 'cucumber-rails', :require => false
-  # gem 'capybara'
   gem "database_cleaner"
   gem 'faker'
   gem 'fuubar'
-  gem 'taps'
-  # gem 'rvm'
 
-  # gem "spork-rails"
+  gem 'spring'
+  gem 'spring-commands-rspec'
 
   # guard
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-rails'
-
-  gem 'spork-rails'
-  # gem 'guard-spork'
-  # gem 'guard-bundler'
-  # gem 'guard-migrate'
-  # gem "guard-rubocop"
-  # gem 'guard-shell'
   # gem 'guard-zeus'
-
 
   gem 'rubocop', require: false
   gem 'rubocop-rspec'
   gem 'parser', '~> 2.2.2.5'
 
+  # debag
   gem "awesome_print", require:"ap"
-
   gem 'peek'
   gem 'meta_request'
   gem "better_errors"
   gem 'quiet_assets'
-  # gem 'newrelic_rpm'
   gem "bullet"
-
   gem 'pry'
 
 end
 
+  # gem 'spork-rails'
+  # gem 'guard-spork'
+  # gem 'guard-bundler'
+  # gem 'guard-migrate'
+  # gem "guard-rubocop"
+  # gem 'guard-shell'
 
+  # gem 'taps'
+
+  # gem 'newrelic_rpm'
+  # gem 'rvm'
+  # gem "spork-rails"
+  # gem 'rspec-activemodel-mocks'
+  # gem "spork-rails"
+  # gem 'cucumber-rails', :require => false
+  # gem 'capybara'
