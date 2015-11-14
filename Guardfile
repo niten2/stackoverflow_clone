@@ -1,38 +1,9 @@
-# guard :spork, :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAILS_ENV' => 'test' } do
-#   watch('config/application.rb')
-#   watch('config/environment.rb')
-#   watch('config/environments/test.rb')
-#   watch(%r{^config/initializers/.+\.rb$})
-#   watch('Gemfile.lock')
-#   watch('spec/spec_helper.rb') { :rspec }
-#   watch('test/test_helper.rb') { :test_unit }
-#   watch(%r{features/support/}) { :cucumber }
-# end
-
-# guard 'migrate' do
-#   watch(%r{^db/migrate/(\d+).+\.rb})
-#   watch('db/seeds.rb')
-# end
-
-# guard 'rails' do
-#   watch('Gemfile.lock')
-#   watch(%r{^(config|lib)/.*})
-# end
-
-# guard :shell do
-#   watch(/(.*).txt/) {|m| `tail #{m[0]}` }
-# end
-
-# guard :bundler do
-#   require 'guard/bundler'
-#   require 'guard/bundler/verify'
-#   helper = Guard::Bundler::Verify.new
-
-#   files = ['Gemfile']
-#   files += Dir['*.gemspec'] if files.any? { |f| helper.uses_gemspec?(f) }
-
-#   files.each { |file| watch(helper.real_path(file)) }
-# end
+guard 'spring', bundler: true do
+  watch('Gemfile.lock')
+  watch(%r{^config/})
+  watch(%r{^spec/(support|factories)/})
+  watch(%r{^spec/factory.rb})
+end
 
 guard 'livereload' do
   extensions = {
@@ -104,7 +75,6 @@ guard :rspec, cmd: "bundle exec rspec" do
   end
 end
 
-
 # guard 'zeus' do
 #   require 'ostruct'
 
@@ -138,4 +108,42 @@ end
 #   end
 
 # end
+
+
+# guard :spork, :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAILS_ENV' => 'test' } do
+#   watch('config/application.rb')
+#   watch('config/environment.rb')
+#   watch('config/environments/test.rb')
+#   watch(%r{^config/initializers/.+\.rb$})
+#   watch('Gemfile.lock')
+#   watch('spec/spec_helper.rb') { :rspec }
+#   watch('test/test_helper.rb') { :test_unit }
+#   watch(%r{features/support/}) { :cucumber }
+# end
+
+# guard 'migrate' do
+#   watch(%r{^db/migrate/(\d+).+\.rb})
+#   watch('db/seeds.rb')
+# end
+
+# guard 'rails' do
+#   watch('Gemfile.lock')
+#   watch(%r{^(config|lib)/.*})
+# end
+
+# guard :shell do
+#   watch(/(.*).txt/) {|m| `tail #{m[0]}` }
+# end
+
+# guard :bundler do
+#   require 'guard/bundler'
+#   require 'guard/bundler/verify'
+#   helper = Guard::Bundler::Verify.new
+
+#   files = ['Gemfile']
+#   files += Dir['*.gemspec'] if files.any? { |f| helper.uses_gemspec?(f) }
+
+#   files.each { |file| watch(helper.real_path(file)) }
+# end
+
 

@@ -121,6 +121,10 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    guard-spring (1.1.1)
+      guard (~> 2.0)
+      guard-compat (~> 1.1)
+      spring
     http_parser.rb (0.6.0)
     i18n (0.7.0)
     jbuilder (2.3.2)
@@ -314,6 +318,7 @@ DEPENDENCIES
   guard-livereload
   guard-rails
   guard-rspec
+  guard-spring
   jbuilder (~> 2.0)
   jquery-rails
   launchy

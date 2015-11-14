@@ -35,6 +35,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-rails'
+  gem 'guard-spring'
   # gem 'guard-zeus'
 
   gem 'rubocop', require: false
