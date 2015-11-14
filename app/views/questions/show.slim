@@ -13,11 +13,6 @@ br
 #answers
   = render @question.answers
 
-= form_for [@question, @answer], remote: true do |f|
-  .input-field.offset-s3.col.s5
-    = f.label :content, "Содержание ответа"
-    = f.text_area :content, class: "materialize-textarea", id: "textarea2"
-  .clearfix
-  .center = f.submit 'Ответить', class: "btn"
+= render 'answers/form', question: @question, answer: @answer
 br
 .center = button_to "Назад", questions_path, method: :get, class: "btn"
