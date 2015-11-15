@@ -37,7 +37,7 @@ feature 'User tries action' do
 
     click_on "Ответить"
 
-    expect(page).to have_content "Произошли следующие ошибки"
+    expect(page).to have_content "Вам нужно ввести текст"
   end
 
 end

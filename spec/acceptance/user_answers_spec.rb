@@ -17,7 +17,7 @@ feature 'User action answer' do
     fill_in 'Содержание ответа', with: answer_params.content
     click_on 'Ответить'
 
-    within '.answers' do
+    within '#answers' do
       expect(page).to have_content answer_params.content
     end
   end
