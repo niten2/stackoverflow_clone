@@ -10,6 +10,11 @@ class AnswersController < ApplicationController
   def edit
   end
 
+  def make_best
+    @question = @answer.question
+    @answer.make_best if @question.user_id == current_user.id
+  end
+
   def create
     @answer = @question.answers.new(answer_params)
     @answer.user = current_user
@@ -19,12 +24,10 @@ class AnswersController < ApplicationController
   def update
     @answer.update(answer_params)
     @question = @answer.question
-    # render layout: false
   end
 
   def destroy
     @answer.destroy
-    redirect_to @question
   end
 
   private

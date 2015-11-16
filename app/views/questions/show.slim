@@ -5,12 +5,12 @@
 .center
   | Содержание:
   =< @question.content
-.center = button_to "Редактировать вопрос", edit_question_path, method: :get, class: "btn"
-- if @question.user_id == current_user.try(:id)
-  br
-  .center = button_to "Удалить вопрос", question_path, method: :delete, class: "btn"
 br
-
+- if @question.user_id == current_user.try(:id)
+  .offset-s2.col.s4 = button_to "Редактировать вопрос", edit_question_path, method: :get, class: "btn"
+  .col.s4 = button_to "Удалить вопрос", question_path, method: :delete, class: "btn"
+br
+br
 
 #answers
   = render "answers/answers"

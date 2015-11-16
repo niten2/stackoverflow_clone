@@ -10,7 +10,8 @@
         e.preventDefault();
         $(this).hide();
         answer_id = $(this).data('answerId');
-        return $('form#edit-answer-' + answer_id).show();
+        $('.content-edit-answer-' + answer_id).hide();
+        return $('form#form-edit-answer-' + answer_id).show();
       });
     });
 <% end %>
