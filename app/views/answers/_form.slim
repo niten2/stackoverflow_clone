@@ -1,6 +1,6 @@
 = form_for [question, answer], remote: true do |f|
   .input-field.offset-s3.col.s5
     = f.label :content, "Содержание ответа"
-    = f.text_area :content, class: "materialize-textarea", id: "answer_content"
+    = f.text_area :content, class: "materialize-textarea", id: "field_answer"
   .clearfix
   .center = f.submit 'Ответить', class: "btn"

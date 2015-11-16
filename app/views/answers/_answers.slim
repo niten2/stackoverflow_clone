@@ -1,0 +1,8 @@
+- @question.answers.each do |answer|
+  - if answer.persisted?
+    p= answer.content
+    - if user_signed_in?
+      = link_to 'Редактировать', '', class: "edit-answer-link", data: { answer_id: answer.id }
+      = form_for [@question, answer], remote: true, html: { id: "edit-answer-#{answer.id}"} do |f|
+          = f.text_area :content
+          = f.submit 'Сохранить', class: "btn"
