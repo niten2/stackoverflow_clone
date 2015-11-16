@@ -1,4 +1,4 @@
-require 'rails_helper'
+require_relative 'acceptance_helper'
 
 feature 'User action answer' do
 
@@ -22,20 +22,30 @@ feature 'User action answer' do
     end
   end
 
-  scenario 'user can write an answer to any question', js: true do
+  scenario "user trying invalid answer", js: true do
     sign_in(current_user)
-
     visit question_path(question)
-    fill_in 'Содержание ответа', with: answer_params.content
-    click_on "Ответить"
-    expect(page).to have_content answer_params.content
 
-    visit question_path(other_question)
-    fill_in 'Содержание ответа', with: answer_params.content
-    click_on "Ответить"
-    expect(page).to have_content answer_params.content
+    click_on 'Ответить'
 
+    expect(page).to have_content "Content не может быть пустым"
   end
+
+
+  # scenario 'user can write an answer to any question', js: true do
+  #   sign_in(current_user)
+
+  #   visit question_path(question)
+  #   fill_in 'Содержание ответа', with: answer_params.content
+  #   click_on "Ответить"
+  #   expect(page).to have_content answer_params.content
+
+  #   visit question_path(other_question)
+  #   fill_in 'Содержание ответа', with: answer_params.content
+  #   click_on "Ответить"
+  #   expect(page).to have_content answer_params.content
+
+  # end
 
   scenario 'user can view question and the answers thereto' do
     visit question_path(answer.question)

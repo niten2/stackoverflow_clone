@@ -14,7 +14,6 @@ class AnswersController < ApplicationController
     @answer = @question.answers.new(answer_params)
     @answer.user = current_user
     @answer.save
-    render layout: false
   end
 
   def update

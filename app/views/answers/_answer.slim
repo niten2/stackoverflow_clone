@@ -1,6 +1,6 @@
-- if answer.content == ""
-  .offset-s4.col.s8 Вам нужно ввести текст
-- else
-  .offset-s2.col.s4 = answer.content
-  .col.s4 = answer.user.try(:email)
+.offset-s2.col.s4 = answer.content
+.col.s4 = answer.user.try(:email)
+/ - if answer.content == ""
+/   .offset-s4.col.s8 Вам нужно ввести текст
+/ - else
 / p = link_to 'Destroy', question_answer_path(answer.question, answer), method: :delete if user_authorized_for(answer)

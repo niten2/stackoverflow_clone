@@ -10,9 +10,13 @@
   br
   .center = button_to "Удалить вопрос", question_path, method: :delete, class: "btn"
 br
+
+
 #answers
   = render @question.answers
-
+.clearfix
+br
+.red-text.center#answer-errors
 = render 'answers/form', question: @question, answer: @answer
 br
 .center = button_to "Назад", questions_path, method: :get, class: "btn"

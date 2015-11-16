@@ -24,7 +24,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers', '~> 3.0'
   gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'capybara-webkit'
   gem 'launchy'
   gem "database_cleaner"
   gem 'faker'
