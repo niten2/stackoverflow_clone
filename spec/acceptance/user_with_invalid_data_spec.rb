@@ -30,15 +30,14 @@ feature 'User tries action' do
     expect(page).to have_content "Произошли следующие ошибки"
   end
 
-  scenario "user tries to create a response with an invalid data" do
+  scenario "user tries to create a response with an invalid data", js: true  do
     sign_in(current_user)
 
     visit question_path(question)
 
     click_on "Ответить"
-    click_on "Ответить"
 
-    expect(page).to have_content "Произошли следующие ошибки"
+    expect(page).to have_content "Вам нужно ввести текст"
   end
 
 end

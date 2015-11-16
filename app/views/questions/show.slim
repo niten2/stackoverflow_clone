@@ -10,23 +10,9 @@
   br
   .center = button_to "Удалить вопрос", question_path, method: :delete, class: "btn"
 br
-.offset-s1.col.s4 Ответ:
-.col.s2 Пользователь:
-.clearfix
+#answers
+  = render @question.answers
 
-- @question.answers.each do |answer|
-  .offset-s1.col.s4 = answer.content
-  .col.s2
-    -if answer.user.present?
-      = answer.user.email
-    -else
-      | Нет
-  - if @question.user_id == current_user.try(:id)
-    .col.s2 = link_to "Редактировать", edit_question_answer_path(@question, id: answer.id), method: :get
-    .col.s2 = link_to "Удалить", question_answer_path(@question, id: answer.id), method: :delete
-  .clearfix
-  br
-
-.center = button_to "Ответить", new_question_answer_path(@question), method: :get, class: "btn"
+= render 'answers/form', question: @question, answer: @answer
 br
 .center = button_to "Назад", questions_path, method: :get, class: "btn"

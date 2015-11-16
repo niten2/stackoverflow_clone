@@ -13,21 +13,12 @@ class AnswersController < ApplicationController
   def create
     @answer = @question.answers.new(answer_params)
     @answer.user = current_user
-
-    if @answer.save
-      flash[:notice] = "Вы ответили"
-      redirect_to @question
-    else
-      render :new
-    end
+    @answer.save
+    render layout: false
   end
 
   def update
-    if @answer.update(answer_params)
-      redirect_to @question
-    else
-      render :edit
-    end
+    @answer.update(answer_params)
   end
 
   def destroy

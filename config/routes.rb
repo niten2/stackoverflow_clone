@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     root 'devise/sessions#new'
   end
 
-  # root "welcome#index"
+  get "welcome" => "welcome#index"
+  get "ajax" => "welcome#ajax"
 
   resources :questions do
     resources :answers
