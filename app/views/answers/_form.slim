@@ -2,6 +2,6 @@
   .red-text.center#answer-errors-common
   .input-field.offset-s3.col.s5
     = f.label :content, "Содержание ответа"
-    = f.text_area :content, class: "materialize-textarea", id: "field_answer"
+    = f.text_field :content, class: "materialize-textarea", id: "field_answer"
   .clearfix
   .center = f.submit 'Ответить', class: "btn"

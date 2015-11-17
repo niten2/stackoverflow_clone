@@ -27,7 +27,7 @@ feature 'User action question' do
     expect(page).to have_content 'Вопрос создан'
   end
 
-  scenario 'user can delete your question' do
+  scenario 'user delete your question' do
     sign_in(current_user)
     visit question_path(question)
 

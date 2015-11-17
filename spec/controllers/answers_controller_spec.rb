@@ -3,13 +3,24 @@ require 'rails_helper'
 RSpec.describe AnswersController, type: :controller do
 
   login_user
-
   let(:user) { create :user }
   let(:answer) { create :answer, user: user }
   let(:question) { create :question, user: user }
 
-  describe 'POST create' do
+  describe "PATCH make_best" do
 
+    it "have_http_status(:ok)" do
+      patch :make_best, id: answer, question_id: question.id, format: :js
+      expect(response).to have_http_status(:ok)
+    end
+
+    # it "owner question check best answer"
+    # it "owner question check best other answer"
+    # it "other user tried best answer"
+    # it "gues tried check answer"
+  end
+
+  describe 'POST create' do
     context 'create valid answer' do
       it 'save answer with valid parametrs' do
         expect { post :create, answer: attributes_for(:answer), question_id: question, format: :js }.to change(question.answers, :count).by(1)
@@ -54,11 +65,11 @@ RSpec.describe AnswersController, type: :controller do
   describe 'POST #destroy' do
     it "deletes answer" do
       create(:answer)
-      expect { delete :destroy, question_id: answer.question_id, id: answer.id }.to change(Answer, :count).by(0)
+      expect { delete :destroy, question_id: answer.question_id, id: answer.id, format: :js }.to change(Answer, :count).by(0)
     end
-    it 'redirect to question view' do
-      delete :destroy, question_id: answer.question_id, id: answer.id
-      expect(response).to redirect_to question_path(answer.question)
+    it 'status: :ok' do
+      delete :destroy, question_id: answer.question_id, id: answer.id, format: :js
+      expect(response).to have_http_status(:ok)
     end
   end
 end

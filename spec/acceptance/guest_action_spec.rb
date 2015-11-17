@@ -1,4 +1,4 @@
-require 'rails_helper'
+require_relative 'acceptance_helper'
 
 feature 'Actions guests', %q{
   Guests can view the questions and answers but can not ask questions and respond to existing problems

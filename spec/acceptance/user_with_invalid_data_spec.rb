@@ -19,7 +19,7 @@ feature 'User tries action' do
 
   end
 
-  scenario "user tries to create an issue with invalid data" do
+  scenario "user tries to create question with invalid data" do
     sign_in(current_user)
 
     visit questions_path
@@ -30,14 +30,22 @@ feature 'User tries action' do
     expect(page).to have_content "Произошли следующие ошибки"
   end
 
-  scenario "user tries to create a response with an invalid data", js: true  do
+  scenario "user tries to create answer with invalid data", js: true  do
     sign_in(current_user)
 
     visit question_path(question)
 
     click_on "Ответить"
 
-    expect(page).to have_content "Вам нужно ввести текст"
+    expect(page).to have_content "Content не может быть пустым"
+  end
+
+  scenario "user can not choose best foregin answer"  do
+    sign_in(current_user)
+
+    visit question_path(other_question)
+    expect(page).to_not have_content "Редактировать"
+
   end
 
 end

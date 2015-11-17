@@ -20,18 +20,18 @@ RSpec.configure do |config|
   # config.order = "random"
   config.use_transactional_fixtures = true
 
-  config.before :each do
-    if Capybara.current_driver == :rack_test
-      DatabaseCleaner.strategy = :transaction
-    else
-      DatabaseCleaner.strategy = :truncation
-    end
-    DatabaseCleaner.start
-  end
+  # config.before :each do
+  #   if Capybara.current_driver == :rack_test
+  #     DatabaseCleaner.strategy = :transaction
+  #   else
+  #     DatabaseCleaner.strategy = :truncation
+  #   end
+  #   DatabaseCleaner.start
+  # end
 
-  config.after do
-    DatabaseCleaner.clean
-  end
+  # config.after do
+  #   DatabaseCleaner.clean
+  # end
 
 end
 
