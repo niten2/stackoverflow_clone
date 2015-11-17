@@ -11,6 +11,7 @@ class Answer < ActiveRecord::Base
     ActiveRecord::Base.transaction do
       self.question.answers.update_all(best: false)
       raise ActiveRecord::Rollback unless self.update(best: true)
+    end
   end
 
 end
