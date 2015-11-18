@@ -1,75 +1,27 @@
-require_relative 'acceptance_helper'
+require_relative '../acceptance_helper'
 
-feature 'edit question' do
-
-  # given!(:current_user) { create(:user) }
-  # given!(:other_user) { create(:user) }
-  # given!(:question) { create(:question, user: current_user) }
-  # given!(:other_question) { create(:question, user: other_user) }
-
-  scenario 'guest view list questions' do
-    #   visit questions_path
-    #   expect(page).to have_content question.title
-    #   expect(page).to have_content second_question.title
-    #   expect(page).to have_content third_question.title
-  end
-
-  scenario 'user view list your and foregin questions' do
-    # visit questions_path
-    # expect(page).to have_content question.title
-    # expect(page).to have_content other_question.title
-  end
-
-end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-feature 'User action question' do
+feature 'index question' do
 
   given!(:current_user) { create(:user) }
   given!(:other_user) { create(:user) }
-  given!(:question) { create(:question, user: current_user) }
-  given!(:other_question) { create(:question, user: other_user) }
+  given!(:current_user_question) { create(:question, user: current_user) }
+  given!(:other_user_question) { create(:question, user: other_user) }
+  given!(:question) { create(:question) }
 
-  scenario 'user can view a list of questions' do
-
+  scenario 'guest view list questions' do
     visit questions_path
-
+    expect(page).to have_content current_user_question.title
+    expect(page).to have_content other_user_question.title
     expect(page).to have_content question.title
-    expect(page).to have_content other_question.title
   end
 
-  scenario 'user creates a question' do
+  scenario 'user view list your and foregin questions' do
     sign_in(current_user)
-
-    visit '/questions'
-    click_on 'Создать вопрос'
-    fill_in 'Тема', with: 'Test question'
-    fill_in 'Содержание', with: 'text text text'
-    click_on 'Создать'
-
-    expect(page).to have_content 'Вопрос создан'
-  end
-
-  scenario 'user delete your question' do
-    sign_in(current_user)
-    visit question_path(question)
-
-    click_on "Удалить вопрос"
-
-    expect(page).to have_content "Вопрос удален"
-
+    visit questions_path
+    expect(page).to have_content current_user_question.title
+    expect(page).to have_content other_user_question.title
+    expect(page).to have_content question.title
   end
 
 end
+

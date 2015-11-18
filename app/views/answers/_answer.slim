@@ -7,7 +7,7 @@
         .col.s2 = link_to 'Редактировать', '#', class: "edit-answer-link", data: { answer_id: answer.id }
         .col.s2 = link_to 'Удалить', question_answer_path(answer, question_id: answer.question ), remote: true, method: :delete
       - if current_user.id == answer.question.user_id && !answer.best
-        .col.s2 = link_to 'Выбрать лучший', make_best_question_answer_path(answer, question_id: answer.question), method: :patch, remote: true
+        .col.s2 = link_to 'Выбрать лучший', make_best_question_answer_path(@question, answer), method: :patch, remote: true, id: "best-answer-link-#{answer.id}", class: 'best-answer-link'
       - if answer.best == true
         .col.s2 Лучший ответ
 
