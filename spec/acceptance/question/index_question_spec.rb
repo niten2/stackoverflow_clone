@@ -1,5 +1,40 @@
 require_relative 'acceptance_helper'
 
+feature 'edit question' do
+
+  # given!(:current_user) { create(:user) }
+  # given!(:other_user) { create(:user) }
+  # given!(:question) { create(:question, user: current_user) }
+  # given!(:other_question) { create(:question, user: other_user) }
+
+  scenario 'guest view list questions' do
+    #   visit questions_path
+    #   expect(page).to have_content question.title
+    #   expect(page).to have_content second_question.title
+    #   expect(page).to have_content third_question.title
+  end
+
+  scenario 'user view list your and foregin questions' do
+    # visit questions_path
+    # expect(page).to have_content question.title
+    # expect(page).to have_content other_question.title
+  end
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 feature 'User action question' do
 
   given!(:current_user) { create(:user) }

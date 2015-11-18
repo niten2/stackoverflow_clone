@@ -13,7 +13,8 @@ br
 
 br
 br
-= render "answers/answers"
+#answers
+  = render @question.answers
 .clearfix
 br
 = render 'answers/form', question: @question, answer: @answer

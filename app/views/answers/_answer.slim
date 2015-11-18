@@ -1,0 +1,22 @@
+- if answer.persisted?
+  div id="answer_#{answer.id}"
+    .col.s3 class="content-edit-answer-#{answer.id}" = answer.content
+    - if user_signed_in?
+      .col.s3 = answer.user.try(:email)
+      - if @question.user_id == current_user.try(:id)
+        .col.s2 = link_to 'Редактировать', '#', class: "edit-answer-link", data: { answer_id: answer.id }
+        .col.s2 = link_to 'Удалить', question_answer_path(answer, question_id: answer.question ), remote: true, method: :delete
+      - if current_user.id == answer.question.user_id && !answer.best
+        .col.s2 = link_to 'Выбрать лучший', make_best_question_answer_path(answer, question_id: answer.question), method: :patch, remote: true
+      - if answer.best == true
+        .col.s2 Лучший ответ
+
+      .col.s12 = form_for [@question, answer], remote: true, html: { id: "form-edit-answer-#{answer.id}"} do |f|
+        .red-text.center.answer-errors
+        .input-field
+          = f.label :content, "Содержание ответа"
+          = f.text_area :content, class: "materialize-textarea"
+        .clearfix
+        .center = f.submit 'Сохранить', class: "btn"
+        br
+    .clearfix
