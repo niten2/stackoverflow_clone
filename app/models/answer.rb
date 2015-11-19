@@ -14,11 +14,4 @@ class Answer < ActiveRecord::Base
     end
   end
 
-  def best?
-    if self.best
-      true
-    else
-      false
-    end
-  end
 end

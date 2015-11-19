@@ -1,8 +1,8 @@
 - if answer.persisted?
   div id="answer_#{answer.id}"
-    .col.s3 class="content-edit-answer-#{answer.id}"
+    .col.s3.answer-content class="content-edit-answer-#{answer.id}"
       - if answer.best?
-        .answer-content-best =answer.content
+        .answer-content-best = answer.content
       - else
         = answer.content
     - if user_signed_in?

@@ -7,6 +7,7 @@ feature 'make_best answer' do
   given!(:answer) { create(:answer, question: question) }
   given!(:other_answer) { create(:answer, question: question) }
   given!(:other_user) { create(:user) }
+  # given(:answers) { create(:answer, 5, question: question) }
 
   scenario 'guest tries make_best answer' do
     visit question_path(question)
@@ -32,7 +33,7 @@ feature 'make_best answer' do
       end
   end
 
-  scenario 'owner question make_best answer and answer is answer-content-best in list', js: true do
+  scenario 'owner question make_best answer and answer is not link', js: true do
     sign_in(current_user)
     visit question_path(question)
 
@@ -45,6 +46,19 @@ feature 'make_best answer' do
     expect(page).to have_selector(".answer-content-best", text: other_answer.content)
 
     expect(page).to have_selector("#best-answer-link-#{answer.id}")
+
+  end
+
+  scenario "best answer seen first", js: true do
+    sign_in(current_user)
+    visit question_path(question)
+
+    expect(answer.content).to have_content first(".answer-content").text
+    expect(other_answer.content).to_not have_content first(".answer-content").text
+    click_on "best-answer-link-#{other_answer.id}"
+    sleep(2)
+    expect(other_answer.content).to have_content first(".answer-content").text
+    expect(answer.content).to_not have_content first(".answer-content").text
 
   end
 
