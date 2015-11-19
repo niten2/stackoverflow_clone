@@ -1,6 +1,6 @@
 require_relative '../acceptance_helper'
 
-feature 'Siging in', %q{In order to be able to ask questions, the user must log in} do
+feature 'User siging in' do
 
   given(:user) { create(:user) }
 

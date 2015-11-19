@@ -1,6 +1,6 @@
 require_relative '../acceptance_helper'
 
-feature 'make_best answer' do
+feature 'show answer' do
 
   given!(:current_user) { create(:user) }
   given!(:foregin_user) { create(:user) }

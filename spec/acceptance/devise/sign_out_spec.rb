@@ -1,6 +1,6 @@
 require_relative '../acceptance_helper'
 
-feature 'Siging out', %q{After registration, the user can exit the system} do
+feature 'Siging out' do
 
   given(:user) { create(:user) }
 

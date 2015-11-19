@@ -1,6 +1,6 @@
 require_relative '../acceptance_helper'
 
-feature 'destroy answer' do
+feature 'edit answer' do
 
   given!(:current_user) { create(:user) }
   given!(:other_user) { create(:user) }
