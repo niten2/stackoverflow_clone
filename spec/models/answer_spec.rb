@@ -33,11 +33,11 @@ RSpec.describe Answer, type: :model do
     it 'sets #best to all other answers to false' do
 
       answers.first.make_best
-      @best_answer = answers.first
+      best_answer = answers.first
 
       answers.each do |answer|
         if answer.best == true
-          expect(answer).to eq @best_answer
+          expect(answer).to eq best_answer
         else
           expect(answer.best).to be_falsey
         end
