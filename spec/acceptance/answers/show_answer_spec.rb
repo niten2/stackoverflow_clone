@@ -7,7 +7,7 @@ feature 'show answer' do
   given!(:question) { create(:question, user: current_user) }
   given!(:answer) { create(:answer, question: question) }
 
-  scenario 'guest show answer', js: true do
+  scenario 'guest show answer' do
     visit question_path(question)
     expect(page).to have_content answer.content
   end

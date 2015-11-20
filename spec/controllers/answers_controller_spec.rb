@@ -2,10 +2,11 @@ require 'rails_helper'
 
 RSpec.describe AnswersController, type: :controller do
 
-  login_user
   let(:user) { create :user }
   let(:answer) { create :answer, user: user }
   let(:question) { create :question, user: user }
+  let(:other_question) { create :question }
+  before { sign_in(user) }
 
   describe "PATCH make_best" do
 
@@ -14,10 +15,16 @@ RSpec.describe AnswersController, type: :controller do
       expect(response).to have_http_status(:ok)
     end
 
-    # it "owner question check best answer"
-    # it "owner question check best other answer"
-    # it "other user tried best answer"
-    # it "gues tried check answer"
+    it "owner question check best answer" do
+      patch :make_best, id: answer, question_id: question.id, format: :js
+      expect(assigns(:answer).best).to be_truthy
+    end
+
+    it "user tried other question check best answer" do
+      patch :make_best, id: answer, question_id: other_question.id, format: :js
+      expect(assigns(:answer).best).to be_falsey
+    end
+
   end
 
   describe 'POST create' do

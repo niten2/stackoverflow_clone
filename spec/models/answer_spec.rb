@@ -31,16 +31,10 @@ RSpec.describe Answer, type: :model do
     let(:answers) { create_list(:answer, 5) }
 
     it 'sets #best to all other answers to false' do
-
       answers.first.make_best
-      best_answer = answers.first
-
+      answers.shift
       answers.each do |answer|
-        if answer.best == true
-          expect(answer).to eq best_answer
-        else
-          expect(answer.best).to be_falsey
-        end
+        expect(answer.best).to be_falsey
       end
     end
   end
