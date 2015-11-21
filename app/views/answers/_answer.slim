@@ -1,6 +1,6 @@
 - if answer.persisted?
   div id="answer_#{answer.id}"
-    .col.s3.answer-content class="content-edit-answer-#{answer.id}"
+    .col.s2.answer-content class="content-edit-answer-#{answer.id}"
       - if answer.best?
         .answer-content-best = answer.content
       - else
@@ -15,7 +15,12 @@
           = link_to 'Выбрать лучший', make_best_question_answer_path(@question, answer), method: :patch, remote: true, id: "best-answer-link-#{answer.id}"
         - else
           | Лучший ответ
-
+      .col.s2
+        | Attachment:
+        - answer.attachments.each do |a|
+          br
+          = link_to a.file.filename, a.file.url
+          br
       .col.s12 = form_for [@question, answer], remote: true, html: { id: "form-edit-answer-#{answer.id}"} do |f|
         .red-text.center.answer-errors
         .input-field

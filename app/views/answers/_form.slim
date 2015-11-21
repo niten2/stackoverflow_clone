@@ -5,4 +5,8 @@
       = f.label :content, "Содержание ответа"
       = f.text_field :content, class: "materialize-textarea", id: "field_answer"
     .clearfix
+    .center
+      = f.fields_for :attachments do |a|
+        = a.label :file
+        = a.file_field :file
     .center = f.submit 'Ответить', class: "btn"
