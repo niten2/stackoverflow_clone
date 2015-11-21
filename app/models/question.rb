@@ -6,4 +6,6 @@ class Question < ActiveRecord::Base
 
   validates :title, :content, :user_id, presence: true
 
+  accepts_nested_attributes_for :attachments
+
 end
