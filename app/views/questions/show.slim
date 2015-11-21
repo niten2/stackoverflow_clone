@@ -9,7 +9,7 @@
   | Attachment:
   - @question.attachments.each do |a|
     br
-    = a.file.file.filename
+    = link_to a.file.filename, a.file.url
     br
 br
 
