@@ -5,6 +5,12 @@
 .center
   | Содержание:
   =< @question.content
+.center
+  | Attachment:
+  - @question.attachments.each do |a|
+    br
+    = a.file.file.filename
+    br
 br
 
 - if @question.user_id == current_user.try(:id)
