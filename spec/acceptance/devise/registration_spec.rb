@@ -1,6 +1,6 @@
-require 'rails_helper'
+require_relative '../acceptance_helper'
 
-feature 'User registration', %q{To log in, the user must create an account} do
+feature 'User registration' do
 
   scenario 'non-existent user logs' do
     visit new_user_registration_path

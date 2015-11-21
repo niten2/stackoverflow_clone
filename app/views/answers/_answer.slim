@@ -1,6 +1,27 @@
-- if answer.content == ""
-  .offset-s4.col.s8 Вам нужно ввести текст
-- else
-  .offset-s2.col.s4 = answer.content
-  .col.s4 = answer.user.try(:email)
-/ p = link_to 'Destroy', question_answer_path(answer.question, answer), method: :delete if user_authorized_for(answer)
+- if answer.persisted?
+  div id="answer_#{answer.id}"
+    .col.s3.answer-content class="content-edit-answer-#{answer.id}"
+      - if answer.best?
+        .answer-content-best = answer.content
+      - else
+        = answer.content
+    - if user_signed_in?
+      .col.s3 = answer.user.try(:email)
+      - if @question.user_id == current_user.try(:id)
+        .col.s2 = link_to 'Редактировать', '#', class: "edit-answer-link", data: { answer_id: answer.id }
+        .col.s2 = link_to 'Удалить', question_answer_path(@question, answer), remote: true, method: :delete
+      .col.s2
+        - if current_user.id == answer.question.user_id && !answer.best
+          = link_to 'Выбрать лучший', make_best_question_answer_path(@question, answer), method: :patch, remote: true, id: "best-answer-link-#{answer.id}"
+        - else
+          | Лучший ответ
+
+      .col.s12 = form_for [@question, answer], remote: true, html: { id: "form-edit-answer-#{answer.id}"} do |f|
+        .red-text.center.answer-errors
+        .input-field
+          = f.label :content, "Содержание ответа"
+          = f.text_area :content, class: "materialize-textarea"
+        .clearfix
+        .center = f.submit 'Сохранить', class: "btn"
+        br
+    .clearfix

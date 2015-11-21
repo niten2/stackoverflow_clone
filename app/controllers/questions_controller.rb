@@ -22,8 +22,7 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.new(question_params)
 
     if @question.save
-      flash[:notice] = 'Вопрос создан'
-      redirect_to @question
+      redirect_to @question, notice:'Вопрос создан'
     else
       render :new
     end
@@ -31,7 +30,7 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update(question_params)
-      redirect_to @question
+      redirect_to @question, notice: "Вопрос изменен"
     else
       render :edit
     end

@@ -18,20 +18,20 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
   config.infer_spec_type_from_file_location!
   # config.order = "random"
-  config.use_transactional_fixtures = false
+  config.use_transactional_fixtures = true
 
-  config.before :each do
-    if Capybara.current_driver == :rack_test
-      DatabaseCleaner.strategy = :transaction
-    else
-      DatabaseCleaner.strategy = :truncation
-    end
-    DatabaseCleaner.start
-  end
+  # config.before :each do
+  #   if Capybara.current_driver == :rack_test
+  #     DatabaseCleaner.strategy = :transaction
+  #   else
+  #     DatabaseCleaner.strategy = :truncation
+  #   end
+  #   DatabaseCleaner.start
+  # end
 
-  config.after do
-    DatabaseCleaner.clean
-  end
+  # config.after do
+  #   DatabaseCleaner.clean
+  # end
 
 end
 

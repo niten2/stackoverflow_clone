@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   get "ajax" => "welcome#ajax"
 
   resources :questions do
-    resources :answers
+    resources :answers do
+      patch :make_best, on: :member
+    end
   end
 
 end
