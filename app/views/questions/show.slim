@@ -10,7 +10,6 @@
   - @question.attachments.each do |a|
     br
     = link_to a.file.filename, a.file.url
-    br
 br
 
 - if @question.user_id == current_user.try(:id)

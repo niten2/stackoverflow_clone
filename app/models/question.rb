@@ -6,6 +6,7 @@ class Question < ActiveRecord::Base
 
   validates :title, :content, :user_id, presence: true
 
-  accepts_nested_attributes_for :attachments
+  # accepts_nested_attributes_for :attachments
 
+  accepts_nested_attributes_for :attachments, reject_if: lambda { |a| a[:file].blank? }, allow_destroy: true
 end

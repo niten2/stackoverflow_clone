@@ -10,7 +10,20 @@
   .center Attachment
   .col.s12
     = f.fields_for :attachments do |a|
-      = a.label :file
-      = a.file_field :file
+      = render 'common/attachment_fields', f: a
+    / = f.fields_for :attachments do |a|
+      .link
+    = link_to_add_association 'add', f, :attachments, partial: "common/attachment_fields"
+  / = render "common/attachment_fields", f: f
+  / = render "attachment_fields", f: f
+  / .center Attachment
+  / = link_to_add_association 'add',f, :attachments
+  / .col.s12
+  /   = f.fields_for :attachments do |a|
+  /     .nested-fields
+  /       = a.label :file
+  /       = a.file_field :file
+  /       = link_to_remove_association "remove"
+  /     .link
   br
   .center = f.submit "#{@question.new_record? ? 'Создать' : 'Обновить'}", class: "btn"
