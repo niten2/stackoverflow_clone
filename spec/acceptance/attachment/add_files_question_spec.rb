@@ -2,9 +2,9 @@ require_relative '../acceptance_helper'
 
 feature 'Add files to question' do
 
-  given!(:user) { create(:user) }
-  given!(:other_user) { create(:user) }
-  given!(:question) { create(:question, user: user) }
+  given(:user) { create(:user) }
+  given(:other_user) { create(:user) }
+  given(:question) { create(:question, user: user) }
   given!(:attachment) { create(:attachment, attachable: question) }
 
   scenario 'add file question', js: true do
