@@ -8,18 +8,28 @@ feature 'Add files to answer' do
   given(:answer) { create(:answer, user: user) }
   given!(:attachment) { create(:attachment, attachable: answer) }
 
-  # scenario 'User adds file to answer', js: true do
-  # scenario 'add file question', js: true do
-  # scenario 'add several file question', js: true do
-  # scenario 'add file question, and remove one file', js: true do
-  # scenario 'owner question remove attachment file ofter create' do
-  # scenario 'other user question tried remove attachment file ofter create' do
-#     fill_in 'answer[content]', with: 'text text text'
-#     attach_file 'File', "#{Rails.root}/spec/spec_helper.rb"
-#     click_on 'Ответить'
+  scenario 'user adds several file to answer', js: true do
+    sign_in(user)
+    visit question_path(question)
+    within '.new_answer' do
+      fill_in 'answer[content]', with: 'text text text'
+      click_on 'Добавить файл'
+      click_on 'Добавить файл'
+      inputs = all('input[type="file"]')
+      inputs[0].set("#{Rails.root}/spec/spec_helper.rb")
+      inputs[1].set("#{Rails.root}/spec/rails_helper.rb")
+      click_on 'Ответить'
+      expect(page).to have_link 'spec_helper.rb'
+      expect(page).to have_link 'rails_helper.rb'
+    end
+  end
 
-#     within '#answers' do
-#       expect(page).to have_link 'spec_helper.rb', href: '/uploads/attachment/file/1/spec_helper.rb'
-#     end
-#   end
+
+  scenario 'user adds several file to exist answer', js: true
+
+  scenario 'owner answer remove attachment file', js: true
+  scenario 'owner answer remove attachment file ofter create', js: true
+
+  scenario 'other user anwer tried remove attachment file ofter create', js: true
+
 end

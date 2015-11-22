@@ -1,8 +1,0 @@
-.center Attachment
-.col.s12
-  = f.fields_for :attachments do |a|
-    = a.label :file
-    = a.file_field :file
-    = link_to_remove_association "remove", f
-    .link
-  = link_to_add_association 'add', :attachments
