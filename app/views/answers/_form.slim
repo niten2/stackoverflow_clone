@@ -5,13 +5,11 @@
       = f.label :content, "Содержание ответа"
       = f.text_field :content, class: "materialize-textarea", id: "field_answer"
     .clearfix
-    .center
-      / = f.fields_for :attachments do |a|
-      /   = a.label :file
-      /   = a.file_field :file
-      /   = link_to_remove_association "remove", a
-      /   .link
-      /     = link_to_add_association 'add', a, :file
+    .center Attachment
+    .col.s12
+      = f.fields_for :attachments do |a|
+        = render 'common/attachment_fields', f: a
+      = link_to_add_association 'Добавить файл', f, :attachments, partial: "common/attachment_fields"
 
     .center = f.submit 'Ответить', class: "btn"
 

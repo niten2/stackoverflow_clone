@@ -15,11 +15,13 @@
           = link_to 'Выбрать лучший', make_best_question_answer_path(@question, answer), method: :patch, remote: true, id: "best-answer-link-#{answer.id}"
         - else
           | Лучший ответ
-      .col.s2
+      #attachment.col.s2
         | Attachment:
         - answer.attachments.each do |a|
           br
           = link_to a.file.filename, a.file.url
+          - if answer.user_id == current_user.try(:id)
+            = link_to 'Удалить файл', attachment_path(id: a.id), method: :delete
           br
       .col.s12 = form_for [@question, answer], remote: true, html: { id: "form-edit-answer-#{answer.id}"} do |f|
         .red-text.center.answer-errors
@@ -27,6 +29,10 @@
           = f.label :content, "Содержание ответа"
           = f.text_area :content, class: "materialize-textarea"
         .clearfix
+        .col.s12
+          = f.fields_for :attachments do |a|
+            = render 'common/attachment_fields', f: a
+          = link_to_add_association 'Добавить файл', f, :attachments, partial: "common/attachment_fields"
         .center = f.submit 'Сохранить', class: "btn"
         br
     .clearfix
