@@ -4,9 +4,12 @@ feature 'Add files to answer' do
 
   given(:user) { create(:user) }
   given(:other_user) { create(:user) }
+
   given(:question) { create(:question, user: user) }
   given(:answer) { create(:answer, user: user, question: question) }
   given!(:attachment) { create(:attachment, attachable: answer) }
+
+  given(:second_question) { create(:question, user: user) }
 
   scenario 'user adds several file to answer', js: true do
     sign_in(user)
@@ -28,7 +31,7 @@ feature 'Add files to answer' do
 
   scenario 'owner answer remove attachment file before create', js: true do
     sign_in(user)
-    visit question_path(question)
+    visit question_path(second_question)
     within '.new_answer' do
       fill_in 'answer[content]', with: 'text text text'
       click_on 'Добавить файл'
@@ -52,7 +55,6 @@ feature 'Add files to answer' do
       click_on 'Удалить файл'
       expect(page).to_not have_link 'spec_helper.rb'
     end
-
   end
 
   scenario 'user adds several file to exist answer', js: true do

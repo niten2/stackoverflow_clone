@@ -9,7 +9,6 @@ feature 'Add files to question' do
   given!(:attachment) { create(:attachment, attachable: question) }
   given(:second_question) { create(:question, user: user) }
 
-
   scenario 'add several file in create question', js: true do
     sign_in(user)
     visit new_question_path
