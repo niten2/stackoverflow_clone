@@ -72,7 +72,6 @@ feature 'Add files to answer' do
   scenario 'other user answer tried remove attachment file ofter create' do
     sign_in(other_user)
     visit question_path(question)
-    save_and_open_page
     within '#attachment' do
       expect(page).to_not have_link 'Удалить файл'
     end
