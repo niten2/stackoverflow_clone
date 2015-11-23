@@ -13,7 +13,7 @@
       - if a.file.filename.present?
         = link_to a.file.filename, a.file.url
       - if @question.user_id == current_user.try(:id)
-        = link_to 'Удалить файл', attachment_path(id: a.id), method: :delete
+        = link_to 'Удалить файл', attachment_path(id: a.id, question_id: @question), method: :delete
   br
 
   - if @question.user_id == current_user.try(:id)
