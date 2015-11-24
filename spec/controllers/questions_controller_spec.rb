@@ -24,13 +24,22 @@ RSpec.describe QuestionsController, type: :controller do
   describe 'GET #show' do
     before { get :show, id: question }
 
+    it 'renders show view' do
+      expect(response).to render_template :show
+    end
+
     it 'assings the requested question to @question' do
       expect(assigns(:question)).to eq question
     end
 
-    it 'renders show view' do
-      expect(response).to render_template :show
+    it 'assigns new answer for question' do
+      expect(assigns(:answer)).to be_a_new(Answer)
     end
+
+    # it 'builds new attachment for answer' do
+    #   expect(assigns(:answer).attachments.first).to be_a_new(Attachment)
+    # end
+
   end
 
   describe 'GET #new' do
@@ -39,6 +48,10 @@ RSpec.describe QuestionsController, type: :controller do
     it 'assigns a new Question to @question' do
       expect(assigns(:question)).to be_a_new(Question)
     end
+
+    # it 'buils new Attachment for Question' do
+    #   expect(assigns(:question).attachments.first).to be_a_new(Attachment)
+    # end
 
     it 'renders new view' do
       expect(response).to render_template :new

@@ -1,4 +1,4 @@
-= form_for(@question) do |f|
+= form_for @question do |f|
   = render 'common/errors', resource: @question
   .offset-s2.input-field.col.s4
     = label :title, "Тема", for: "textarea1"
@@ -6,8 +6,11 @@
   .input-field.col.s4
     label for="textarea2" Содержание
     = f.text_field :content, :class => "materialize-textarea", :id => "textarea2"
-  / .center = f.text_field :title, class: "form-control"
-  / .center = f.text_field :content, class: "form-control"
   .clearfix
+  .center Attachment
+  .col.s12
+    = f.fields_for :attachments do |a|
+      = render 'common/attachment_fields', f: a
+    = link_to_add_association 'Добавить файл', f, :attachments, partial: "common/attachment_fields"
   br
   .center = f.submit "#{@question.new_record? ? 'Создать' : 'Обновить'}", class: "btn"

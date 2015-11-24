@@ -17,12 +17,16 @@ gem 'materialize-sass'
 gem 'devise'
 gem "simple_form"
 
+gem 'carrierwave'
+gem 'remotipart'
+gem 'cocoon'
+
 group :development, :test do
 
   # test
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'shoulda-matchers', '~> 3.0'
+  gem 'shoulda-matchers'
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'launchy'
