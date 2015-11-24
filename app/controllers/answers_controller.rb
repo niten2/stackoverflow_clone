@@ -2,6 +2,7 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_question, only: [:create, :new, :destroy, :edit, :update, :make_best]
   before_action :set_answer, only: [:destroy, :edit, :update, :make_best]
+  include Voted
 
   def make_best
     @answer.make_best if @question.user_id == current_user.id

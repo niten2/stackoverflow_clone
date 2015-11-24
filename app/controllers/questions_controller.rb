@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_question, only: [:show, :edit, :update, :destroy]
+  include Voted
 
   def index
     @questions = Question.all
@@ -8,12 +9,10 @@ class QuestionsController < ApplicationController
 
   def show
     @answer = @question.answers.build
-    # @answer.attachments.build
   end
 
   def new
     @question = Question.new
-    # @question.attachments.build
   end
 
   def edit
