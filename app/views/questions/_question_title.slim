@@ -1,0 +1,20 @@
+.center
+  | Тема вопроса:
+  - if @question.title.present?
+    =< @question.title
+.center
+  | Содержание:
+  =< @question.content
+.center
+  | Attachment:
+  - @question.attachments.each do |a|
+    br
+    - if a.file.filename.present?
+      = link_to a.file.filename, a.file.url
+    - if @question.user_id == current_user.try(:id)
+      = link_to 'Удалить файл', attachment_path(id: a.id, question_id: @question), method: :delete
+br
+
+- if @question.user_id == current_user.try(:id)
+  .col.s4 = button_to "Редактировать вопрос", edit_question_path, method: :get, class: "btn"
+  .col.s4 = button_to "Удалить вопрос", question_path, method: :delete, class: "btn"

@@ -1,0 +1,18 @@
+.clearfix
+p
+  | Votes:
+p
+  span.upvotes_count= object.votes.upvotes.count
+  | |
+  span.downvotes_count= object.votes.downvotes.count
+p
+  | Rating:
+  span.votes_count= object.votes.rating
+p
+  - if user_signed_in? && !(current_user.id == object.user_id)
+    - if current_user.voted_for? object
+      = link_to 'Unvote', eval("unvote_#{object.class.to_s.downcase}_path(object)"), method: :patch, remote: true, class: 'vote-btn'
+    - else
+      = link_to 'Upvote', eval("upvote_#{object.class.to_s.downcase}_path(object)"), method: :patch, remote: true, class: 'vote-btn'
+      |
+      = link_to 'Downvote', eval("downvote_#{object.class.to_s.downcase}_path(object)"), method: :patch, remote: true, class: 'vote-btn'

@@ -4,6 +4,7 @@ describe User, type: :model do
 
   it { should have_many(:questions) }
   it { should have_many(:answers) }
+  it { should have_many(:attachments) }
 
   describe 'autor_of?' do
     let(:user) { create(:user) }

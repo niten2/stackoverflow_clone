@@ -8,12 +8,21 @@ Rails.application.routes.draw do
   get "welcome" => "welcome#index"
   get "ajax" => "welcome#ajax"
 
-  resources :questions do
-    resources :answers do
+  resources :attachment, only: :destroy
+
+  concern :votable do
+    member do
+      patch :upvote
+      patch :downvote
+      patch :unvote
+    end
+  end
+
+  resources :questions, concerns: :votable do
+    resources :answers, shallow: true, concerns: :votable do
       patch :make_best, on: :member
     end
   end
 
-  resources :attachment, only: :destroy
-
 end
+
