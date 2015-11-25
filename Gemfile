@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'turbolinks'
-
 ruby "2.2.2"
 gem 'rails', '4.2.4'
 gem 'pg'
@@ -20,6 +18,7 @@ gem "simple_form"
 gem 'carrierwave'
 gem 'remotipart'
 gem 'cocoon'
+gem 'mustache-js-rails'
 
 group :development, :test do
 

@@ -1,6 +1,7 @@
 #question
   = render "question_info"
-  #question_votes = render 'common/votes', object: @question
+  .clearfix
+  = render 'common/votes', object: @question
 br
 #answers
   = render @question.answers
