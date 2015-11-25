@@ -1,17 +1,21 @@
 module Votable
   extend ActiveSupport::Concern
   included do
-    def vote_for(object, value)
-      vote = self.votes.new(votable: object, value: value)
+    def vote_for(votable, value)
+      vote = self.votes.new(votable: votable, value: value)
       vote.save
     end
 
-    def unvote_for(object)
-      self.votes.where(votable: object).delete_all
+    def unvote_for(votable)
+      self.votes.where(votable: votable).delete_all
     end
 
-    def voted_for?(object)
-      self.votes.where(votable: object).any?
+    def voted_for?(votable)
+      self.votes.where(votable: votable).any?
+    end
+
+    def klass_name
+      self.class.to_s.downcase
     end
   end
 end

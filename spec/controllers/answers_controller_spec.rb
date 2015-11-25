@@ -9,7 +9,6 @@ RSpec.describe AnswersController, type: :controller do
   before { sign_in(user) }
 
   describe "PATCH make_best" do
-
     it "have_http_status(:ok)" do
       patch :make_best, id: answer, question_id: question.id, format: :js
       expect(response).to have_http_status(:ok)
@@ -24,7 +23,6 @@ RSpec.describe AnswersController, type: :controller do
       patch :make_best, id: answer, question_id: other_question.id, format: :js
       expect(assigns(:answer).best).to be_falsey
     end
-
   end
 
   describe 'POST create' do

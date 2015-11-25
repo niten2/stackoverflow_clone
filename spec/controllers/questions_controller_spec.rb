@@ -2,14 +2,12 @@ require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
 
-  login_user
-
   let(:user) { create :user }
   let(:question) { create(:question) }
+  before { sign_in(user) }
 
   describe 'GET #index' do
     let(:questions) { create_list(:question, 2) }
-
     before { get :index }
 
     it 'populates an array of all questions' do
@@ -35,11 +33,6 @@ RSpec.describe QuestionsController, type: :controller do
     it 'assigns new answer for question' do
       expect(assigns(:answer)).to be_a_new(Answer)
     end
-
-    # it 'builds new attachment for answer' do
-    #   expect(assigns(:answer).attachments.first).to be_a_new(Attachment)
-    # end
-
   end
 
   describe 'GET #new' do
@@ -48,10 +41,6 @@ RSpec.describe QuestionsController, type: :controller do
     it 'assigns a new Question to @question' do
       expect(assigns(:question)).to be_a_new(Question)
     end
-
-    # it 'buils new Attachment for Question' do
-    #   expect(assigns(:question).attachments.first).to be_a_new(Attachment)
-    # end
 
     it 'renders new view' do
       expect(response).to render_template :new
