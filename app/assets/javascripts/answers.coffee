@@ -8,5 +8,5 @@ $ ->
 
   $('#answers').bind 'ajax:success', (e, data, status, xhr) ->
     answer = $.parseJSON(xhr.responseText)
-    $("#answer_#{answer.id} .answer_vote").html(JST["templates/votes"]({object: answer}))
+    $("#answer-#{answer.id} .answer_vote").html(JST["templates/votes"]({object: answer}))
 
