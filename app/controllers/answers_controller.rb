@@ -5,7 +5,6 @@ class AnswersController < ApplicationController
   include Voted
 
   def make_best
-    # @question = @answer.question
     @answer.make_best if @question.user_id == current_user.id
   end
 

@@ -19,7 +19,7 @@ gem 'carrierwave'
 gem 'remotipart'
 gem 'cocoon'
 gem 'skim'
-# gem 'mustache-js-rails'
+gem 'nested_form'
 
 group :development, :test do
 
@@ -59,20 +59,3 @@ group :development, :test do
   gem 'pry'
 
 end
-
-  # gem 'spork-rails'
-  # gem 'guard-spork'
-  # gem 'guard-bundler'
-  # gem 'guard-migrate'
-  # gem "guard-rubocop"
-  # gem 'guard-shell'
-
-  # gem 'taps'
-
-  # gem 'newrelic_rpm'
-  # gem 'rvm'
-  # gem "spork-rails"
-  # gem 'rspec-activemodel-mocks'
-  # gem "spork-rails"
-  # gem 'cucumber-rails', :require => false
-  # gem 'capybara'

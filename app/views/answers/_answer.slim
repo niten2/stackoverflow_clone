@@ -1,7 +1,6 @@
 - if answer.persisted?
   .card-content.card id="answer_#{answer.id}"
-    .col.s2.answer-content class="content-edit-answer-#{answer.id}"
-    .col.s12.center
+    .col.s12.center.answer-content class="content-edit-answer-#{answer.id}"
       - if answer.best?
         .answer-content-best = answer.content
       - else
@@ -22,33 +21,5 @@
         .col.s4.green-text Лучший ответ
 
       .col.s4.answer_vote = render 'common/vote', object: answer
-
-
-
-      .col.s12 = form_for answer, remote: true, html: { id: "form-edit-answer-#{answer.id}"} do |f|
-        .red-text.center.answer-errors
-        .input-field
-          = f.label :content, "Содержание ответа"
-          = f.text_area :content, class: "materialize-textarea"
-        .clearfix
-        .col.s12
-          = f.fields_for :attachments do |a|
-            = render 'common/attachment_fields', f: a
-          = link_to_add_association 'Добавить файл', f, :attachments, partial: "common/attachment_fields"
-        .center = f.submit 'Сохранить', class: "btn"
-        br
-
-
-
-      #attachment.col.s12.center
-        - if answer.attachments.present?
-          - answer.attachments.each do |a|
-            | Прикрепленные файлы:
-            br
-            = link_to a.file.filename, a.file.url
-            - if answer.user_id == current_user.try(:id)
-              = link_to 'Удалить файл', attachment_path(id: a.id, answer_id: answer), method: :delete
-        - else
-          | Прикрепленных файлов нет
-        br
-    .clearfix
+      .col.s12 = render "answers/edit", object: answer
+      .col.s12#attachment.center = render "answers/attachment", object: answer
