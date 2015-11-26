@@ -1,30 +1,26 @@
 - if answer.persisted?
   .card-content.card id="answer_#{answer.id}"
     .col.s2.answer-content class="content-edit-answer-#{answer.id}"
+    .col.s12.center
       - if answer.best?
         .answer-content-best = answer.content
       - else
         = answer.content
     - if user_signed_in?
-      .col.s2 = answer.user.try(:email)
-      - if @question.user_id == current_user.try(:id)
-        .col.s2 = link_to 'Редактировать', '#', class: "edit-answer-link", data: { answer_id: answer.id }
-        .col.s2 = link_to 'Удалить', question_answer_path(@question, answer), remote: true, method: :delete
-      .col.s2
+      .col.s4
+        = answer.user.try(:email)
+        br
+        - if @question.user_id == current_user.try(:id)
+          = link_to 'Редактировать', '#', class: "edit-answer-link", data: { answer_id: answer.id }
+        br
+          = link_to 'Удалить', answer_path(@question, answer), remote: true, method: :delete
+        br
         - if current_user.id == answer.question.user_id && !answer.best
-          = link_to 'Выбрать лучший', make_best_question_answer_path(@question, answer), method: :patch, remote: true, id: "best-answer-link-#{answer.id}"
-        - else
-          | Лучший ответ
-
-
-      #attachment.col.s2
-        | Attachment:
-        - answer.attachments.each do |a|
-          br
-          = link_to a.file.filename, a.file.url
-          - if answer.user_id == current_user.try(:id)
-            = link_to 'Удалить файл', attachment_path(id: a.id, answer_id: answer), method: :delete
-          br
+      .col.s4
+        = link_to 'Выбрать лучший', make_best_answer_path(@question, answer), method: :patch, remote: true, id: "best-answer-link-#{answer.id}"
+        br
+      - if current_user.id == answer.question.user_id && answer.best
+        | Лучший ответ
 
       .col.s4.answer_vote = render 'common/vote', object: answer
 
@@ -41,4 +37,15 @@
       /     = link_to_add_association 'Добавить файл', f, :attachments, partial: "common/attachment_fields"
       /   .center = f.submit 'Сохранить', class: "btn"
       /   br
+      #attachment.col.s12.center
+        - if answer.attachments.present?
+          - answer.attachments.each do |a|
+            | Прикрепленные файлы:
+            br
+            = link_to a.file.filename, a.file.url
+            - if answer.user_id == current_user.try(:id)
+              = link_to 'Удалить файл', attachment_path(id: a.id, answer_id: answer), method: :delete
+        - else
+          | Прикрепленных файлов нет
+        br
     .clearfix

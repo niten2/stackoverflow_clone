@@ -1,10 +1,9 @@
-#question = render "question_info"
-.clearfix
-#question_votes.center = render 'common/vote', object: @question
-br
-#answers = render @question.answers
+.col.s8#question = render "question_info"
+.col.s4#question_votes = render 'common/vote', object: @question
 .clearfix
 br
-= render 'answers/form', question: @question, answer: @answer
+.col.s12#answers = render @question.answers
+.col.s12 = render 'answers/form', question: @question, answer: @answer
+.clearfix
 br
-.center = button_to "Назад", questions_path, method: :get, class: "btn"
+.col.s12.center = button_to "Назад", questions_path, method: :get, class: "btn"

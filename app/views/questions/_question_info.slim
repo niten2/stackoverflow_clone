@@ -16,5 +16,6 @@
 br
 
 - if @question.user_id == current_user.try(:id)
-  .col.s4 = button_to "Редактировать вопрос", edit_question_path, method: :get, class: "btn"
-  .col.s4 = button_to "Удалить вопрос", question_path, method: :delete, class: "btn"
+  .col.s6 = button_to "Редактировать", edit_question_path, method: :get, class: "btn"
+  .col.s6 = button_to "Удалить", question_path, method: :delete, class: "btn"
+
