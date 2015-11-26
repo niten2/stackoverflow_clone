@@ -1,0 +1,19 @@
+p
+  | Голосовать:
+p
+  | За:
+  span.upvotes_count =< object.votes.upvotes.count
+  = " "
+  | Против:
+  span.downvotes_count =< object.votes.downvotes.count
+p
+  | Рейтинг:
+  span.votes_count =< object.votes.rating
+p
+  - if user_signed_in? && !(current_user.id == object.user_id)
+    - if current_user.voted_for? object
+      = link_to 'Отменить', eval("unvote_#{object.klass_name}_path(object)"), method: :patch, remote: true
+    - else
+      => link_to 'За', eval("upvote_#{object.klass_name}_path(object)"), method: :patch, remote: true
+      |
+      =< link_to 'Против', eval("downvote_#{object.klass_name}_path(object)"), method: :patch, remote: true

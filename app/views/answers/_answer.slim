@@ -1,12 +1,12 @@
 - if answer.persisted?
-  div id="answer_#{answer.id}"
+  .card-content.card id="answer_#{answer.id}"
     .col.s2.answer-content class="content-edit-answer-#{answer.id}"
       - if answer.best?
         .answer-content-best = answer.content
       - else
         = answer.content
     - if user_signed_in?
-      .col.s3 = answer.user.try(:email)
+      .col.s2 = answer.user.try(:email)
       - if @question.user_id == current_user.try(:id)
         .col.s2 = link_to 'Редактировать', '#', class: "edit-answer-link", data: { answer_id: answer.id }
         .col.s2 = link_to 'Удалить', question_answer_path(@question, answer), remote: true, method: :delete
@@ -15,6 +15,8 @@
           = link_to 'Выбрать лучший', make_best_question_answer_path(@question, answer), method: :patch, remote: true, id: "best-answer-link-#{answer.id}"
         - else
           | Лучший ответ
+
+
       #attachment.col.s2
         | Attachment:
         - answer.attachments.each do |a|
@@ -23,16 +25,20 @@
           - if answer.user_id == current_user.try(:id)
             = link_to 'Удалить файл', attachment_path(id: a.id, answer_id: answer), method: :delete
           br
-      .col.s12 = form_for [@question, answer], remote: true, html: { id: "form-edit-answer-#{answer.id}"} do |f|
-        .red-text.center.answer-errors
-        .input-field
-          = f.label :content, "Содержание ответа"
-          = f.text_area :content, class: "materialize-textarea"
-        .clearfix
-        .col.s12
-          = f.fields_for :attachments do |a|
-            = render 'common/attachment_fields', f: a
-          = link_to_add_association 'Добавить файл', f, :attachments, partial: "common/attachment_fields"
-        .center = f.submit 'Сохранить', class: "btn"
-        br
+
+      .col.s4.answer_vote = render 'common/vote', object: answer
+
+      / .col.s12 = nested_form_for [@question, answer], remote: true, html: { id: "form-edit-answer-#{answer.id}"} do |f|
+      / .col.s12 = form_for [@question, answer], remote: true, html: { id: "form-edit-answer-#{answer.id}"} do |f|
+      /   .red-text.center.answer-errors
+      /   .input-field
+      /     = f.label :content, "Содержание ответа"
+      /     = f.text_area :content, class: "materialize-textarea"
+      /   .clearfix
+      /   .col.s12
+      /     = f.fields_for :attachments do |a|
+      /       = render 'common/attachment_fields', f: a
+      /     = link_to_add_association 'Добавить файл', f, :attachments, partial: "common/attachment_fields"
+      /   .center = f.submit 'Сохранить', class: "btn"
+      /   br
     .clearfix

@@ -17,5 +17,12 @@ module Votable
     def klass_name
       self.class.to_s.downcase
     end
+
+    # def klass_name_question
+    #   # x = self.class.to_s.downcase
+    #   "question" + self.class.to_s.downcase
+    #   # return "question" + x
+    # end
+
   end
 end

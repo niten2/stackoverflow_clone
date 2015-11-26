@@ -1,10 +1,8 @@
-#question
-  = render "question_info"
-  .clearfix
-  = render 'common/votes', object: @question
+#question = render "question_info"
+.clearfix
+#question_votes.center = render 'common/vote', object: @question
 br
-#answers
-  = render @question.answers
+#answers = render @question.answers
 .clearfix
 br
 = render 'answers/form', question: @question, answer: @answer
