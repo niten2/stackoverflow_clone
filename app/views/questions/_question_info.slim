@@ -6,7 +6,6 @@
   | Содержание:
   =< @question.content
 .center
-  | Attachment:
   - @question.attachments.each do |a|
     br
     - if a.file.filename.present?

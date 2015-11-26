@@ -1,6 +1,5 @@
 .offset-s3.col.s3
   => link_to "#{question.title}", question
-/ => link_to "Редактирование", edit_question_path(question)
 .col.s3
   -if question.user.present?
     = question.user.email
