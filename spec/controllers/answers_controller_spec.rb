@@ -1,10 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe AnswersController, type: :controller do
+describe AnswersController do
 
   let(:user) { create :user }
-  let(:answer) { create :answer, user: user }
+  let(:other_user) { create :user }
   let(:question) { create :question, user: user }
+  let(:answer) { create :answer, question: question, user: user }
   let(:other_question) { create :question }
   before { sign_in(user) }
 
@@ -15,12 +16,13 @@ RSpec.describe AnswersController, type: :controller do
     end
 
     it "owner question check best answer" do
-      patch :make_best, id: answer, question_id: question.id, format: :js
+      patch :make_best, id: answer, format: :js
       expect(assigns(:answer).best).to be_truthy
     end
 
     it "user tried other question check best answer" do
-      patch :make_best, id: answer, question_id: other_question.id, format: :js
+      sign_in(other_user)
+      patch :make_best, id: answer, format: :js
       expect(assigns(:answer).best).to be_falsey
     end
   end

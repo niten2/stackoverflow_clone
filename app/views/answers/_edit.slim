@@ -1,7 +1,6 @@
-= nested_form_for object, remote: true, html: { id: "form-edit-answer-#{object.id}"} do |f|
+= form_for object, remote: true, html: { id: "form-edit-answer-#{object.id}"} do |f|
   .red-text.center.answer-errors
-  .input-field
-    = f.text_area :content, label: "Содержание ответа", class: "materialize-textarea"
+  .input-field = f.text_area :content, label: "Содержание ответа", class: "materialize-textarea"
   .clearfix
   .col.s12
     = f.fields_for :attachments do |a|

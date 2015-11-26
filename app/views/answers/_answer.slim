@@ -1,8 +1,8 @@
 - if answer.persisted?
-  .card-content.card id="answer_#{answer.id}"
-    .col.s12.center.answer-content class="content-edit-answer-#{answer.id}"
+  .col.s12.card-content.card id="answer-#{answer.id}"
+    .answer-content
       - if answer.best?
-        .answer-content-best = answer.content
+        = answer.content
       - else
         = answer.content
     - if user_signed_in?

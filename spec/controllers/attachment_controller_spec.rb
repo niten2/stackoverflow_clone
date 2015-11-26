@@ -4,19 +4,24 @@ RSpec.describe AttachmentController, type: :controller do
 
     let(:user) { create :user }
     let(:other_user) { create :user }
+
     let(:question) { create(:question, user: user) }
+    let(:answer) { create(:answer, question: question, user: user) }
+
     let!(:question_attachment) { create(:attachment, attachable: question) }
-    let(:answer) { create(:answer, user: user) }
-    let!(:answer_attachment) { create(:attachment, attachable: answer) }
+    let!(:answer_attachment) { create(:attachment, attachable: answer, user: user) }
+
     before {request.env["HTTP_REFERER"] = "where_i_came_from"}
 
     describe "DELETE #destroy owner user" do
       before { sign_in(user) }
       it 'owner user delete attachment question' do
+        expect { delete :destroy, id: question_attachment }.to change(user.questions.take.attachments, :count).by(-1)
         # expect { delete :destroy, id: question_attachment }.to change(user.attachments, :count).by(-1)
       end
 
       it 'owner user delete attachment answer' do
+        expect { delete :destroy, id: answer_attachment }.to change(user.answers.take.attachments, :count).by(-1)
         # expect { delete :destroy, id: answer_attachment }.to change(user.attachments, :count).by(-1)
       end
 

@@ -15,7 +15,7 @@ feature 'edit question' do
   scenario 'owner user edit question' do
     sign_in(current_user)
     visit question_path(question)
-    click_on "Редактировать вопрос"
+    click_on "Редактировать"
     fill_in 'Тема', with: 'Test question'
     fill_in 'Содержание', with: 'text text text'
     click_on 'Обновить'

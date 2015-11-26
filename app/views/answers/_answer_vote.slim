@@ -1,0 +1,7 @@
+/ .answer_votes
+/   = render 'common/vote', object: answer
+/ - if user_signed_in? && current_user.id == answer.question.user_id && !answer.best
+/   p = link_to 'Best answer', make_best_answer_path(answer), method: :patch, remote: true
+/ - if user_authorized_for(answer)
+/   p = link_to 'Edit', '#', class: 'answer_edit-link', data: { answer_id: answer.id }
+/   = nested_form_for answer, remote: true, html: {class: 'answer_edit-form', id: "edit-#{dom_id(answer)}"} do |f|

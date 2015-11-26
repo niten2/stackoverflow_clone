@@ -20,8 +20,10 @@ class QuestionsController < ApplicationController
 
   def create
     @question = current_user.questions.new(question_params)
+    # current_user.attachments = current_user.attachments | @question.attachments
 
     if @question.save
+      current_user.attachments = current_user.attachments | @question.attachments
       redirect_to @question, notice:'Вопрос создан'
     else
       render :new
@@ -29,6 +31,7 @@ class QuestionsController < ApplicationController
   end
 
   def update
+    # current_user.attachments = current_user.attachments | @question.attachments
     if @question.update(question_params)
       redirect_to @question, notice: "Вопрос изменен"
     else
