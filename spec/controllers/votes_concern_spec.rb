@@ -12,7 +12,11 @@ describe QuestionsController do
       expect(response).to render_template :vote
     end
 
-    it 'save/delete upvote' do
+    it 'save upvote' do
+      expect { patch :upvote, id: question, format: :json }.to change(question.votes.upvotes, :count).by 1
+    end
+
+    it 'delete upvote' do
       expect { patch :upvote, id: question, format: :json }.to change(question.votes.upvotes, :count).by 1
       expect { patch :unvote, id: question, format: :json }.to change(question.votes.upvotes, :count).by -1
     end
@@ -24,7 +28,11 @@ describe QuestionsController do
       expect(response).to render_template :vote
     end
 
-    it 'save/delete  downvote' do
+    it 'save downvote' do
+      expect { patch :downvote, id: question, format: :json }.to change(question.votes.downvotes, :count).by 1
+    end
+
+    it 'delete downvote' do
       expect { patch :downvote, id: question, format: :json }.to change(question.votes.downvotes, :count).by 1
       expect { patch :unvote, id: question, format: :json }.to change(question.votes.downvotes, :count).by -1
     end
@@ -50,13 +58,13 @@ describe AnswersController do
       expect(response).to render_template :vote
     end
 
-    it 'save/delete upvote' do
-      expect {
-        patch :upvote, id: answer, format: :json
-      }.to change(answer.votes.upvotes, :count).by 1
-      expect {
-        patch :unvote, id: answer, format: :json
-      }.to change(answer.votes.upvotes, :count).by -1
+    it 'save upvote' do
+      expect { patch :upvote, id: answer, format: :json }.to change(answer.votes.upvotes, :count).by 1
+    end
+
+    it 'delete upvote' do
+      expect { patch :upvote, id: answer, format: :json }.to change(answer.votes.upvotes, :count).by 1
+      expect { patch :unvote, id: answer, format: :json }.to change(answer.votes.upvotes, :count).by -1
     end
   end
 
@@ -66,13 +74,13 @@ describe AnswersController do
       expect(response).to render_template :vote
     end
 
-    it 'save/delete  downvote' do
-      expect {
-        patch :downvote, id: answer, format: :json
-      }.to change(answer.votes.downvotes, :count).by 1
-      expect {
-        patch :unvote, id: answer, format: :json
-      }.to change(answer.votes.downvotes, :count).by -1
+    it 'save downvote' do
+      expect { patch :downvote, id: answer, format: :json }.to change(answer.votes.downvotes, :count).by 1
+    end
+
+    it 'delete  downvote' do
+      expect { patch :downvote, id: answer, format: :json }.to change(answer.votes.downvotes, :count).by 1
+      expect { patch :unvote, id: answer, format: :json }.to change(answer.votes.downvotes, :count).by -1
     end
   end
 

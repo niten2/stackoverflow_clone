@@ -17,12 +17,10 @@ RSpec.describe AttachmentController, type: :controller do
       before { sign_in(user) }
       it 'owner user delete attachment question' do
         expect { delete :destroy, id: question_attachment }.to change(user.questions.take.attachments, :count).by(-1)
-        # expect { delete :destroy, id: question_attachment }.to change(user.attachments, :count).by(-1)
       end
 
       it 'owner user delete attachment answer' do
         expect { delete :destroy, id: answer_attachment }.to change(user.answers.take.attachments, :count).by(-1)
-        # expect { delete :destroy, id: answer_attachment }.to change(user.attachments, :count).by(-1)
       end
 
       it 'redirect to back' do
