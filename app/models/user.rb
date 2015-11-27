@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :attachments, dependent: :destroy
 
   def autor_of?(object)
-    object.attachable.user_id == self.id
+    object.user_id == self.id
   end
 
 end

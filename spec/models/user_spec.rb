@@ -8,10 +8,23 @@ describe User, type: :model do
 
   let(:user) { create(:user) }
   let(:question) { create(:question, user: user) }
+  let(:answer) { create(:answer, question: question, user: user) }
   let(:attachment) { create(:attachment, attachable: question) }
 
-  it 'autor_of?(object)' do
-    expect(user.autor_of?(attachment)).to be_truthy
+  describe "autor_of?" do
+
+    it 'question autor_of?' do
+      expect(user.autor_of?(question)).to be_truthy
+    end
+
+    it 'answer autor_of?' do
+      expect(user.autor_of?(answer)).to be_truthy
+    end
+
+    it 'attachment autor_of?' do
+      expect(user.autor_of?(attachment.attachable)).to be_truthy
+    end
+
   end
 
   describe '#upvote_for' do

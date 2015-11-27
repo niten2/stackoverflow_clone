@@ -20,7 +20,7 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    @answer.destroy
+    @answer.destroy if current_user.autor_of?(@answer) || current_user.autor_of?(@question)
   end
 
   private

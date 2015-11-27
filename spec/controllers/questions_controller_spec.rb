@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe QuestionsController, type: :controller do
 
   let(:user) { create :user }
-  let(:question) { create(:question) }
+  let(:other_user) { create :user }
+  let(:question) { create(:question, user: user) }
   before { sign_in(user) }
 
   describe 'GET #index' do
@@ -122,8 +123,13 @@ RSpec.describe QuestionsController, type: :controller do
   describe 'DELETE #destroy' do
     before { question }
 
-    it 'deletes question' do
+    it 'owner deletes question' do
       expect { delete :destroy, id: question }.to change(Question, :count).by(-1)
+    end
+
+    it 'other_user tried deletes question' do
+      sign_in(other_user)
+      expect { delete :destroy, id: question }.to_not change(Question, :count)
     end
 
     it 'redirect to index view' do

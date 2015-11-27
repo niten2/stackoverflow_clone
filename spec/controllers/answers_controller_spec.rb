@@ -3,10 +3,14 @@ require 'rails_helper'
 describe AnswersController do
 
   let(:user) { create :user }
-  let(:other_user) { create :user }
   let(:question) { create :question, user: user }
-  let(:answer) { create :answer, question: question, user: user }
+  let!(:answer) { create :answer, question: question, user: user }
+
+  let(:other_user) { create :user }
   let(:other_question) { create :question }
+  let!(:other_answer_in_other_question) { create :answer, question: other_question, user: other_user }
+  let!(:other_answer_in_question) { create :answer, question: question, user: other_user }
+
   before { sign_in(user) }
 
   describe "PATCH make_best" do
@@ -69,14 +73,29 @@ describe AnswersController do
     end
   end
 
-  describe 'POST #destroy' do
-    it "deletes answer" do
-      create(:answer)
-      expect { delete :destroy, question_id: answer.question_id, id: answer.id, format: :js }.to change(Answer, :count).by(0)
-    end
+  describe 'DELETE #destroy' do
+
     it 'status: :ok' do
       delete :destroy, question_id: answer.question_id, id: answer.id, format: :js
       expect(response).to have_http_status(:ok)
+    end
+
+    it "owner question deletes your answer in question" do
+      expect { delete :destroy, id: answer.id, format: :js }.to change(Answer, :count).by(-1)
+    end
+
+    it "owner question deletes other_answer in question" do
+      expect { delete :destroy, id: other_answer_in_question, format: :js }.to change(Answer, :count).by(-1)
+    end
+
+    it "other_user owner answer deletes your answer in question" do
+      sign_in(other_user)
+      expect { delete :destroy, id: other_answer_in_other_question, format: :js }.to change(Answer, :count).by(-1)
+    end
+
+    it "other_user tried deletes other answer in other question" do
+      sign_in(other_user)
+      expect { delete :destroy, id: answer, format: :js }.to_not change(Answer, :count)
     end
   end
 end

@@ -22,7 +22,6 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.new(question_params)
 
     if @question.save
-      current_user.attachments = current_user.attachments | @question.attachments
       redirect_to @question, notice:'Вопрос создан'
     else
       render :new
@@ -38,7 +37,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question.destroy
+    @question.destroy if current_user.autor_of?(@question)
     redirect_to questions_path, notice: "Вопрос удален"
   end
 
