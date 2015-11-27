@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :set_owner_question, only: [:update, :edit, :destroy]
+  before_action :set_question, only: [:show]
   include Voted
 
   def index
@@ -20,7 +21,6 @@ class QuestionsController < ApplicationController
 
   def create
     @question = current_user.questions.new(question_params)
-
     if @question.save
       redirect_to @question, notice:'Вопрос создан'
     else
@@ -43,6 +43,13 @@ class QuestionsController < ApplicationController
 
   private
 
+  def set_owner_question
+    set_question
+    unless current_user.autor_of?(@question)
+      render text: 'У вас нет прав доступах', status: 403
+    end
+  end
+
   def set_question
     @question = Question.find(params[:id])
   end
@@ -50,4 +57,5 @@ class QuestionsController < ApplicationController
   def question_params
     params.require(:question).permit(:title, :content, attachments_attributes: [:file, :_destroy, :id ])
   end
+
 end

@@ -42,6 +42,7 @@ feature 'destroy answer' do
     within "#answer-#{other_answer_in_current_user_question.id}" do
       click_on "Удалить"
     end
+    sleep(2)
     expect(page).to_not have_content other_answer_in_current_user_question.content
   end
 end
