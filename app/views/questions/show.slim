@@ -1,31 +1,10 @@
-#question
-  .center
-    | Тема вопроса:
-    - if @question.title.present?
-      =< @question.title
-  .center
-    | Содержание:
-    =< @question.content
-  .center
-    | Attachment:
-    - @question.attachments.each do |a|
-      br
-      - if a.file.filename.present?
-        = link_to a.file.filename, a.file.url
-      - if @question.user_id == current_user.try(:id)
-        = link_to 'Удалить файл', attachment_path(id: a.id, question_id: @question), method: :delete
-  br
-
-  - if @question.user_id == current_user.try(:id)
-    .col.s4 = button_to "Редактировать вопрос", edit_question_path, method: :get, class: "btn"
-    .col.s4 = button_to "Удалить вопрос", question_path, method: :delete, class: "btn"
-
-br
-br
-#answers
-  = render @question.answers
+.card-content.card
+  .col.s8#question = render "question_info"
+  .col.s4#question_votes = render 'common/vote', object: @question
 .clearfix
 br
-= render 'answers/form', question: @question, answer: @answer
+.col.s12#answers = render @question.answers
+.col.s12 = render 'answers/form', question: @question, answer: @answer
+.clearfix
 br
-.center = button_to "Назад", questions_path, method: :get, class: "btn"
+.col.s12.center = button_to "Назад", questions_path, method: :get, class: "btn"

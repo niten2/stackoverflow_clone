@@ -1,0 +1,16 @@
+p
+  | За:
+  span.upvotes_count =< @object.upvotes
+  = " "
+  | Против:
+  span.downvotes_count =< @object.downvotes
+p
+  | Рейтинг:
+  span.votes_count =< @object.rating
+p
+  - if @object.voted
+    a.vote-btn href=@object.unvote_url data-method="patch" data-remote="true" Отменить
+  - else
+    a.vote-btn href=@object.upvote_url data-method="patch" data-remote="true" За
+    = " "
+    a.vote-btn href=@object.downvote_url data-method="patch" data-remote="true" Против

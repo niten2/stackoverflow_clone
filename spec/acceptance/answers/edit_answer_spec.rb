@@ -4,9 +4,11 @@ feature 'edit answer' do
 
   given!(:current_user) { create(:user) }
   given!(:other_user) { create(:user) }
+
   given!(:question) { create(:question, user: current_user) }
   given!(:other_question) { create(:question, user: other_user) }
-  given!(:answer) { create(:answer, question: question) }
+
+  given!(:answer) { create(:answer, question: question, user: current_user) }
   given!(:other_answer) { create(:answer, question: other_question) }
 
   scenario 'guest tries edit answer' do
@@ -18,8 +20,7 @@ feature 'edit answer' do
   scenario 'user edit your answer', js: true do
     sign_in(current_user)
     visit question_path(question)
-
-    within "#answer_#{answer.id}" do
+    within "#answer-#{answer.id}" do
       expect(page).to have_content answer.content
       click_on 'Редактировать'
       fill_in 'Содержание ответа', with: 'edited answer'
@@ -35,9 +36,12 @@ feature 'edit answer' do
     sign_in(current_user)
     visit question_path(question)
     expect(page).to have_content answer.content
-    click_on 'Редактировать'
-    fill_in 'Содержание ответа', with: ''
-    expect(page).to_not have_content "Content не может быть пустым"
+    within "#answer-#{answer.id}" do
+      click_on 'Редактировать'
+      fill_in 'Содержание ответа', with: ''
+      click_on 'Сохранить'
+      expect(page).to have_content "Content не может быть пустым"
+    end
   end
 
   scenario 'user tries edit foregin answer', js: true do
@@ -46,5 +50,4 @@ feature 'edit answer' do
     expect(page).to have_content other_answer.content
     expect(page).to_not have_selector(:link_or_button, 'Удалить')
   end
-
 end

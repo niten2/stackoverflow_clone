@@ -12,6 +12,7 @@ feature 'Add files to question' do
   scenario 'add several file in create question', js: true do
     sign_in(user)
     visit new_question_path
+
     fill_in 'question[title]', with: 'Test question'
     fill_in 'question[content]', with: 'text text text'
     click_on 'Добавить файл'
@@ -22,14 +23,12 @@ feature 'Add files to question' do
     click_on 'Создать'
     expect(page).to have_link 'spec_helper.rb'
     expect(page).to have_link 'rails_helper.rb'
-    # expect(page).to have_link 'spec_helper.rb', href: "/uploads/attachment/file/1/spec_helper.rb"
-    # expect(page).to have_link 'rails_helper.rb', href: "/uploads/attachment/file/2/rails_helper.rb"
   end
 
   scenario 'edit file exist question', js: true do
     sign_in(user)
     visit question_path(second_question)
-    click_on 'Редактировать вопрос'
+    click_on 'Редактировать'
     click_on 'Добавить файл'
     click_on 'Добавить файл'
     inputs = all('input[type="file"]')
@@ -59,6 +58,7 @@ feature 'Add files to question' do
   scenario 'owner question remove attachment file ofter create' do
     sign_in(user)
     visit question_path(question)
+    expect(page).to have_link 'spec_helper.rb'
     click_on 'Удалить файл'
     expect(page).to_not have_link 'spec_helper.rb'
   end

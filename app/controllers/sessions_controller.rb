@@ -11,6 +11,7 @@ class SessionsController < Devise::SessionsController
   end
 
 protected
+
   def clear_sign_signout_flash
     if flash.keys.include?(:notice)
       flash.delete(:notice)

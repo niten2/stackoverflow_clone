@@ -27,7 +27,7 @@ feature 'make_best answer' do
     visit question_path(question)
     expect(page).to have_content answer.content
 
-    within "#answer_#{answer.id}" do
+    within "#answer-#{answer.id}" do
         click_on 'Выбрать лучший'
         expect(page).to have_content 'Лучший ответ'
       end
@@ -39,11 +39,11 @@ feature 'make_best answer' do
 
     click_on "best-answer-link-#{answer.id}"
     expect(page).to_not have_selector("#best-answer-link-#{answer.id}")
-    expect(page).to have_selector(".answer-content-best", text: answer.content)
+    expect(page).to have_selector(".answer-content", text: answer.content)
 
     click_on "best-answer-link-#{other_answer.id}"
     expect(page).to_not have_selector("#best-answer-link-#{other_answer.id}")
-    expect(page).to have_selector(".answer-content-best", text: other_answer.content)
+    expect(page).to have_selector(".answer-content", text: other_answer.content)
 
     expect(page).to have_selector("#best-answer-link-#{answer.id}")
 

@@ -3,5 +3,5 @@
         $('.answer-errors').html('<%= j message %>');
     <% end %>
 <% else %>
-    $('#<%= "answer_#{@answer.id}" %>').replaceWith('<%= j render @answer %>');
+    $('#<%= "answer-#{@answer.id}" %>').replaceWith('<%= j render @answer %>');
 <% end %>

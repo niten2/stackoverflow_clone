@@ -2,14 +2,13 @@ require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
 
-  login_user
-
   let(:user) { create :user }
-  let(:question) { create(:question) }
+  let(:other_user) { create :user }
+  let(:question) { create(:question, user: user) }
+  before { sign_in(user) }
 
   describe 'GET #index' do
     let(:questions) { create_list(:question, 2) }
-
     before { get :index }
 
     it 'populates an array of all questions' do
@@ -35,11 +34,6 @@ RSpec.describe QuestionsController, type: :controller do
     it 'assigns new answer for question' do
       expect(assigns(:answer)).to be_a_new(Answer)
     end
-
-    # it 'builds new attachment for answer' do
-    #   expect(assigns(:answer).attachments.first).to be_a_new(Attachment)
-    # end
-
   end
 
   describe 'GET #new' do
@@ -49,10 +43,6 @@ RSpec.describe QuestionsController, type: :controller do
       expect(assigns(:question)).to be_a_new(Question)
     end
 
-    # it 'buils new Attachment for Question' do
-    #   expect(assigns(:question).attachments.first).to be_a_new(Attachment)
-    # end
-
     it 'renders new view' do
       expect(response).to render_template :new
     end
@@ -61,13 +51,22 @@ RSpec.describe QuestionsController, type: :controller do
   describe 'GET #edit' do
     before { get :edit, id: question }
 
-    it 'assings the requested question to @question' do
+    it 'owner question assings the requested question to @question' do
       expect(assigns(:question)).to eq question
     end
 
     it 'renders edit view' do
       expect(response).to render_template :edit
     end
+
+    it "other_user tried edit question" do
+      sign_out(user)
+      sign_in(other_user)
+      get :edit, id: question
+      expect(response).to have_http_status(403)
+      expect(response.body).to have_content "У вас нет прав доступах"
+    end
+
   end
 
   describe 'POST #create' do
@@ -128,18 +127,39 @@ RSpec.describe QuestionsController, type: :controller do
         expect(response).to render_template :edit
       end
     end
+
+      it "other_user tried update question" do
+        sign_out(user)
+        sign_in(other_user)
+        get :edit, id: question
+        expect(response).to have_http_status(403)
+        expect(response.body).to have_content "У вас нет прав доступах"
+      end
   end
 
   describe 'DELETE #destroy' do
     before { question }
 
-    it 'deletes question' do
+    it 'owner deletes question' do
       expect { delete :destroy, id: question }.to change(Question, :count).by(-1)
+    end
+
+    it 'other_user tried deletes question' do
+      sign_in(other_user)
+      expect { delete :destroy, id: question }.to_not change(Question, :count)
     end
 
     it 'redirect to index view' do
       delete :destroy, id: question
       expect(response).to redirect_to questions_path
+    end
+
+    it "other_user tried destroy question" do
+      sign_out(user)
+      sign_in(other_user)
+      get :edit, id: question
+      expect(response).to have_http_status(403)
+      expect(response.body).to have_content "У вас нет прав доступах"
     end
   end
 end

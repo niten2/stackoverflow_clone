@@ -1,0 +1,10 @@
+= form_for object, remote: true, html: { id: "form-edit-answer-#{object.id}"} do |f|
+  .red-text.center.answer-errors
+  .input-field = f.text_area :content, label: "Содержание ответа", class: "materialize-textarea"
+  .clearfix
+  .col.s12
+    = f.fields_for :attachments do |a|
+      = render 'common/attachment_fields', f: a
+    = link_to_add_association 'Добавить файл', f, :attachments, partial: "common/attachment_fields"
+  .center = f.submit 'Сохранить', class: "btn"
+  br

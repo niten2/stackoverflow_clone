@@ -6,3 +6,7 @@ $ ->
     $('.content-edit-answer-' + answer_id).hide()
     $('form#form-edit-answer-' + answer_id).show()
 
+  $('#answers').bind 'ajax:success', (e, data, status, xhr) ->
+    answer = $.parseJSON(xhr.responseText)
+    $("#answer-#{answer.id} .answer_vote").html(JST["templates/votes"]({object: answer}))
+
