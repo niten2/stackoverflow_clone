@@ -21,6 +21,9 @@ gem 'cocoon'
 gem 'skim'
 gem 'nested_form'
 
+gem "private_pub"
+gem "thin"
+
 group :development, :test do
 
   # test
