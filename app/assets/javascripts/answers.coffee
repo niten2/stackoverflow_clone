@@ -13,7 +13,6 @@ $ ->
     answer = $.parseJSON(xhr.responseText)
     $("#answer-#{answer.id} .answer_vote").html(JST["templates/votes"]({object: answer}))
 
-
   # create answer
   # questionId = gon.questionId
   # channel = '/questions/' + questionId + '/answers'

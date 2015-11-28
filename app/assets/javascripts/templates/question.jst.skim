@@ -1,0 +1,16 @@
+div class="offset-s3 col s3"
+  a href="/questions/#{@question.id}"
+    = @question.title
+
+div class="col s3"
+  - if @user.email != undefined
+    = @user.email
+  - else
+    | Нет
+
+- if @user.id == @current_user.id
+  div class="col s3"
+  a href="/questions/#{@question.id}" rel="nofollow" data-method="delete"
+    | Удалить
+
+div class="clearfix"
