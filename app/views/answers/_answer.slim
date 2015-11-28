@@ -1,16 +1,12 @@
 - if answer.persisted?
-  .col.s12.card-content.card id="answer-#{answer.id}"
-    .answer-content
-      - if answer.best?
-        = answer.content
-      - else
-        = answer.content
+  .col.s12.center.card-content.card id="answer-#{answer.id}"
+    .answer-content = answer.content
     - if user_signed_in?
       .col.s4
         = answer.user.try(:email)
         br
         - if @question.user_id == current_user.try(:id)
-          = link_to 'Удалить', answer_path(answer), remote: true, method: :delete
+          = button_to 'Удалить', answer_path(answer), remote: true, method: :delete, class: "btn"
           br
         - if answer.user_id == current_user.try(:id)
           = link_to 'Редактировать', '#', class: "edit-answer-link", data: { answer_id: answer.id }

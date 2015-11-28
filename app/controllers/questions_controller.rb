@@ -10,6 +10,7 @@ class QuestionsController < ApplicationController
 
   def show
     @answer = @question.answers.build
+    gon.questionId = @question.id
   end
 
   def new

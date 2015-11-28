@@ -127,6 +127,11 @@ GEM
     git-version-bump (0.15.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    gon (6.0.1)
+      actionpack (>= 3.0)
+      json
+      multi_json
+      request_store (>= 1.0)
     guard (2.13.0)
       formatador (>= 0.2.4)
       listen (>= 2.7, <= 4.0)
@@ -244,6 +249,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.2.0)
     remotipart (1.2.1)
+    request_store (1.2.1)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rspec (3.3.0)
@@ -354,6 +360,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fuubar
+  gon
   guard
   guard-livereload
   guard-rails

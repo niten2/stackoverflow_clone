@@ -1,10 +1,12 @@
 <% if @answer.errors.present? %>
-    <% @answer.errors.full_messages.each do |message| %>
-        $('#answer-errors-common').html('<%= j message %>');
-    <% end %>
+  <% @answer.errors.full_messages.each do |message| %>
+    $('#answer-errors-common').html('<%= j message %>');
+  <% end %>
 <% else %>
-  $('#answers').append('<%= j render @answer %>');
-  $('#field_answer').val('');
-  $(".nested-fields").hide('');
+  <% publish_to "/questions/#{@question.id}/answers" do %>
+    $('#answers').append('<%= j render @answer %>');
+  <% end %>
+    $('#field_answer').val('');
+    $(".nested-fields").hide('');
 <% end %>
 

@@ -8,3 +8,6 @@ br
 .clearfix
 br
 .col.s12.center = button_to "Назад", questions_path, method: :get, class: "btn"
+
+
+= subscribe_to "/questions/#{@question.id}/answers"
