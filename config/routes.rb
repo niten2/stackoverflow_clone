@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   get "welcome" => "welcome#index"
   get "ajax" => "welcome#ajax"
 
-  resources :attachment, only: :destroy
+  resources :attachments, only: :destroy
+  resources :comments, only: [:create, :destroy]
 
   concern :votable do
     member do
