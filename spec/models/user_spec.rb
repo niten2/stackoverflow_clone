@@ -6,6 +6,8 @@ describe User, type: :model do
   it { should have_many(:answers) }
   it { should have_many(:attachments) }
 
+  it { should have_many(:comments) }
+
   let(:user) { create(:user) }
   let(:question) { create(:question, user: user) }
   let(:answer) { create(:answer, question: question, user: user) }

@@ -7,7 +7,6 @@ $ ->
     $('.content-edit-answer-' + answer_id).hide()
     $('form#form-edit-answer-' + answer_id).show()
 
-
   # vote answer
   $('#answers').bind 'ajax:success', (e, data, status, xhr) ->
     answer = $.parseJSON(xhr.responseText)
