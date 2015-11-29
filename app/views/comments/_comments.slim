@@ -1,9 +1,10 @@
 br
 .center Комментарии:
 - object.comments.each do |comment|
-  .offset-s3.col.s4 = comment.content
-  - if object.user_id == current_user.try(:id)
-    .col.s2 =< link_to 'Удалить', comment_path(id: a.id, object_id: object), method: :delete
+  .offset-s1.col.s4 = comment.content
+  .col.s4 = comment.user.try(:email)
+  - if comment.user_id == current_user.try(:id) || comment.commentable.user_id == current_user.try(:id)
+    .col.s2 =< link_to 'Удалить', comment_path(comment), method: :delete
 br
 .clearfix
 
