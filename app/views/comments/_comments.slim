@@ -1,0 +1,10 @@
+br
+.center Комментарии:
+- object.comments.each do |comment|
+  .offset-s3.col.s4 = comment.content
+  - if object.user_id == current_user.try(:id)
+    .col.s2 =< link_to 'Удалить', comment_path(id: a.id, object_id: object), method: :delete
+br
+.clearfix
+
+= render "comments/form", object: object, comment: object.comments.new

@@ -1,7 +1,8 @@
 .card-content.card
   .col.s8#question = render "question_info"
   .col.s4#question_votes = render 'common/vote', object: @question
-  .col.s12#question_comment = render "question_comment", object: @question
+  .col.s12#question_comment = render "comments/comments", object: @question
+  / .col.s12#question_comment = render "question_comment", object: @question
 .clearfix
 br
 .col.s12#answers = render @question.answers

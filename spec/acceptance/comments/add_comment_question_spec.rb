@@ -5,13 +5,16 @@ feature 'Add comment question' do
   given(:user) { create(:user) }
   given(:question) { create(:question, user: user) }
 
-  given(:other_question) { create(:question, user: user) }
-  given!(:other_comment) { create(:comment, commentable: other_question, user: user) }
+  given(:second_question) { create(:question, user: user) }
+  given!(:second_comment) { create(:comment, commentable: second_question, user: user) }
 
-  # given(:other_user) { create(:user) }
-  # given(:answer) { create(:answer, user: user, question: question) }
-  # given!(:attachment) { create(:attachment, attachable: question) }
-  # given(:second_question) { create(:question, user: user) }
+  given(:third_question) { create(:question, user: user) }
+  # given!(:third_comment) { create(:comment, commentable: third_question, user: user) }
+
+  given(:other_user) { create(:user) }
+  given!(:other_third_comment) { create(:comment, commentable: third_question, user: other_user) }
+
+
 
 
   it "create comment", js: true do
@@ -39,11 +42,30 @@ feature 'Add comment question' do
 
   it "delete comment" do
     sign_in(user)
-    visit question_path(other_question)
+    visit question_path(second_question)
     within "#question_comment" do
-      expect(page).to have_content other_comment.content
+      expect(page).to have_content second_comment.content
       click_on "Удалить"
-      expect(page).to_not have_content other_comment.content
+      expect(page).to_not have_content second_comment.content
+    end
+  end
+
+  it "owner question delete foregin comment" do
+    sign_in(user)
+    visit question_path(third_question)
+    within "#question_comment" do
+      expect(page).to have_content other_third_comment.content
+      click_on "Удалить"
+      expect(page).to_not have_content other_third_comment.content
+    end
+  end
+
+  it "other user tried delete foregin comment" do
+    sign_in(other_user)
+    visit question_path(second_question)
+    within "#question_comment" do
+      expect(page).to have_content second_comment.content
+      expect(page).to_not have_selector(:link_or_button, 'Удалить')
     end
   end
 
