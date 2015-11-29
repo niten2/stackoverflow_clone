@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     @comment.save
 
-    redirect_to :back
+    # redirect_to :back
     # if @comment.save
       # PrivatePub.publish_to "/questions/#{@commentable.try(:question).try(:id) || @commentable.id}/comments", comment: render_to_string(template: 'comments/show')
       # render nothing: true

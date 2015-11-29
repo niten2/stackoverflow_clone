@@ -1,3 +1,5 @@
-= form_for [object, comment] do |f|
+= form_for [object, comment], remote: true, html: { id: "comment-#{object.id}"} do |f|
+  .center.red-text#question_comment_error
   = f.text_field :content
   .center = f.submit "Создать комментарий", class: "btn"
+  .center = link_to "Скрыть комментарий", "#", id: "remove_comment_question"

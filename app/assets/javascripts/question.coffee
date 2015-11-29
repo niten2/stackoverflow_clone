@@ -12,8 +12,27 @@ $ ->
     current_user = $.parseJSON(data['current_user'])
     $('#questions').append(JST["templates/question"]({question: question, current_user: current_user, user: user}))
 
-#     answer = $.parseJSON(data['answer'])
-#     $('#answers').append(JST["templates/answer"]({answer: answer}))
-#     $('#field_answer').val('')
-#     $(".nested-fields").hide('')
+  # add comment
+  $('#question_comment').on 'click', '#add_comment_question', (e) ->
+    e.preventDefault()
+    form = $("#question_comment_form")
+    form.css('display','block')
+
+  $('#question_comment').on 'click', '#remove_comment_question', (e) ->
+    e.preventDefault()
+    form = $("#question_comment_form")
+    form.css('display','none')
+
+    # if !$(this).hasClass('cancel')
+    #   $(this).html 'Назад'
+    #   $(this).addClass 'cancel'
+    # else
+    #   $(this).html 'Редактирование'
+    #   $(this).removeClass 'cancel'
+    # form.toggle()
+
+    # if $(this).css('display') != "none"
+    #   $(this).html 'Редактирование'
+    #   $(this).removeClass 'cancel'
+
 

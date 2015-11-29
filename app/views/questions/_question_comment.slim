@@ -1,12 +1,12 @@
-br
-.center Комментарии:
-- object.comments.each do |a|
-  .offset-s3.col.s4 = a.content
-  - if object.user_id == current_user.try(:id)
-    .col.s2 =< link_to 'Удалить', comment_path(id: a.id, object_id: object), method: :delete
-br
-.clearfix
+/ br
+/ .center Комментарии:
+/ - object.comments.each do |a|
+/   .offset-s3.col.s4 = a.content
+/   - if object.user_id == current_user.try(:id)
+/     .col.s2 =< link_to 'Удалить', comment_path(id: a.id, object_id: object), method: :delete
+/ br
+/ .clearfix
 
-- if object.persisted?
-  = form_for object do |f|
-    .right = link_to_add_association 'Добавить комментарий', f, :comments, partial: "common/comment_fields"
+/ - if object.persisted?
+/   = form_for object do |f|
+/     .right = link_to_add_association 'Добавить комментарий', f, :comments, partial: "common/comment_fields"

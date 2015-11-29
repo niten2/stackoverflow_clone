@@ -10,4 +10,4 @@
         = render 'common/attachment_fields', f: a
       .right = link_to_add_association 'Добавить файл', f, :attachments, partial: "common/attachment_fields"
     .center = f.submit 'Ответить', class: "btn"
-
+    .center = link_to "Удалить комментарий", "#"

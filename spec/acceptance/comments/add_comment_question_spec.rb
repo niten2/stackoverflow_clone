@@ -5,17 +5,13 @@ feature 'Add comment question' do
   given(:user) { create(:user) }
   given(:question) { create(:question, user: user) }
 
-  given(:second_question) { create(:question, user: user) }
+  given!(:second_question) { create(:question, user: user) }
   given!(:second_comment) { create(:comment, commentable: second_question, user: user) }
 
   given(:third_question) { create(:question, user: user) }
-  # given!(:third_comment) { create(:comment, commentable: third_question, user: user) }
 
   given(:other_user) { create(:user) }
   given!(:other_third_comment) { create(:comment, commentable: third_question, user: other_user) }
-
-
-
 
   it "create comment", js: true do
     sign_in(user)
@@ -35,12 +31,12 @@ feature 'Add comment question' do
       expect(page).to_not have_selector :css, 'input[type="text"]'
       click_on "Добавить комментарий"
       expect(page).to have_selector :css, 'input[type="text"]'
-      click_on  "Удалить комментарий"
+      click_on  "Скрыть комментарий"
       expect(page).to_not have_selector :css, 'input[type="text"]'
     end
   end
 
-  it "delete comment" do
+  it "delete comment", js: true do
     sign_in(user)
     visit question_path(second_question)
     within "#question_comment" do
@@ -50,7 +46,7 @@ feature 'Add comment question' do
     end
   end
 
-  it "owner question delete foregin comment" do
+  it "owner question delete foregin comment", js: true do
     sign_in(user)
     visit question_path(third_question)
     within "#question_comment" do

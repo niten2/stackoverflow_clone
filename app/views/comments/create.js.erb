@@ -1,0 +1,12 @@
+<% if @comment.errors.present? %>
+  <% @comment.errors.full_messages.each do |message| %>
+    $('#question_comment_error').html('<%= j message %>');
+  <% end %>
+<% else %>
+  <%# <% publish_to "/questions/#{@question.id}/answers" do %1> %>
+    $('#question_comment_list').append('<%= j render @comment %>');
+  <%# <% end %1> %>
+    <%# $('#field_answer').val(''); %>
+    $("#question_comment_form").hide('');
+<% end %>
+
