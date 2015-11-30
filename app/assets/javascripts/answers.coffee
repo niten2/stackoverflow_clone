@@ -12,6 +12,22 @@ $ ->
     answer = $.parseJSON(xhr.responseText)
     $("#answer-#{answer.id} .answer_vote").html(JST["templates/votes"]({object: answer}))
 
+  # add comment
+  $('#answers').on 'click', '.show-comment-answer', (e) ->
+    e.preventDefault()
+    answer_id = $(this).data('answerId')
+    # console.log answer_id
+    $("#answer-comment-form-" + answer_id).show()
+    # $("#answer-comment-form-" + answer_id).hide()
+
+  # remove comment
+  $('#answers').on 'click', '.hide-comment', (e) ->
+    e.preventDefault()
+    answer_id = $(this).data('commentable')
+    console.log answer_id
+    $("#answer-comment-form-" + answer_id).hide()
+  #   $("#comment-" + answer_id).hide()
+
   # create answer
   # questionId = gon.questionId
   # channel = '/questions/' + questionId + '/answers'

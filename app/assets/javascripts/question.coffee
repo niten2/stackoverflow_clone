@@ -18,21 +18,11 @@ $ ->
     form = $("#question_comment_form")
     form.css('display','block')
 
-  $('#question_comment').on 'click', '#remove_comment_question', (e) ->
+  #remove comment
+  $('#question_comment').on 'click', '.hide-comment', (e) ->
     e.preventDefault()
-    form = $("#question_comment_form")
-    form.css('display','none')
-
-    # if !$(this).hasClass('cancel')
-    #   $(this).html 'Назад'
-    #   $(this).addClass 'cancel'
-    # else
-    #   $(this).html 'Редактирование'
-    #   $(this).removeClass 'cancel'
-    # form.toggle()
-
-    # if $(this).css('display') != "none"
-    #   $(this).html 'Редактирование'
-    #   $(this).removeClass 'cancel'
-
+    answer_id = $(this).data('commentable')
+    $("#question_comment_form").hide()
+    # form = $("#question_comment_form")
+    # form.css('display','none')
 

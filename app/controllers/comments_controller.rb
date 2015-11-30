@@ -26,16 +26,24 @@ class CommentsController < ApplicationController
   private
 
   def set_commentable
-    @commentable = commentable_name.find(params[commentable_id])
+    # binding.pry
+    # @commentable = commentable_name.find(params[commentable_id])
+    params.each do |name, value|
+      if name =~ /(.+)_id$/
+        @commentable_name = $1
+        @commentable = $1.classify.constantize.find(value)
+      end
+    end
+
   end
 
-  def commentable_id
-    (params[:commentable].singularize + '_id').to_sym
-  end
+  # def commentable_id
+  #   (params[:commentable].singularize + '_id').to_sym
+  # end
 
-  def commentable_name
-    params[:commentable].classify.constantize
-  end
+  # def commentable_name
+  #   params[:commentable].classify.constantize
+  # end
 
   def comment_params
     params.require(:comment).permit(:content)

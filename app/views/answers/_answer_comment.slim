@@ -1,0 +1,15 @@
+.center Комментарии:
+#answer_comment_list
+  - object.comments.each do |comment|
+    .offset-s1.col.s4 = comment.content
+    .col.s4 = comment.user.try(:email)
+    - if comment.user_id == current_user.try(:id) || comment.commentable.user_id == current_user.try(:id)
+      .col.s2 =< link_to 'Удалить', comment_path(comment), method: :delete
+  br
+  .clearfix
+
+/ #answer-comment-form id="answer-comment-form-#{object.id}" = render "comments/form", commentable: object, comment: object.comments.new
+div class="answer-comment-form" id="answer-comment-form-#{object.id}" = render "comments/form", commentable: object, comment: object.comments.new
+
+/ .center = link_to "Скрыть комментарий", "#", class: "hide-comment-answer", data: {answer_id: object.id}
+.right = link_to "Добавить комментарий", "#", class: "show-comment-answer", data: { answer_id: object.id }

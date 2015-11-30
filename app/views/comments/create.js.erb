@@ -3,10 +3,22 @@
     $('#question_comment_error').html('<%= j message %>');
   <% end %>
 <% else %>
+
+<% if @comment.commentable_type == "Question"%>
   <%# <% publish_to "/questions/#{@question.id}/answers" do %1> %>
     $('#question_comment_list').append('<%= j render @comment %>');
   <%# <% end %1> %>
     <%# $('#field_answer').val(''); %>
     $("#question_comment_form").hide('');
+<% else %>
+  <%# <% publish_to "/questions/#{@question.id}/answers" do %1> %>
+    $('#answer_comment_list').append('<%= j render @comment %>');
+  <%# <% end %1> %>
+    <%# $('#field_answer').val(''); %>
+    $(".answer-comment-form").hide()
+<% end %>
+
+
+
 <% end %>
 
