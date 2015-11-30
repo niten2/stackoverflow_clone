@@ -1,5 +1,5 @@
 .center Комментарии:
-#answer_comment_list
+div id="answer-comment-list-#{object.id}"
   - object.comments.each do |comment|
     .offset-s1.col.s4 = comment.content
     .col.s4 = comment.user.try(:email)
