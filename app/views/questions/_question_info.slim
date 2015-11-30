@@ -13,7 +13,6 @@
     - if @question.user_id == current_user.try(:id)
       = link_to 'Удалить файл', attachment_path(id: a.id, question_id: @question), method: :delete
 br
-
 - if @question.user_id == current_user.try(:id)
   .col.s6 = button_to "Редактировать", edit_question_path, method: :get, class: "btn"
   .col.s6 = button_to "Удалить", question_path, method: :delete, class: "btn"

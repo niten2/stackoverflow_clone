@@ -3,17 +3,3 @@
   = f.text_field :content
   .center = f.submit "Создать комментарий", class: "btn"
   .center = link_to "Скрыть комментарий", "#", class: "hide-comment", data: {commentable: commentable.id}
-
-
-/ = form_for [commentable, comment], remote: true do |f|
-
-/ = form_for [commentable, comment], remote: true do |f|
-/   = f.text_field :content
-/   = f.submit
-
-/ = form_for local_assigns[:comments_path], remote: true, format: :json do |f|
-/   .form-group
-/     = f.text_area :content, class: 'form-control', placeholder: 'Body'
-
-/   = f.submit submit_title, class: 'btn btn-secondary'
-

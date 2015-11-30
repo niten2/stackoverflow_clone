@@ -23,6 +23,4 @@ $ ->
     e.preventDefault()
     answer_id = $(this).data('commentable')
     $("#question_comment_form").hide()
-    # form = $("#question_comment_form")
-    # form.css('display','none')
 
