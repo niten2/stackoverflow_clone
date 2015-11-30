@@ -5,17 +5,14 @@
 <% else %>
 
 <% if @comment.commentable_type == "Question"%>
-  <%# <% publish_to "/questions/#{@question.id}/answers" do %1> %>
+  <% publish_to "/questions/#{@comment.commentable.id}/question/comments" do %>
     $('#question_comment_list').append('<%= j render @comment %>');
-  <%# <% end %1> %>
-    <%# $('#field_answer').val(''); %>
+  <% end %>
     $("#question_comment_form").hide('');
 <% else %>
-  <%# <% publish_to "/questions/#{@question.id}/answers" do %1> %>
-
+  <% publish_to "/questions/#{@comment.commentable.id}/answer/comments" do %>
   $('#answer-comment-list-' + <%= @comment.commentable.id %>).append('<%= j render @comment %>');
-  <%# <% end %1> %>
-    <%# $('#field_answer').val(''); %>
+  <% end %>
     $(".answer-comment-form").hide()
 <% end %>
 

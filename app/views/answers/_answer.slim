@@ -20,3 +20,4 @@
       .col.s12 = render "answers/edit", object: answer
       .col.s12.center#attachment = render "answers/attachment", object: answer
       .col.s12.answer_comment = render "answers/answer_comment", object: answer
+      = subscribe_to "/questions/#{answer.id}/answer/comments"
