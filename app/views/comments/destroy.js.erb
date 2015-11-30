@@ -1,0 +1,7 @@
+<% if @comment.commentable_type == "Question"%>
+  $('#<%= "question-comment-#{@comment.commentable.id}" %>').hide();
+<% else %>
+  $('#<%= "answer-comment-#{@comment.commentable.id}" %>').hide();
+<% end %>
+
+

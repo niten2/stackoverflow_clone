@@ -1,11 +1,12 @@
 .center Комментарии:
 div id="answer-comment-list-#{object.id}"
   - object.comments.each do |comment|
-    .offset-s1.col.s4 = comment.content
-    .col.s4 = comment.user.try(:email)
-    - if comment.user_id == current_user.try(:id) || comment.commentable.user_id == current_user.try(:id)
-      .col.s2 =< link_to 'Удалить', comment_path(comment), method: :delete
-  br
+    div id="answer-comment-#{object.id}"
+      .offset-s1.col.s4 = comment.content
+      .col.s4 = comment.user.try(:email)
+      - if current_user.autor_of?(comment) || current_user.autor_of?(comment.commentable)
+        .col.s2 =< link_to 'Удалить', comment_path(comment), method: :delete
+    br
   .clearfix
 
 div class="answer-comment-form" id="answer-comment-form-#{object.id}" = render "comments/form", commentable: object, comment: object.comments.new

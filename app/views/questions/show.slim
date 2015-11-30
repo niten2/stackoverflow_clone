@@ -1,13 +1,13 @@
 .card-content.card
   .col.s8#question = render "question_info"
   .col.s4#question_votes = render 'common/vote', object: @question
-  .col.s12#question_comment = render "question_comment", object: @question
+  .col.s12#question_comment.card.hoverable = render "question_comment", object: @question
 .clearfix
 br
-.col.s12#answers = render @question.answers
+.col.s12#answers = render @question.answers, question: @question
 .col.s12 = render 'answers/form', question: @question, answer: @answer
 .clearfix
 br
 .col.s12.center = button_to "Назад", questions_path, method: :get, class: "btn"
 = subscribe_to "/questions/#{@question.id}/answers"
-= subscribe_to "/questions/#{@question.id}/question/comments"
+= subscribe_to "/questions/#{@question.id}/comments"

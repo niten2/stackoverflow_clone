@@ -1,5 +1,5 @@
 .offset-s1.col.s4 = comment.content
 .col.s4 = comment.user.try(:email)
-- if comment.user_id == current_user.try(:id) || comment.commentable.user_id == current_user.try(:id)
+- if current_user.autor_of?(comment) || current_user.autor_of?(comment.commentable)
   .col.s2 =< link_to 'Удалить', comment_path(comment), method: :delete
 br

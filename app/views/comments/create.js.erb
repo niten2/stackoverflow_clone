@@ -4,12 +4,12 @@
   <% end %>
 <% else %>
   <% if @comment.commentable_type == "Question"%>
-    <% publish_to "/questions/#{@comment.commentable.id}/question/comments" do %>
+    <% publish_to "/questions/#{@comment.commentable.id}/comments" do %>
       $('#question_comment_list').append('<%= j render @comment %>');
     <% end %>
       $("#question_comment_form").hide('');
   <% else %>
-    <% publish_to "/questions/#{@comment.commentable.id}/answer/comments" do %>
+    <% publish_to "/questions/#{@comment.commentable.question.id}/#{@comment.commentable.id}/comments" do %>
     $('#answer-comment-list-' + <%= @comment.commentable.id %>).append('<%= j render @comment %>');
     <% end %>
       $(".answer-comment-form").hide()

@@ -5,19 +5,19 @@
       .col.s4
         = answer.user.try(:email)
         br
-        - if @question.user_id == current_user.try(:id)
+        - if current_user.try(:autor_of?, @question)
           = button_to 'Удалить', answer_path(answer), remote: true, method: :delete, class: "btn"
           br
-        - if answer.user_id == current_user.try(:id)
+        - if current_user.autor_of? answer
           = link_to 'Редактировать', '#', class: "edit-answer-link", data: { answer_id: answer.id }
         br
-      - if current_user.id == answer.question.user_id && !answer.best
+      - if current_user.autor_of?(answer.question) && !answer.best
         .col.s4 = link_to 'Выбрать лучший', make_best_answer_path(answer), method: :patch, remote: true, id: "best-answer-link-#{answer.id}"
-      - if current_user.id == answer.question.user_id && answer.best
+      - if current_user.autor_of?(answer.question) && answer.best
         .col.s4.green-text Лучший ответ
 
       .col.s4.answer_vote = render 'common/vote', object: answer
       .col.s12 = render "answers/edit", object: answer
       .col.s12.center#attachment = render "answers/attachment", object: answer
-      .col.s12.answer_comment = render "answers/answer_comment", object: answer
-      = subscribe_to "/questions/#{answer.id}/answer/comments"
+      .col.s12.answer_comment.card.hoverable  = render "answers/answer_comment", object: answer
+      = subscribe_to "/questions/#{@question.id}/#{answer.id}/comments"
