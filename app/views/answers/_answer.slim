@@ -20,4 +20,5 @@
       .col.s12 = render "answers/edit", object: answer
       .col.s12.center#attachment = render "answers/attachment", object: answer
       .col.s12.answer_comment.card.hoverable  = render "answers/answer_comment", object: answer
-      = subscribe_to "/questions/#{@question.id}/#{answer.id}/comments"
+      / = subscribe_to "/questions/#{@question.id}/#{answer.id}/comments"
+      = subscribe_to "/questions/#{@question.id}/answers/comments"
