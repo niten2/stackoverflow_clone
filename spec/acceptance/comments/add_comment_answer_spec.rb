@@ -10,7 +10,7 @@ feature 'Add comment answer' do
   given!(:other_answer) { create(:answer, question: other_question, user: user) }
   given!(:other_answer_comment) { create(:comment, commentable: other_answer, user: user) }
 
-  # given(:other_user) { create(:user) }
+  given(:other_user) { create(:user) }
 
   it "create comment", js: true do
     sign_in(user)
@@ -44,4 +44,13 @@ feature 'Add comment answer' do
       expect(page).to_not have_content other_answer_comment.content
     end
   end
+
+  it "other_user tried delete other answer comment", js: true do
+    sign_in(other_user)
+    visit question_path(other_question)
+    within ".answer_comment" do
+      expect(page).to_not have_selector(:link_or_button, 'Удалить')
+    end
+  end
+
 end
