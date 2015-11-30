@@ -18,21 +18,6 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.use_transactional_fixtures = true
   config.infer_base_class_for_anonymous_controllers = false
-  # config.order = "random"
-
-  # config.before :each do
-  #   if Capybara.current_driver == :rack_test
-  #     DatabaseCleaner.strategy = :transaction
-  #   else
-  #     DatabaseCleaner.strategy = :truncation
-  #   end
-  #   DatabaseCleaner.start
-  # end
-
-  # config.after do
-  #   DatabaseCleaner.clean
-  # end
-
 end
 
 Shoulda::Matchers.configure do |config|

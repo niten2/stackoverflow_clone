@@ -1,0 +1,5 @@
+.nested-fields.col.s12
+  = f.label :content
+  = f.text_field :content
+  .center = link_to_remove_association "Удалить комментарий", f
+  .center = f.submit "Создать комментарий", class: "btn"

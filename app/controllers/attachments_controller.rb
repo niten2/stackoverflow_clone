@@ -1,4 +1,4 @@
-class AttachmentController < ApplicationController
+class AttachmentsController < ApplicationController
 
   def destroy
     @attachment = Attachment.find(params[:id])

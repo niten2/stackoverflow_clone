@@ -10,6 +10,7 @@ class QuestionsController < ApplicationController
 
   def show
     @answer = @question.answers.build
+    gon.questionId = @question.id
   end
 
   def new
@@ -21,7 +22,9 @@ class QuestionsController < ApplicationController
 
   def create
     @question = current_user.questions.new(question_params)
+
     if @question.save
+      PrivatePub.publish_to "/questions", question: @question.to_json, current_user: current_user.to_json, user: @question.user.to_json
       redirect_to @question, notice:'Вопрос создан'
     else
       render :new
@@ -55,7 +58,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :content, attachments_attributes: [:file, :_destroy, :id ])
+    params.require(:question).permit(:title, :content, attachments_attributes: [:file, :_destroy, :id ], comments_attributes: [:content, :_destroy, :id])
   end
 
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AttachmentController, type: :controller do
+describe AttachmentsController do
 
     let(:user) { create :user }
     let(:other_user) { create :user }

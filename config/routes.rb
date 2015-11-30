@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   get "welcome" => "welcome#index"
   get "ajax" => "welcome#ajax"
 
-  resources :attachment, only: :destroy
+  resources :attachments, only: :destroy
+  resources :comments, only: [:create, :destroy]
 
   concern :votable do
     member do
@@ -19,7 +20,10 @@ Rails.application.routes.draw do
   end
 
   resources :questions, concerns: :votable do
+    resources :comments, only: :create, defaults: {commentable: 'questions'}
+
     resources :answers, shallow: true, concerns: :votable do
+      resources :comments, only: :create, defaults: {commentable: 'questions'}
       patch :make_best, on: :member
     end
   end

@@ -1,0 +1,6 @@
+/* div class="col s12 center card-content card" id="answer-#{@answer.id}" */
+/*   div class="answer-content" */
+/*     = @answer.content */
+/*   div class="col s4" */
+/*     = @answer.user.email */
+/*     br */

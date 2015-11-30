@@ -1,0 +1,18 @@
+<% if @comment.errors.present? %>
+  <% @comment.errors.full_messages.each do |message| %>
+    $('#question_comment_error').html('<%= j message %>');
+  <% end %>
+<% else %>
+  <% if @comment.commentable_type == "Question"%>
+    <% publish_to "/questions/#{@comment.commentable.id}/comments" do %>
+      $('#question_comment_list').append('<%= j render @comment %>');
+    <% end %>
+      $("#question_comment_form").hide('');
+  <% else %>
+    <% publish_to "/questions/#{@comment.commentable.question.id}/answers/comments" do %>
+    $('#answer-comment-list-' + <%= @comment.commentable.id %>).append('<%= j render @comment %>');
+    <% end %>
+      $(".answer-comment-form").hide()
+  <% end %>
+<% end %>
+
