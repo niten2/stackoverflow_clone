@@ -2,49 +2,43 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_owner_question, only: [:update, :edit, :destroy]
   before_action :set_question, only: [:show]
+  before_action :build_answer, only: :show
+
   include Voted
 
   def index
-    @questions = Question.all
+    respond_with(@questions = Question.all)
   end
 
   def show
-    @answer = @question.answers.build
-    gon.questionId = @question.id
+    respond_with @question
   end
 
   def new
-    @question = Question.new
+    respond_with(@question = Question.new)
   end
 
   def edit
   end
 
   def create
-    @question = current_user.questions.new(question_params)
-
-    if @question.save
-      PrivatePub.publish_to "/questions", question: @question.to_json, current_user: current_user.to_json, user: @question.user.to_json
-      redirect_to @question, notice:'Вопрос создан'
-    else
-      render :new
-    end
+    respond_with(@question = current_user.questions.create(question_params))
   end
 
   def update
-    if @question.update(question_params)
-      redirect_to @question, notice: "Вопрос изменен"
-    else
-      render :edit
-    end
+    @question.update(question_params)
+    respond_with @question
   end
 
   def destroy
-    @question.destroy if current_user.autor_of?(@question)
-    redirect_to questions_path, notice: "Вопрос удален"
+    respond_with(@question.destroy) if current_user.autor_of?(@question)
   end
 
   private
+
+  def build_answer
+    @answer = @question.answers.build
+  end
 
   def set_owner_question
     set_question
@@ -58,7 +52,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :content, attachments_attributes: [:file, :_destroy, :id ], comments_attributes: [:content, :_destroy, :id])
+    params.require(:question).permit(:title, :content, attachments_attributes: [:file, :_destroy, :id ])
   end
 
 end
