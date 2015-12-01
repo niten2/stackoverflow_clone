@@ -21,7 +21,7 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    @answer.destroy if current_user.autor_of?(@answer) || current_user.autor_of?(@question)
+    respond_with(@answer.destroy) if current_user.autor_of?(@answer) || current_user.autor_of?(@question)
   end
 
   private
