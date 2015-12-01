@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
 
   include UserVotable
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook, :twitter]
+
 
   has_many :questions
   has_many :answers

@@ -26,6 +26,13 @@ gem "thin"
 gem 'gon'
 gem "responders"
 
+# mail
+gem "letter_opener", :group => :development
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem "omniauth-vkontakte"
+
 group :development, :test do
 
   # test
