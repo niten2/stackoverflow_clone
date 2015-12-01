@@ -8,7 +8,7 @@ class AnswersController < ApplicationController
   respond_to :js
 
   def make_best
-    @answer.make_best if @question.user_id == current_user.id
+    @answer.make_best if current_user.autor_of? @question
   end
 
   def create
