@@ -4,6 +4,9 @@ Bundler.require(*Rails.groups)
 
 module StackoverflowCloneThinknetica
   class Application < Rails::Application
+    # Use the responders controller from the responders gem
+    config.app_generators.scaffold_controller :responders_controller
+
     config.active_record.raise_in_transactional_callbacks = true
     config.i18n.default_locale = :ru
 

@@ -71,6 +71,14 @@ describe AnswersController do
         expect(answer.content).to eq answer.content
       end
     end
+
+    it "other user triied edit answer" do
+      sign_in(other_user)
+      patch :update, question_id: question, id: answer, answer: { content: 'new content'}
+      answer.reload
+      expect(answer.content).to_not eq 'new content'
+    end
+
   end
 
   describe 'DELETE #destroy' do

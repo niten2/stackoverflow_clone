@@ -2,28 +2,33 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_answer, only: [:destroy, :edit, :update, :make_best]
   before_action :set_question, only: [:new, :destroy, :edit, :update, :make_best]
+  before_action :set_question_in_base, only: [:create]
   include Voted
 
+  respond_to :js
+
   def make_best
-    @answer.make_best if @question.user_id == current_user.id
+    @answer.make_best if current_user.autor_of? @question
   end
 
   def create
-    @question = Question.find(params[:question_id])
-    @answer = @question.answers.new(answer_params)
-    @answer.user = current_user
-    @answer.save
+    respond_with( @answer = @question.answers.create(answer_params.merge(user: current_user)) )
   end
 
   def update
-    @answer.update(answer_params)
+    @answer.update(answer_params) if current_user.autor_of?(@answer)
+    respond_with @answer
   end
 
   def destroy
-    @answer.destroy if current_user.autor_of?(@answer) || current_user.autor_of?(@question)
+    respond_with(@answer.destroy) if current_user.autor_of?(@answer) || current_user.autor_of?(@question)
   end
 
   private
+
+  def set_question_in_base
+    @question = Question.find(params[:question_id])
+  end
 
   def set_answer
     @answer = Answer.find(params[:id])

@@ -24,6 +24,7 @@ gem 'nested_form'
 gem "private_pub"
 gem "thin"
 gem 'gon'
+gem "responders"
 
 group :development, :test do
 
