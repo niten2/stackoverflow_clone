@@ -69,16 +69,19 @@ describe User, type: :model do
     context 'user has not authorization' do
       context 'user already exists' do
         let(:auth) { OmniAuth::AuthHash.new(provider: 'facebook', uid: '123456', info: { email: user.email }) }
+
         it 'does not create new user' do
-          expect { User.find_for_oauth(auth) }.to_not change(User, :count)
+          expect{ User.find_for_oauth(auth) }.to_not change(User, :count)
         end
 
-        it 'creates authorization for user' do
-          expect { User.find_for_oauth(auth) }.to change(user.authorizations, :count).by(1)
+        it 'creates new authorization for user' do
+          expect{ User.find_for_oauth(auth) }.to change(user.authorizations, :count).by 1
         end
 
         it 'creates authorization with provider and uid' do
-          authorization = User.find_for_oauth(auth).authorizations.first
+          user = User.find_for_oauth(auth)
+          authorization = user.authorizations.first
+
           expect(authorization.provider).to eq auth.provider
           expect(authorization.uid).to eq auth.uid
         end
@@ -89,23 +92,24 @@ describe User, type: :model do
       end
 
       context 'user does not exist' do
-        let(:auth) { OmniAuth::AuthHash.new(provider: 'facebook', uid: '123456', info: { email: 'new@user.com' }) }
+        let(:auth) { OmniAuth::AuthHash.new(provider: 'facebook', uid: '123456', info: { email: 'non@existent.com' }) }
 
         it 'creates new user' do
-          expect { User.find_for_oauth(auth) }.to change(User, :count).by(1)
+          expect{ User.find_for_oauth(auth) }.to change(User, :count).by 1
         end
+
         it 'returns new user' do
-          expect(User.find_for_oauth(auth)).to be_a(User)
+          expect(User.find_for_oauth(auth)).to be_a User
         end
 
         it 'fills user email' do
           user = User.find_for_oauth(auth)
-          expect(user.email).to eq auth.info[:email]
+          expect(user.email).to eq auth.info.email
         end
 
         it 'creates authorization for user' do
           user = User.find_for_oauth(auth)
-          expect(user.authorizations).to_not be_empty
+          expect(user.authorizations).not_to be_empty
         end
 
         it 'creates authorization with provider and uid' do
@@ -117,3 +121,6 @@ describe User, type: :model do
     end
   end
 end
+
+
+
