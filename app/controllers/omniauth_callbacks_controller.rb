@@ -7,10 +7,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def twitter
   end
 
-  def finish_sign_up
-  end
-
   private
+
   def oauth
     @user = User.find_for_oauth(auth)
     if @user && @user.persisted?
@@ -25,4 +23,5 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def auth
     request.env['omniauth.auth'] || OmniAuth::AuthHash.new(params[:auth])
   end
+
 end
