@@ -13,6 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "slim-rails"
 gem 'materialize-sass'
 gem 'devise'
+gem 'cancancan'
 gem "simple_form"
 
 gem 'carrierwave'

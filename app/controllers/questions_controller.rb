@@ -6,7 +6,10 @@ class QuestionsController < ApplicationController
 
   include Voted
 
+  # authorize_resource
+
   def index
+    # authorize! :index, Question
     respond_with(@questions = Question.all)
   end
 
