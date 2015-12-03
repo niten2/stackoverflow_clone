@@ -26,6 +26,13 @@ gem "thin"
 gem 'gon'
 gem "responders"
 
+# mail
+gem "letter_opener", :group => :development
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem "omniauth-vkontakte"
+
 group :development, :test do
 
   # test
@@ -33,6 +40,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'capybara'
+  gem 'capybara-email'
   gem 'capybara-webkit'
   gem 'launchy'
   gem "database_cleaner"

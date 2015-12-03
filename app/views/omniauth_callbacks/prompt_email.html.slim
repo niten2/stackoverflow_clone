@@ -1,0 +1,6 @@
+= form_tag finish_sign_up_path, method: :post do
+  = label_tag 'Email'
+  = email_field 'auth[info]', :email
+  = hidden_field_tag 'auth[provider]', auth.provider
+  = hidden_field_tag 'auth[uid]', auth.uid
+  = submit_tag 'Ввести', class: "btn"
