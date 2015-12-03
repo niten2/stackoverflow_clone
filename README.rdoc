@@ -1,6 +1,4 @@
-Данный проект является разрабатывается в рамках интенсива "Профессиональная разработка на Ruby on Rails" от thinknetica.com
+В проекте используется: Rspec, Capybara, Ajax, Js шаблонизатор Skim, Comet, Omniauth, Rest Api, Sphinx, Capistrano, Cancancan, Carrierwave, Cocoon, Devise, Materializecss.
 
-Дата начала: 8 октября 2015.
-
-Дата окончания: 29 февраля 2016.
+Дата окончания: до 31 декабря 2015.
 
