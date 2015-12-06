@@ -11,5 +11,5 @@
 
 #question_comment_form = render "comments/form", commentable: object, comment: object.comments.new
 
-- if can? :create, object
+- if can? :create, Comment
   .right = link_to "Добавить комментарий", "#", id: "add_comment_question"

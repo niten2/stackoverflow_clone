@@ -10,5 +10,5 @@ div id="answer-comment-list-#{object.id}"
   .clearfix
 
 div class="answer-comment-form" id="answer-comment-form-#{object.id}" = render "comments/form", commentable: object, comment: object.comments.new
-- if can? :create, object
+- if can? :create, Comment
   .right = link_to "Добавить комментарий", "#", class: "show-comment-answer", data: { answer_id: object.id }
