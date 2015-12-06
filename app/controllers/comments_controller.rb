@@ -2,15 +2,16 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_commentable, only: :create
   before_action :set_comment, only: :destroy
-
   respond_to :js
+  authorize_resource
 
   def create
     respond_with(@comment = @commentable.comments.create(comment_params.merge(user: current_user)))
   end
 
   def destroy
-    @comment.destroy if current_user.autor_of?(@comment.commentable) || current_user.autor_of?(@comment)
+    # @comment.destroy if current_user.autor_of?(@comment.commentable) || current_user.autor_of?(@comment)
+    @comment.destroy
     redirect_to :back
   end
 

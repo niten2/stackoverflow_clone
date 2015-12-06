@@ -1,8 +1,9 @@
 class AttachmentsController < ApplicationController
   before_action :set_attachment, only: :destroy
+  authorize_resource
 
   def destroy
-    @attachment.destroy if current_user.autor_of?(@attachment.attachable)
+    @attachment.destroy
     redirect_to :back
   end
 
