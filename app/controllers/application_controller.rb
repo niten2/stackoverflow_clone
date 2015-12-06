@@ -5,11 +5,11 @@ class ApplicationController < ActionController::Base
   respond_to :html
   protect_from_forgery with: :exception
 
-  # authorize_resource
+  # authorize_resource :unless => :devise_controller?
 
-  # rescue_from CanCan::AccessDenied do |exception|
-  #   redirect_to welcome_path, alert: exception.message
-  # end
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to welcome_path, alert: exception.message
+  end
 
 
 
