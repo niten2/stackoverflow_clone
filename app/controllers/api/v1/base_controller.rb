@@ -1,7 +1,12 @@
 class Api::V1::BaseController < ApplicationController
-  skip_authorization_check
+  check_authorization
   before_action :doorkeeper_authorize!
+
   respond_to :json
+
+  rescue_from CanCan::AccessDenied do |exception|
+    render json: {error: 'Вы не авторизованы'}
+  end
 
   protected
 
