@@ -32,10 +32,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resource :profiles do
+      resources :profiles, only: [:index] do
         get :me, on: :collection
       end
-      resources :questions
+      # resources :questions
     end
   end
 

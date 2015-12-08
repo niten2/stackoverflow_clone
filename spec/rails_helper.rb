@@ -17,6 +17,7 @@ RSpec.configure do |config|
   config.include AcceptanceMacros, type: :feature
   config.extend ControllerMacros, type: :controller
   config.include OmniauthMacros
+  config.include JsonSpec::Helpers
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.infer_spec_type_from_file_location!
