@@ -3,8 +3,8 @@ class QuestionsController < ApplicationController
   before_action :set_owner_question, only: [:update, :edit, :destroy]
   before_action :set_question, only: [:show]
   before_action :build_answer, only: :show
-
   include Voted
+  authorize_resource
 
   def index
     respond_with(@questions = Question.all)

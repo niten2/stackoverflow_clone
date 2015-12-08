@@ -10,6 +10,7 @@
       $("#question_comment_form").hide('');
   <% else %>
     <% publish_to "/questions/#{@comment.commentable.question.id}/answers/comments" do %>
+    <%# <% publish_to "/questions/#{@comment.commentable.question.id}/#{@comment.commentable.id}/comments" do %1> %>
     $('#answer-comment-list-' + <%= @comment.commentable.id %>).append('<%= j render @comment %>');
     <% end %>
       $(".answer-comment-form").hide()

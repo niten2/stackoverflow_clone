@@ -49,11 +49,11 @@ describe CommentsController do
 
     describe "DELETE #destroy owner user" do
       before { sign_in(user) }
-      it 'owner user delete comment question' do
+      it 'delete comment question' do
         expect { delete :destroy, id: question_comment }.to change(user.questions.take.comments, :count).by(-1)
       end
 
-      it 'owner user delete comment answer' do
+      it 'delete comment answer' do
         expect { delete :destroy, id: answer_comment }.to change(user.answers.take.comments, :count).by(-1)
       end
 

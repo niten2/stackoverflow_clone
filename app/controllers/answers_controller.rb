@@ -4,11 +4,11 @@ class AnswersController < ApplicationController
   before_action :set_question, only: [:new, :destroy, :edit, :update, :make_best]
   before_action :set_question_in_base, only: [:create]
   include Voted
-
   respond_to :js
+  authorize_resource
 
   def make_best
-    @answer.make_best if current_user.autor_of? @question
+    respond_with(@answer.make_best)
   end
 
   def create
@@ -16,12 +16,12 @@ class AnswersController < ApplicationController
   end
 
   def update
-    @answer.update(answer_params) if current_user.autor_of?(@answer)
+    @answer.update(answer_params)
     respond_with @answer
   end
 
   def destroy
-    respond_with(@answer.destroy) if current_user.autor_of?(@answer) || current_user.autor_of?(@question)
+    respond_with(@answer.destroy)
   end
 
   private

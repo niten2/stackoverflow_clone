@@ -1,4 +1,4 @@
-- if user_signed_in?
+- if can? :create, Answer
   = form_for [question, answer], remote: true do |f|
     .red-text.center#answer-errors-common
     .input-field.offset-s3.col.s5

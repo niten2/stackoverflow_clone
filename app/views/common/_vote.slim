@@ -8,7 +8,7 @@ p
   | Рейтинг:
   span.votes_count =< object.votes.rating
 p
-  - if user_signed_in? && !(current_user.id == object.user_id)
+  - if can? :vote, object
     - if current_user.voted_for? object
       = link_to 'Отменить', eval("unvote_#{object.klass_name}_path(object)"), method: :patch, remote: true
     - else

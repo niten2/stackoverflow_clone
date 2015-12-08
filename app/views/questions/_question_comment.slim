@@ -4,11 +4,12 @@
     div id="question-comment-#{object.id}"
       .offset-s1.col.s4 = comment.content
       .col.s4 = comment.user.try(:email)
-      - if current_user.try(:autor_of?, comment) || current_user.try(:autor_of?, comment.commentable)
+      - if can? :destroy, comment
         .col.s2 =< link_to 'Удалить', comment_path(comment), method: :delete
     br
   .clearfix
 
 #question_comment_form = render "comments/form", commentable: object, comment: object.comments.new
 
-.right = link_to "Добавить комментарий", "#", id: "add_comment_question"
+- if can? :create, Comment
+  .right = link_to "Добавить комментарий", "#", id: "add_comment_question"

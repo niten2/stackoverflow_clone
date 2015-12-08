@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     post '/finish_sign_up' => 'registrations#finish_sign_up'
   end
 
-  get "welcome" => "welcome#index"
+  get "welcome" => "welcomes#index"
   get "ajax" => "welcome#ajax"
 
   resources :attachments, only: :destroy
