@@ -11,9 +11,9 @@ class ApplicationController < ActionController::Base
     redirect_to welcome_path, alert: exception.message
   end
 
-
-
   def after_sign_in_path_for(resource)
     questions_path
   end
+
+
 end
