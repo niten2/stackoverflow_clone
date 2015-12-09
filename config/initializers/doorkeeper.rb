@@ -5,10 +5,8 @@ Doorkeeper.configure do
     current_user || warden.authenticate!(scope: :user)
   end
 
-
-#   admin_authenticator do
-#     current_user.try(:admin?) || redirect_to(new_user_session_path)
-#   end
-
+  admin_authenticator do
+    current_user.try(:admin?) || redirect_to(new_user_session_path)
+  end
 
 end

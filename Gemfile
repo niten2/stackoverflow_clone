@@ -28,6 +28,10 @@ gem 'gon'
 gem "responders"
 gem 'doorkeeper'
 
+gem 'active_model_serializers'
+gem 'oj'
+gem 'oj_mimic_json'
+
 # mail
 gem "letter_opener", :group => :development
 gem 'omniauth'

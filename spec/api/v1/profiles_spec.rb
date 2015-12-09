@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe 'Profile API' do
+
   describe 'GET /me' do
     context 'unauthorized' do
       it 'returns 401 status if there is no access_token' do
@@ -64,7 +65,7 @@ describe 'Profile API' do
       end
 
       it 'returns other users ' do
-        expect(response.body).to be_json_eql(other_users.to_json)
+        expect(response.body).to be_json_eql(other_users.to_json).at_path("profiles")
       end
 
       it 'not returns me' do
@@ -73,13 +74,13 @@ describe 'Profile API' do
 
       %w(id email created_at updated_at).each do |attr|
         it "contains #{attr}" do
-          expect(response.body).to be_json_eql(other_user.send(attr.to_sym).to_json).at_path("0/#{attr}")
+          expect(response.body).to be_json_eql(other_user.send(attr.to_sym).to_json).at_path("profiles/0/#{attr}")
         end
       end
 
       %w(password encrypted_password).each do |attr|
         it "does not contain #{attr}" do
-          expect(response.body).to_not have_json_path("profiles/#{attr}")
+          expect(response.body).to_not have_json_path("profiles/0/#{attr}")
         end
       end
     end
