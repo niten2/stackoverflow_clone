@@ -109,17 +109,6 @@ describe 'Questions API' do
     context 'authorized' do
       let(:me) { create(:user) }
       let(:access_token) { create(:access_token, resource_owner_id: me.id) }
-      # let(:access_token) { create(:access_token) }
-      # let(:access_token) { create(:access_token) }
-      # let(:question) { create(:question) }
-
-      # before { post "/api/v1/questions/", format: :json, access_token: access_token.token }
-      # it 'returns 200 status code' do
-      #   expect(response).to be_success
-      # end
-      # it "create question" do
-      #   post "/api/v1/questions/", format: :json, access_token: access_token.token, question: attributes_for(:question)
-      #   binding.pry
 
       context 'with valid attributes' do
         it 'creates a new question' do
