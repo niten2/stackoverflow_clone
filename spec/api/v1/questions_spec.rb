@@ -89,8 +89,60 @@ describe 'Questions API' do
           expect(response.body).to be_json_eql(attachment_question.send(attr.to_sym).to_json).at_path("question/attachments/0/#{attr}")
         end
       end
-
     end
   end
 
+  describe 'GET /create' do
+
+    context 'unauthorized' do
+      it 'returns 401 status if there is no access_token' do
+        post "/api/v1/questions/", format: :json
+        expect(response.status).to eq 401
+      end
+
+      it 'returns 401 status if access_token is invalid' do
+        post "/api/v1/questions/", format: :json, access_token: '1234'
+        expect(response.status).to eq 401
+      end
+    end
+
+    context 'authorized' do
+      let(:me) { create(:user) }
+      let(:access_token) { create(:access_token, resource_owner_id: me.id) }
+      # let(:access_token) { create(:access_token) }
+      # let(:access_token) { create(:access_token) }
+      # let(:question) { create(:question) }
+
+      # before { post "/api/v1/questions/", format: :json, access_token: access_token.token }
+      # it 'returns 200 status code' do
+      #   expect(response).to be_success
+      # end
+      # it "create question" do
+      #   post "/api/v1/questions/", format: :json, access_token: access_token.token, question: attributes_for(:question)
+      #   binding.pry
+
+      context 'with valid attributes' do
+        it 'creates a new question' do
+          expect { post "/api/v1/questions/", question: attributes_for(:question), format: :json, access_token: access_token.token }.to change(me.questions, :count).by(1)
+        end
+
+        it 'returns success code ' do
+          post "/api/v1/questions/", question: attributes_for(:question), format: :json, access_token: access_token.token
+          expect(response).to be_success
+        end
+      end
+
+      context 'with invalid attributes' do
+        it 'does not create a new question' do
+          expect { post "/api/v1/questions/", question: attributes_for(:invalid_question), format: :json, access_token: access_token.token }.to_not change(Question, :count)
+        end
+
+        it 'returns 422 code' do
+          post "/api/v1/questions/", question: attributes_for(:invalid_question), format: :json, access_token: access_token.token
+          expect(response.status).to eq 422
+        end
+      end
+    end
+  end
 end
+
