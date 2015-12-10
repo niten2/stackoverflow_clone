@@ -1,0 +1,90 @@
+---
+description: question creation
+prefix: questions management
+requestParameters:
+  type: object
+  additionalProperties: false
+  properties:
+    question:
+      type: object
+      additionalProperties: false
+      properties:
+        required:
+          type: array
+          items:
+            type: string
+            content: string
+            description: ''
+            example: ''
+        title:
+          type: string
+          example: "Вера Субботина"
+          description: ''
+        content:
+          type: string
+          example: Try to calculate the HDD card, maybe it will reboot the solid state
+            array!
+          description: ''
+      description: ''
+      required: []
+    access_token:
+      type: string
+      example: 271685e4fddcba6ab098e1c0a9fbcce3c2099c7ec1543c64fe1bbfd728f7a70d
+      description: ''
+  description: ''
+  required: []
+responseCodes:
+- status: 201
+  successful: true
+responseParameters:
+  type: object
+  additionalProperties: false
+  properties:
+    question:
+      description: ''
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - title
+      - content
+      - created_at
+      - updated_at
+      properties:
+        id:
+          type: integer
+          example: 239
+          description: ''
+        title:
+          type: string
+          example: "Вера Субботина"
+          description: ''
+        content:
+          type: string
+          example: Try to calculate the HDD card, maybe it will reboot the solid state
+            array!
+          description: ''
+        created_at:
+          type: string
+          example: '2015-12-10T04:25:00.803Z'
+          format: date-time
+          description: ''
+        updated_at:
+          type: string
+          example: '2015-12-10T04:25:00.803Z'
+          format: date-time
+          description: ''
+        comments:
+          type: array
+          items: []
+        attachments:
+          type: array
+          items: []
+  description: ''
+  required: []
+extensions:
+  method: POST
+  path_info: "/api/v1/questions"
+  path_params:
+    controller: api/v1/questions
+    action: create

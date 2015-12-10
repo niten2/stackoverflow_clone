@@ -3,6 +3,9 @@ nav
     ul
       li
         = link_to "Вопросы", questions_path
+      li
+        - if current_user.admin?
+          = link_to "API", oauth_applications_path
     ul.right
       / li
         / = link_to "Описание", description_path

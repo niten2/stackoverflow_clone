@@ -26,6 +26,13 @@ gem "private_pub"
 gem "thin"
 gem 'gon'
 gem "responders"
+gem 'doorkeeper'
+
+gem 'active_model_serializers'
+gem 'oj'
+gem 'oj_mimic_json'
+
+gem 'lurker'
 
 # mail
 gem "letter_opener", :group => :development
@@ -50,6 +57,8 @@ group :development, :test do
 
   gem 'spring'
   gem 'spring-commands-rspec'
+
+  gem 'json_spec'
 
   # guard
   gem 'guard'

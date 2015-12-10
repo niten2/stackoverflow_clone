@@ -1,0 +1,78 @@
+---
+description: question listing
+prefix: questions management
+requestParameters:
+  type: object
+  additionalProperties: false
+  properties:
+    required:
+      type: array
+      items:
+        description: ''
+        type: string
+        example: access_token
+    access_token:
+      type: string
+      example: ad816315a36a5f0c6c686466d68ee74e74c8132a9361b63deed91ff68a28b715
+      description: ''
+  description: ''
+  required: []
+responseCodes:
+- status: 200
+  successful: true
+responseParameters:
+  type: object
+  additionalProperties: false
+  required: []
+  properties:
+    questions:
+      type: array
+      items:
+        type: object
+        additionalProperties: false
+        required:
+        - id
+        - title
+        - content
+        - short_title
+        - created_at
+        - updated_at
+        properties:
+          id:
+            type: integer
+            example: 37
+            description: ''
+          title:
+            description: ''
+            type: string
+            example: "Родионова Нина Лаврентьевна"
+          content:
+            description: ''
+            type: string
+            example: Use the cross-platform ADP microchip, then you can program the
+              online microchip!
+          created_at:
+            description: ''
+            type: string
+            example: '2015-12-10T04:15:25.279Z'
+            format: date-time
+          updated_at:
+            description: ''
+            type: string
+            example: '2015-12-10T04:15:25.279Z'
+            format: date-time
+          short_title:
+            description: ''
+            type: string
+            example: "Родионо..."
+        description: ''
+  description: ''
+extensions:
+  method: GET
+  path_info: "/api/v1/questions"
+  path_params:
+    controller: api/v1/questions
+    action: index
+  query_params:
+    format: json
+    access_token: ad816315a36a5f0c6c686466d68ee74e74c8132a9361b63deed91ff68a28b715

@@ -1,0 +1,145 @@
+---
+description: question
+prefix: questions management
+requestParameters:
+  description: ''
+  type: object
+  additionalProperties: false
+  required: []
+  properties:
+    required:
+      type: array
+      items:
+        description: ''
+        type: string
+        example: access_token
+    access_token:
+      type: string
+      example: 9db874060db1035c114d5c2a9e83d0f405e4e7399cd79e95f5b6d49c3f342984
+      description: ''
+responseCodes:
+- status: 200
+  successful: true
+  description: ''
+responseParameters:
+  description: ''
+  type: object
+  additionalProperties: false
+  required: []
+  properties:
+    question:
+      description: ''
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - content
+      - created_at
+      - updated_at
+      properties:
+        id:
+          description: ''
+          type: integer
+          example: 157
+        title:
+          description: ''
+          type: string
+          example: "Самойлов Егор"
+        content:
+          description: ''
+          type: string
+          example: I'll parse the open-source EXE microchip, that should circuit the
+            SAS capacitor!
+        created_at:
+          description: ''
+          type: string
+          example: '2015-12-10T04:17:07.898Z'
+          format: date-time
+        updated_at:
+          description: ''
+          type: string
+          example: '2015-12-10T04:17:07.898Z'
+          format: date-time
+        comments:
+          type: array
+          items:
+            description: ''
+            type: object
+            additionalProperties: false
+            required:
+            - id
+            - content
+            - created_at
+            - updated_at
+            properties:
+              id:
+                description: ''
+                type: integer
+                example: 57
+              content:
+                description: ''
+                type: string
+                example: I'll calculate the online CSS alarm, that should card the
+                  PCI capacitor!
+              created_at:
+                description: ''
+                type: string
+                example: '2015-12-10T04:17:07.994Z'
+                format: date-time
+              updated_at:
+                description: ''
+                type: string
+                example: '2015-12-10T04:17:07.994Z'
+                format: date-time
+        attachments:
+          type: array
+          items:
+            description: ''
+            type: object
+            additionalProperties: false
+            required:
+            - id
+            - file
+            - created_at
+            - updated_at
+            properties:
+              id:
+                description: ''
+                type: integer
+                example: 59
+              file:
+                description: ''
+                type: object
+                additionalProperties: false
+                properties:
+                  file:
+                    type: object
+                    additionalProperties: false
+                    properties:
+                      url:
+                        description: ''
+                        type: string
+                        example: "/uploads/attachment/file/59/spec_helper.rb"
+                    description: ''
+                    required: []
+                required: []
+              created_at:
+                description: ''
+                type: string
+                example: '2015-12-10T04:17:08.028Z'
+                format: date-time
+              updated_at:
+                description: ''
+                type: string
+                example: '2015-12-10T04:17:08.028Z'
+                format: date-time
+extensions:
+  method: GET
+  path_info: "/api/v1/questions/157"
+  path_params:
+    controller: api/v1/questions
+    action: show
+    id: '157'
+  query_params:
+    format: json
+    access_token: 9db874060db1035c114d5c2a9e83d0f405e4e7399cd79e95f5b6d49c3f342984
