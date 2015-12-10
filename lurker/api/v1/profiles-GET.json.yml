@@ -22,16 +22,22 @@ responseCodes:
   successful: true
   description: ''
 responseParameters:
-  description: ''
   type: object
   additionalProperties: false
-  required: []
   properties:
     profiles:
       type: array
       items:
+        description: ''
         type: object
         additionalProperties: false
+        required:
+        - id
+        - name
+        - email
+        - created_at
+        - updated_at
+        - admin
         properties:
           required:
             type: array
@@ -44,29 +50,29 @@ responseParameters:
             example: 2228
             description: ''
           name:
-            description: ''
             type: string
             example: ''
-          email:
             description: ''
+          email:
             type: string
             example: person_9@example.com
+            description: ''
           created_at:
-            description: ''
             type: string
             example: '2015-12-10T04:34:10.731Z'
             format: date-time
+            description: ''
           updated_at:
-            description: ''
             type: string
             example: '2015-12-10T04:34:10.731Z'
             format: date-time
+            description: ''
           admin:
             description: ''
             type: 'null'
             example: ''
-        description: ''
-        required: []
+  description: ''
+  required: []
 extensions:
   method: GET
   path_info: "/api/v1/profiles"

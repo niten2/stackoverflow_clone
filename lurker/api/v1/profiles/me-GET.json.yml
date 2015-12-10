@@ -20,12 +20,21 @@ responseParameters:
   type: object
   additionalProperties: false
   properties:
-    required:
-      type: array
-      items:
-        description: ''
-        type: string
-        example: id
+    type:
+      description: ''
+      type: string
+      example: array
+    items:
+      description: ''
+      type: string
+      example: id
+      required:
+      - id
+      - name
+      - email
+      - created_at
+      - updated_at
+      - admin
     id:
       description: ''
       type: integer
