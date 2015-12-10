@@ -1,0 +1,124 @@
+---
+description: answer
+prefix: answers management
+requestParameters:
+  description: ''
+  type: object
+  additionalProperties: false
+  required: []
+  properties:
+    access_token:
+      description: ''
+      type: string
+      example: 8ac6174571a4e47b38d6ea13f1c520623afb5b64ce31ce9657b9a18f6a3cf661
+responseCodes:
+- status: 200
+  successful: true
+  description: ''
+responseParameters:
+  description: ''
+  type: object
+  additionalProperties: false
+  required: []
+  properties:
+    answer:
+      description: ''
+      type: object
+      additionalProperties: false
+      required: []
+      properties:
+        id:
+          description: ''
+          type: integer
+          example: 318
+        content:
+          description: ''
+          type: string
+          example: Try to copy the HTTP port, maybe it will connect the 1080p hard
+            drive!
+        created_at:
+          description: ''
+          type: string
+          example: '2015-12-10T04:29:42.657Z'
+          format: date-time
+        updated_at:
+          description: ''
+          type: string
+          example: '2015-12-10T04:29:42.657Z'
+          format: date-time
+        comments:
+          type: array
+          items:
+            description: ''
+            type: object
+            additionalProperties: false
+            required: []
+            properties:
+              id:
+                description: ''
+                type: integer
+                example: 197
+              content:
+                description: ''
+                type: string
+                example: You can't navigate the sensor without navigating the solid
+                  state TCP hard drive!
+              created_at:
+                description: ''
+                type: string
+                example: '2015-12-10T04:29:42.721Z'
+                format: date-time
+              updated_at:
+                description: ''
+                type: string
+                example: '2015-12-10T04:29:42.721Z'
+                format: date-time
+        attachments:
+          type: array
+          items:
+            description: ''
+            type: object
+            additionalProperties: false
+            required: []
+            properties:
+              id:
+                description: ''
+                type: integer
+                example: 199
+              file:
+                description: ''
+                type: object
+                additionalProperties: false
+                required: []
+                properties:
+                  file:
+                    description: ''
+                    type: object
+                    additionalProperties: false
+                    required: []
+                    properties:
+                      url:
+                        description: ''
+                        type: string
+                        example: "/uploads/attachment/file/199/spec_helper.rb"
+              created_at:
+                description: ''
+                type: string
+                example: '2015-12-10T04:29:42.754Z'
+                format: date-time
+              updated_at:
+                description: ''
+                type: string
+                example: '2015-12-10T04:29:42.754Z'
+                format: date-time
+extensions:
+  method: GET
+  path_info: "/api/v1/questions/486/answers/318"
+  path_params:
+    controller: api/v1/answers
+    action: show
+    question_id: '486'
+    id: '318'
+  query_params:
+    format: json
+    access_token: 8ac6174571a4e47b38d6ea13f1c520623afb5b64ce31ce9657b9a18f6a3cf661

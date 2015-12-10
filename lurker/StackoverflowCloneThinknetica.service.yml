@@ -1,0 +1,10 @@
+---
+name: StackoverflowCloneThinknetica
+basePath: ''
+description: ''
+domains: {}
+consumes:
+- application/x-www-form-urlencode
+- application/json
+produces:
+- application/json

@@ -1,0 +1,72 @@
+---
+description: answer creation
+prefix: answers management
+requestParameters:
+  description: ''
+  type: object
+  additionalProperties: false
+  required: []
+  properties:
+    answer:
+      description: ''
+      type: object
+      additionalProperties: false
+      required: []
+      properties:
+        content:
+          description: ''
+          type: string
+          example: If we program the card, we can get to the COM system through the
+            cross-platform SDD firewall!
+    access_token:
+      description: ''
+      type: string
+      example: 7307ee14f07ea868ed11ab1e93961495872daf2a66650e73f8bb6b12eb8cb9d3
+responseCodes:
+- status: 201
+  successful: true
+  description: ''
+responseParameters:
+  description: ''
+  type: object
+  additionalProperties: false
+  required: []
+  properties:
+    answer:
+      description: ''
+      type: object
+      additionalProperties: false
+      required: []
+      properties:
+        id:
+          description: ''
+          type: integer
+          example: 331
+        content:
+          description: ''
+          type: string
+          example: If we program the card, we can get to the COM system through the
+            cross-platform SDD firewall!
+        created_at:
+          description: ''
+          type: string
+          example: '2015-12-10T04:29:46.881Z'
+          format: date-time
+        updated_at:
+          description: ''
+          type: string
+          example: '2015-12-10T04:29:46.881Z'
+          format: date-time
+        comments:
+          type: array
+          items: []
+        attachments:
+          type: array
+          items: []
+extensions:
+  method: POST
+  path_info: "/api/v1/questions/501/answers"
+  path_params:
+    controller: api/v1/answers
+    action: create
+    question_id: '501'

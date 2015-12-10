@@ -1,0 +1,60 @@
+---
+description: answer listing
+prefix: answers management
+requestParameters:
+  description: ''
+  type: object
+  additionalProperties: false
+  required: []
+  properties:
+    access_token:
+      description: ''
+      type: string
+      example: dd7c59f1619f5b8cc36f5ddf5e141e359b1fef8db2cb1e0cd1582ba6d06b4520
+responseCodes:
+- status: 200
+  successful: true
+  description: ''
+responseParameters:
+  description: ''
+  type: object
+  additionalProperties: false
+  required: []
+  properties:
+    answers:
+      type: array
+      items:
+        description: ''
+        type: object
+        additionalProperties: false
+        required: []
+        properties:
+          id:
+            description: ''
+            type: integer
+            example: 311
+          content:
+            description: ''
+            type: string
+            example: Try to synthesize the THX panel, maybe it will copy the 1080p
+              pixel!
+          created_at:
+            description: ''
+            type: string
+            example: '2015-12-10T04:29:41.295Z'
+            format: date-time
+          updated_at:
+            description: ''
+            type: string
+            example: '2015-12-10T04:29:41.295Z'
+            format: date-time
+extensions:
+  method: GET
+  path_info: "/api/v1/questions/479/answers"
+  path_params:
+    controller: api/v1/answers
+    action: index
+    question_id: '479'
+  query_params:
+    format: json
+    access_token: dd7c59f1619f5b8cc36f5ddf5e141e359b1fef8db2cb1e0cd1582ba6d06b4520

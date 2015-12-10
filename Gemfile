@@ -32,6 +32,8 @@ gem 'active_model_serializers'
 gem 'oj'
 gem 'oj_mimic_json'
 
+gem 'lurker'
+
 # mail
 gem "letter_opener", :group => :development
 gem 'omniauth'

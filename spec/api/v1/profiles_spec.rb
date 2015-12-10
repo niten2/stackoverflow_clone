@@ -16,7 +16,7 @@ describe 'Profile API' do
     end
   end
 
-  context 'authorized' do
+  context 'authorized', :lurker do
     let(:me) { create(:user) }
     let(:access_token) { create(:access_token, resource_owner_id: me.id) }
 
@@ -52,7 +52,7 @@ describe 'Profile API' do
       end
     end
 
-    context 'authorized' do
+    context 'authorized', :lurker do
       let(:me) { create(:user) }
       let(:access_token) { create(:access_token, resource_owner_id: me.id) }
       let!(:other_users) { create_list(:user, 5) }
@@ -72,7 +72,7 @@ describe 'Profile API' do
         expect(response.body).to_not include_json(me.to_json)
       end
 
-      %w(id email created_at updated_at).each do |attr|
+      %w(id email created_at updated_at admin).each do |attr|
         it "contains #{attr}" do
           expect(response.body).to be_json_eql(other_user.send(attr.to_sym).to_json).at_path("profiles/0/#{attr}")
         end

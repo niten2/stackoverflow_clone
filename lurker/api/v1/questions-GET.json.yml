@@ -1,0 +1,67 @@
+---
+description: question listing
+prefix: questions management
+requestParameters:
+  description: ''
+  type: object
+  additionalProperties: false
+  required: []
+  properties:
+    access_token:
+      description: ''
+      type: string
+      example: bbfd9dc2b2560900e4070bef02fd0bdc9704f1657e79d1c15da0fc5b0466b4f8
+responseCodes:
+- status: 200
+  successful: true
+  description: ''
+responseParameters:
+  description: ''
+  type: object
+  additionalProperties: false
+  required: []
+  properties:
+    questions:
+      type: array
+      items:
+        description: ''
+        type: object
+        additionalProperties: false
+        required: []
+        properties:
+          id:
+            description: ''
+            type: integer
+            example: 207
+          title:
+            description: ''
+            type: string
+            example: "Альберт Тимофеев"
+          content:
+            description: ''
+            type: string
+            example: navigating the hard drive won't do anything, we need to parse
+              the 1080p HTTP monitor!
+          created_at:
+            description: ''
+            type: string
+            example: '2015-12-10T04:24:54.351Z'
+            format: date-time
+          updated_at:
+            description: ''
+            type: string
+            example: '2015-12-10T04:24:54.351Z'
+            format: date-time
+          short_title:
+            description: ''
+            type: string
+            example: "Альберт..."
+extensions:
+  method: GET
+  path_info: "/api/v1/questions"
+  path_params:
+    controller: api/v1/questions
+    action: index
+  query_params:
+    format: json
+    access_token: bbfd9dc2b2560900e4070bef02fd0bdc9704f1657e79d1c15da0fc5b0466b4f8

@@ -1,0 +1,79 @@
+---
+description: question creation
+prefix: questions management
+requestParameters:
+  description: ''
+  type: object
+  additionalProperties: false
+  required: []
+  properties:
+    question:
+      description: ''
+      type: object
+      additionalProperties: false
+      required: []
+      properties:
+        title:
+          description: ''
+          type: string
+          example: "Вера Субботина"
+        content:
+          description: ''
+          type: string
+          example: Try to calculate the HDD card, maybe it will reboot the solid state
+            array!
+    access_token:
+      description: ''
+      type: string
+      example: 271685e4fddcba6ab098e1c0a9fbcce3c2099c7ec1543c64fe1bbfd728f7a70d
+responseCodes:
+- status: 201
+  successful: true
+  description: ''
+responseParameters:
+  description: ''
+  type: object
+  additionalProperties: false
+  required: []
+  properties:
+    question:
+      description: ''
+      type: object
+      additionalProperties: false
+      required: []
+      properties:
+        id:
+          description: ''
+          type: integer
+          example: 239
+        title:
+          description: ''
+          type: string
+          example: "Вера Субботина"
+        content:
+          description: ''
+          type: string
+          example: Try to calculate the HDD card, maybe it will reboot the solid state
+            array!
+        created_at:
+          description: ''
+          type: string
+          example: '2015-12-10T04:25:00.803Z'
+          format: date-time
+        updated_at:
+          description: ''
+          type: string
+          example: '2015-12-10T04:25:00.803Z'
+          format: date-time
+        comments:
+          type: array
+          items: []
+        attachments:
+          type: array
+          items: []
+extensions:
+  method: POST
+  path_info: "/api/v1/questions"
+  path_params:
+    controller: api/v1/questions
+    action: create

@@ -19,7 +19,7 @@ describe 'Answer API' do
       end
     end
 
-    context 'authorized' do
+    context 'authorized', :lurker do
       before { get "/api/v1/questions/#{question.id}/answers", format: :json, access_token: access_token.token }
 
       it 'included in answer object' do
@@ -51,7 +51,7 @@ describe 'Answer API' do
       end
     end
 
-    context 'authorized' do
+    context 'authorized', :lurker do
       let!(:comment_answer) { create(:comment, commentable: answer) }
       let!(:attachment_answer) { create(:attachment, attachable: answer) }
 
@@ -101,7 +101,7 @@ describe 'Answer API' do
 
     context 'authorized' do
 
-      context 'with valid attributes' do
+      context 'with valid attributes', :lurker do
         it 'creates a new question' do
           expect { post "/api/v1/questions/#{question.id}/answers", answer: attributes_for(:answer), format: :json, access_token: access_token.token }.to change(me.answers, :count).by(1)
         end

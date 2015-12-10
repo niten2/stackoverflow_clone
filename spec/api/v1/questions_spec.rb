@@ -16,7 +16,7 @@ describe 'Questions API' do
       end
     end
 
-    context 'authorized' do
+    context 'authorized', :lurker do
       let(:access_token) { create(:access_token) }
       let!(:questions) { create_list(:question, 2) }
       let(:question) { questions.first }
@@ -61,7 +61,7 @@ describe 'Questions API' do
       end
     end
 
-    context 'authorized' do
+    context 'authorized', :lurker do
       let!(:answer) { create(:answer, question: question) }
       let!(:comment_question) { create(:comment, commentable: question) }
       let!(:attachment_question) { create(:attachment, attachable: question) }
@@ -110,7 +110,7 @@ describe 'Questions API' do
       let(:me) { create(:user) }
       let(:access_token) { create(:access_token, resource_owner_id: me.id) }
 
-      context 'with valid attributes' do
+      context 'with valid attributes', :lurker do
         it 'creates a new question' do
           expect { post "/api/v1/questions/", question: attributes_for(:question), format: :json, access_token: access_token.token }.to change(me.questions, :count).by(1)
         end

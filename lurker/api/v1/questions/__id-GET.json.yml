@@ -1,0 +1,127 @@
+---
+description: question
+prefix: questions management
+requestParameters:
+  description: ''
+  type: object
+  additionalProperties: false
+  required: []
+  properties:
+    access_token:
+      description: ''
+      type: string
+      example: 52e11d2e43a20222a674d7d8e901bbc6c5c3cc4555ad6f1a3c82ab2ee57a204d
+responseCodes:
+- status: 200
+  successful: true
+  description: ''
+responseParameters:
+  description: ''
+  type: object
+  additionalProperties: false
+  required: []
+  properties:
+    question:
+      description: ''
+      type: object
+      additionalProperties: false
+      required: []
+      properties:
+        id:
+          description: ''
+          type: integer
+          example: 225
+        title:
+          description: ''
+          type: string
+          example: "Гришин Лаврентий"
+        content:
+          description: ''
+          type: string
+          example: The JBOD interface is down, index the back-end driver so we can
+            input the JBOD sensor!
+        created_at:
+          description: ''
+          type: string
+          example: '2015-12-10T04:24:56.583Z'
+          format: date-time
+        updated_at:
+          description: ''
+          type: string
+          example: '2015-12-10T04:24:56.583Z'
+          format: date-time
+        comments:
+          type: array
+          items:
+            description: ''
+            type: object
+            additionalProperties: false
+            required: []
+            properties:
+              id:
+                description: ''
+                type: integer
+                example: 85
+              content:
+                description: ''
+                type: string
+                example: Use the neural COM alarm, then you can generate the optical
+                  hard drive!
+              created_at:
+                description: ''
+                type: string
+                example: '2015-12-10T04:24:56.678Z'
+                format: date-time
+              updated_at:
+                description: ''
+                type: string
+                example: '2015-12-10T04:24:56.678Z'
+                format: date-time
+        attachments:
+          type: array
+          items:
+            description: ''
+            type: object
+            additionalProperties: false
+            required: []
+            properties:
+              id:
+                description: ''
+                type: integer
+                example: 87
+              file:
+                description: ''
+                type: object
+                additionalProperties: false
+                required: []
+                properties:
+                  file:
+                    description: ''
+                    type: object
+                    additionalProperties: false
+                    required: []
+                    properties:
+                      url:
+                        description: ''
+                        type: string
+                        example: "/uploads/attachment/file/87/spec_helper.rb"
+              created_at:
+                description: ''
+                type: string
+                example: '2015-12-10T04:24:56.711Z'
+                format: date-time
+              updated_at:
+                description: ''
+                type: string
+                example: '2015-12-10T04:24:56.711Z'
+                format: date-time
+extensions:
+  method: GET
+  path_info: "/api/v1/questions/225"
+  path_params:
+    controller: api/v1/questions
+    action: show
+    id: '225'
+  query_params:
+    format: json
+    access_token: 52e11d2e43a20222a674d7d8e901bbc6c5c3cc4555ad6f1a3c82ab2ee57a204d
