@@ -5,12 +5,18 @@ requestParameters:
   description: ''
   type: object
   additionalProperties: false
-  required: []
   properties:
+    required:
+      type: array
+      items:
+        description: ''
+        type: string
+        example: access_token
     access_token:
-      description: ''
       type: string
       example: df7b5562d7007151af93e069867a36c19c9845d389e9467f39fda5f0af1904d8
+      description: ''
+  required: []
 responseCodes:
 - status: 200
   successful: true
@@ -24,15 +30,19 @@ responseParameters:
     profiles:
       type: array
       items:
-        description: ''
         type: object
         additionalProperties: false
-        required: []
         properties:
+          required:
+            type: array
+            items:
+              description: ''
+              type: string
+              example: id
           id:
-            description: ''
             type: integer
             example: 2228
+            description: ''
           name:
             description: ''
             type: string
@@ -55,6 +65,8 @@ responseParameters:
             description: ''
             type: 'null'
             example: ''
+        description: ''
+        required: []
 extensions:
   method: GET
   path_info: "/api/v1/profiles"

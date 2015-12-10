@@ -5,12 +5,18 @@ requestParameters:
   description: ''
   type: object
   additionalProperties: false
-  required: []
   properties:
+    required:
+      type: array
+      items:
+        description: ''
+        type: string
+        example: access_token
     access_token:
       description: ''
       type: string
       example: dd7c59f1619f5b8cc36f5ddf5e141e359b1fef8db2cb1e0cd1582ba6d06b4520
+  required: []
 responseCodes:
 - status: 200
   successful: true
@@ -19,7 +25,6 @@ responseParameters:
   description: ''
   type: object
   additionalProperties: false
-  required: []
   properties:
     answers:
       type: array
@@ -27,7 +32,11 @@ responseParameters:
         description: ''
         type: object
         additionalProperties: false
-        required: []
+        required:
+        - id
+        - content
+        - created_at
+        - updated_at
         properties:
           id:
             description: ''
@@ -48,6 +57,7 @@ responseParameters:
             type: string
             example: '2015-12-10T04:29:41.295Z'
             format: date-time
+  required: []
 extensions:
   method: GET
   path_info: "/api/v1/questions/479/answers"

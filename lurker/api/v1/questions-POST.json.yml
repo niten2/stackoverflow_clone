@@ -2,75 +2,86 @@
 description: question creation
 prefix: questions management
 requestParameters:
-  description: ''
   type: object
   additionalProperties: false
-  required: []
   properties:
     question:
-      description: ''
       type: object
       additionalProperties: false
-      required: []
       properties:
+        required:
+          type: array
+          items:
+            type: string
+            content: string
+            description: ''
+            example: ''
         title:
-          description: ''
           type: string
           example: "Вера Субботина"
-        content:
           description: ''
+        content:
           type: string
           example: Try to calculate the HDD card, maybe it will reboot the solid state
             array!
-    access_token:
+          description: ''
       description: ''
+      required: []
+    access_token:
       type: string
       example: 271685e4fddcba6ab098e1c0a9fbcce3c2099c7ec1543c64fe1bbfd728f7a70d
+      description: ''
+  description: ''
+  required: []
 responseCodes:
 - status: 201
   successful: true
-  description: ''
 responseParameters:
-  description: ''
   type: object
   additionalProperties: false
-  required: []
   properties:
     question:
       description: ''
       type: object
       additionalProperties: false
-      required: []
+      required:
+      - id
+      - title
+      - content
+      - created_at
+      - updated_at
       properties:
         id:
-          description: ''
           type: integer
           example: 239
-        title:
           description: ''
+        title:
           type: string
           example: "Вера Субботина"
-        content:
           description: ''
+        content:
           type: string
           example: Try to calculate the HDD card, maybe it will reboot the solid state
             array!
+          description: ''
         created_at:
-          description: ''
           type: string
           example: '2015-12-10T04:25:00.803Z'
           format: date-time
+          description: ''
         updated_at:
-          description: ''
           type: string
           example: '2015-12-10T04:25:00.803Z'
           format: date-time
+          description: ''
         comments:
           type: array
           items: []
         attachments:
           type: array
           items: []
+  description: ''
+  required: []
 extensions:
   method: POST
   path_info: "/api/v1/questions"

@@ -19,13 +19,16 @@ responseParameters:
   description: ''
   type: object
   additionalProperties: false
-  required: []
   properties:
     answer:
       description: ''
       type: object
       additionalProperties: false
-      required: []
+      required:
+      - id
+      - content
+      - created_at
+      - updated_at
       properties:
         id:
           description: ''
@@ -52,7 +55,11 @@ responseParameters:
             description: ''
             type: object
             additionalProperties: false
-            required: []
+            required:
+            - id
+            - content
+            - created_at
+            - updated_at
             properties:
               id:
                 description: ''
@@ -76,10 +83,13 @@ responseParameters:
         attachments:
           type: array
           items:
-            description: ''
             type: object
             additionalProperties: false
-            required: []
+            required:
+            - id
+            - file
+            - created_at
+            - updated_at
             properties:
               id:
                 description: ''
@@ -111,6 +121,8 @@ responseParameters:
                 type: string
                 example: '2015-12-10T04:29:42.754Z'
                 format: date-time
+            description: ''
+  required: []
 extensions:
   method: GET
   path_info: "/api/v1/questions/486/answers/318"

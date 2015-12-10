@@ -19,8 +19,13 @@ responseParameters:
   description: ''
   type: object
   additionalProperties: false
-  required: []
   properties:
+    required:
+      type: array
+      items:
+        description: ''
+        type: string
+        example: id
     id:
       description: ''
       type: integer
@@ -47,6 +52,7 @@ responseParameters:
       description: ''
       type: 'null'
       example: ''
+  required: []
 extensions:
   method: GET
   path_info: "/api/v1/profiles/me"

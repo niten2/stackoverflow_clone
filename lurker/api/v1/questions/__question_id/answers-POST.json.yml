@@ -30,13 +30,16 @@ responseParameters:
   description: ''
   type: object
   additionalProperties: false
-  required: []
   properties:
     answer:
       description: ''
       type: object
       additionalProperties: false
-      required: []
+      required:
+      - id
+      - content
+      - created_at
+      - updated_at
       properties:
         id:
           description: ''
@@ -63,6 +66,7 @@ responseParameters:
         attachments:
           type: array
           items: []
+  required: []
 extensions:
   method: POST
   path_info: "/api/v1/questions/501/answers"

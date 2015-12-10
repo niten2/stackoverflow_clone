@@ -32,11 +32,11 @@ describe 'Questions API' do
         expect(response.body).to have_json_size(2).at_path("questions")
       end
 
-      %w(id title content created_at updated_at).each do |attr|
-        it "question object contains #{attr}" do
-          expect(response.body).to be_json_eql(question.send(attr.to_sym).to_json).at_path("questions/0/#{attr}")
-        end
-      end
+      # %w(id title content created_at updated_at).each do |attr|
+      #   it "question object contains #{attr}" do
+      #     expect(response.body).to be_json_eql(question.send(attr.to_sym).to_json).at_path("questions/0/#{attr}")
+      #   end
+      # end
 
       it 'question object contains short_title' do
         expect(response.body).to be_json_eql(question.title.truncate(10).to_json).at_path("questions/0/short_title")
