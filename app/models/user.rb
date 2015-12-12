@@ -14,4 +14,15 @@ class User < ActiveRecord::Base
     object.user_id == self.id
   end
 
+
+  def send_daily_digest
+  end
+
+  def send_notice_add_answer
+  end
+
+  def subscription_question
+  end
+
+
 end

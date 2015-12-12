@@ -10,4 +10,8 @@ class Question < ActiveRecord::Base
 
   validates :title, :content, :user_id, presence: true
 
+  # scope, :today, -> {where: ("created_at" = "?", :today) }
+
+
+
 end

@@ -1,0 +1,12 @@
+p
+  | Привет,
+  =< @user.name
+p
+  | В вопросе который вы создали появился новый ответ:
+  =< link_to "Перейти к #{@question.name}", @question
+p
+  | Содержание ответа:
+  =< @answer.content
+p
+  | Автор:
+  =< @answer.user.name
