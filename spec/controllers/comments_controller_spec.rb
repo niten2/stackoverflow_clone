@@ -9,26 +9,28 @@ describe CommentsController do
       let(:answer) { create(:answer, question: question, user: user) }
       let(:answer_comment) { create(:comment, commentable: answer, user: user) }
 
-      let(:create_params_question) {{ comment: attributes_for(:comment), commentable: 'questions', question_id: question, format: :js }}
-      let(:create_params_answer) {{ comment: attributes_for(:comment), commentable: 'answers', answer_id: answer, format: :js }}
-      let(:create_params_question_invalid) {{ comment: attributes_for(:comment, :with_wrong_attributes), commentable: 'questions', question_id: question, format: :js }}
-      let(:create_params_answer_invalid) {{ comment: attributes_for(:comment, :with_wrong_attributes), commentable: 'answers', answer_id: answer, format: :js }}
       before {request.env["HTTP_REFERER"] = "where_i_came_from"}
       before { sign_in(user) }
 
       describe "valid data" do
+        let(:create_params_question) {{ comment: attributes_for(:comment), commentable: 'questions', question_id: question, format: :js }}
         it 'create comment question' do
-          expect{ post :create, create_params_question, format: :js}.to change(question.comments, :count).by(1)
+          expect{ post :create, create_params_question, format: :js }.to change(question.comments, :count).by(1)
         end
+
+        let(:create_params_answer) {{ comment: attributes_for(:comment), commentable: 'answers', answer_id: answer, format: :js }}
         it 'create comment asnwers' do
           expect{ post :create, create_params_answer}.to change(answer.comments, :count).by(1)
         end
       end
 
       describe "invalid data" do
+        let(:create_params_question_invalid) {{ comment: attributes_for(:comment, :with_wrong_attributes), commentable: 'questions', question_id: question, format: :js }}
         it 'tried create comment question' do
           expect{ post :create, create_params_question_invalid}.to_not change(question.comments, :count)
         end
+
+        let(:create_params_answer_invalid) {{ comment: attributes_for(:comment, :with_wrong_attributes), commentable: 'answers', answer_id: answer, format: :js }}
         it 'tried create comment asnwers' do
           expect{ post :create, create_params_answer_invalid}.to_not change(answer.comments, :count)
         end
@@ -88,19 +90,17 @@ describe CommentsController do
     describe "DELETE #destroy owner comment" do
       let(:test_user) { create :user }
       let(:owner_user) { create :user }
-
       let(:question_for_owner) { create(:question, user: test_user) }
       let(:answer_for_owner) { create(:answer, question: question_for_owner, user: test_user) }
-
-      let!(:question_comment_owner) { create(:comment, commentable: question_for_owner, user: owner_user) }
-      let!(:answer_comment_owner) { create(:comment, commentable: answer_for_owner,  user: owner_user) }
       before { sign_in(owner_user) }
 
       it 'owner user comment delete comment question' do
+        question_comment_owner = create(:comment, commentable: question_for_owner, user: owner_user)
         expect { delete :destroy, id: question_comment_owner }.to change(test_user.questions.last.comments, :count).by(-1)
       end
 
       it 'owner user comment delete comment answer' do
+        answer_comment_owner = create(:comment, commentable: answer_for_owner,  user: owner_user)
         expect { delete :destroy, id: answer_comment_owner }.to change(test_user.answers.take.comments, :count).by(-1)
       end
     end
