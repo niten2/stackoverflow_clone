@@ -34,6 +34,11 @@ gem 'oj_mimic_json'
 
 gem 'lurker'
 
+# background_jobs
+gem 'sidekiq'
+gem 'sidetiq'
+gem 'sinatra', require: nil
+
 # mail
 gem "letter_opener", :group => :development
 gem 'omniauth'
