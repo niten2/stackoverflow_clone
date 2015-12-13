@@ -35,8 +35,8 @@ gem 'oj_mimic_json'
 gem 'lurker'
 
 # background_jobs
+gem 'whenever'
 gem 'sidekiq'
-gem 'sidetiq'
 gem 'sinatra', require: nil
 
 # mail

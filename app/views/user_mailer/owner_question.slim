@@ -1,9 +1,9 @@
 p
   | Привет,
-  =< @user.name
+  =< @user.email
 p
   | В вопросе который вы создали появился новый ответ:
-  =< link_to "Перейти к #{@question.name}", @question
+  / =< link_to "Перейти к #{@question.name}", questions_url
 p
   | Содержание ответа:
   =< @answer.content

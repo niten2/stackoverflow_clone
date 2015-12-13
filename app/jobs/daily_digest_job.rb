@@ -1,12 +1,12 @@
 class DailyDigestJob < ActiveJob::Base
   queue_as :default
 
-  # include Sidekiq::Worker
-  include Sidetiq::Schedulable
+  def perform(object)
+    questions = Question.all
 
-  recurrence { daily(1) }
-
-  def perform(*args)
-    User.send_daily_digest
+    User.find_each do |user|
+      UserMailer.daily_digest(user, questions).deliver
+    end
   end
+
 end

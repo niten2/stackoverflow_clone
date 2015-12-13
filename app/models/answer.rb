@@ -9,9 +9,12 @@ class Answer < ActiveRecord::Base
 
   validates :content, :question_id, :user_id, presence: true
 
+  # after_create :send_email_owner_question, :send_email_subscription_question
+
+  after_create :daily
+
   default_scope -> { order(best: :desc).order(created_at: :asc) }
 
-  after_create :send_email_owner
 
   def make_best
     ActiveRecord::Base.transaction do
@@ -23,13 +26,16 @@ class Answer < ActiveRecord::Base
 
   private
 
-  def send_email_owner
-    # binding.pry
-    user = self.question.user
-    question = self.question
-    answer = self
-    UserMailer.new_answer_owner_question(user, question, answer).deliver_later
-  end
+  # def send_email_owner_question
+  #   EmailOwnerQuestionJob.perform_now(self)
+  # end
+
+  # def send_email_subscription_question
+  #   binding.pry
+
+  #   SubscriptionQuestionJob.perform_now(self)
+
+  # end
 
 
 

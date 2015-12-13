@@ -14,15 +14,19 @@ class User < ActiveRecord::Base
     object.user_id == self.id
   end
 
+  # def send_daily_digest
+  #   Question.today
+  # end
 
-  def send_daily_digest
-  end
+  # def self.send_answer_owner_question(object)
+  #   user = object.question.user
+  #   question = object.question
+  #   answer = object
+  #   UserMailer.new_answer_owner_question(user, question, answer).deliver_later
+  # end
 
-  def send_notice_add_answer
-  end
-
-  def subscription_question
-  end
+  # def subscription_question
+  # end
 
 
 end
