@@ -24,7 +24,11 @@ class Ability
     guest_abilities
     can :manage, [Question, Answer, Comment], user: user
     can :manage, Attachment, attachable: {user: user}
+
     can :make_best, Answer, question: { user: user }
+
+    can :subscription, Question
+    can :unsubscription, Question
 
     can :update, [Question, Answer, Comment], user: user
     can :create, Comment

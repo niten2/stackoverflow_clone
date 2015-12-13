@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   end
 
   resources :questions, concerns: :votable do
+    patch :subscription, on: :member
+    patch :unsubscription, on: :member
     resources :comments, only: :create, defaults: {commentable: 'questions'}
 
     resources :answers, shallow: true, concerns: :votable do

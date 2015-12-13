@@ -8,7 +8,7 @@ br
 .col.s12 = render 'answers/form', question: @question, answer: @answer
 .clearfix
 br
-.right = render "question_subscription"
+.right#question_subscription = render "question_subscription"
 .col.s12.center = button_to "Назад", questions_path, method: :get, class: "btn"
 = subscribe_to "/questions/#{@question.id}/answers"
 = subscribe_to "/questions/#{@question.id}/comments"

@@ -7,11 +7,32 @@ describe User, type: :model do
   it { should have_many(:attachments) }
   it { should have_many(:comments) }
   it { should have_many(:authorizations) }
+  it { should have_many(:subscriptions) }
+  it { should have_many(:subscription_questions) }
 
   let(:user) { create(:user) }
   let(:question) { create(:question, user: user) }
   let(:answer) { create(:answer, question: question, user: user) }
   let(:attachment) { create(:attachment, attachable: question) }
+
+  describe "subscription" do
+
+    it "subscription!" do
+      expect { question.subscription!(user) }.to change(question.followers, :count).by 1
+    end
+
+    it "subscription?" do
+      question.subscription!(user)
+      question.reload
+      expect(question.subscription?(user)).to be_truthy
+    end
+
+    it "unsubscription!" do
+      question.subscription!(user)
+      expect { question.unsubscription!(user) }.to change(question.followers, :count).by -1
+    end
+
+  end
 
   describe "#autor_of?" do
 

@@ -1,1 +1,4 @@
-= link_to "Получать сообщение об ответах", "#"
+- if @question.subscription?(current_user)
+  = link_to "Отписаться от получения сообщений об ответах", unsubscription_question_path(@question), method: :patch
+- else
+  = link_to "Получать сообщение об ответах", subscription_question_path(@question), method: :patch

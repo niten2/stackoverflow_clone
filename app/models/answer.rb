@@ -24,12 +24,12 @@ class Answer < ActiveRecord::Base
 
   private
 
-  # def send_email_owner_question
-  #   EmailOwnerQuestionJob.perform_now(self)
-  # end
+  def send_email_owner_question
+    # EmailOwnerQuestionJob.perform_now(self)
+  end
 
   def send_email_subscription_question
-    SubscriptionQuestionJob.perform_now(self)
+    # SubscriptionQuestionJob.perform_now(self)
   end
 
 end

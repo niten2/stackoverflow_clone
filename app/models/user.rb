@@ -9,24 +9,11 @@ class User < ActiveRecord::Base
   has_many :authorizations
   has_many :comments, dependent: :destroy
   has_many :attachments, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
+  has_many :subscription_questions, through: :subscriptions, source: :question
 
   def autor_of?(object)
     object.user_id == self.id
   end
-
-  # def send_daily_digest
-  #   Question.today
-  # end
-
-  # def self.send_answer_owner_question(object)
-  #   user = object.question.user
-  #   question = object.question
-  #   answer = object
-  #   UserMailer.new_answer_owner_question(user, question, answer).deliver_later
-  # end
-
-  # def subscription_question
-  # end
-
 
 end
