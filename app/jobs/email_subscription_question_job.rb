@@ -5,5 +5,7 @@ class SubscriptionQuestionJob < ActiveJob::Base
 
 
     UserMailer.subscription_question(user, question, answer).deliver
+
+
   end
 end

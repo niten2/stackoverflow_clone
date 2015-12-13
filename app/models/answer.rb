@@ -9,9 +9,7 @@ class Answer < ActiveRecord::Base
 
   validates :content, :question_id, :user_id, presence: true
 
-  # after_create :send_email_owner_question, :send_email_subscription_question
-
-  after_create :daily
+  after_create :send_email_owner_question, :send_email_subscription_question
 
   default_scope -> { order(best: :desc).order(created_at: :asc) }
 
@@ -30,13 +28,8 @@ class Answer < ActiveRecord::Base
   #   EmailOwnerQuestionJob.perform_now(self)
   # end
 
-  # def send_email_subscription_question
-  #   binding.pry
-
-  #   SubscriptionQuestionJob.perform_now(self)
-
-  # end
-
-
+  def send_email_subscription_question
+    SubscriptionQuestionJob.perform_now(self)
+  end
 
 end

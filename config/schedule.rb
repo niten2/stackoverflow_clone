@@ -1,3 +1,3 @@
 every 1.days do
-  runner "DailyDigestJob.perform_now"
+  runner "DailyDigestJob.perform_later"
 end
