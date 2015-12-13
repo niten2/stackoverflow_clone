@@ -6,11 +6,8 @@ class Answer < ActiveRecord::Base
 
   belongs_to :question
   belongs_to :user
-
   validates :content, :question_id, :user_id, presence: true
-
-  after_create :send_email_owner_question, :send_email_subscription_question
-
+  after_create :send_email_subscription_question
   default_scope -> { order(best: :desc).order(created_at: :asc) }
 
 
@@ -21,15 +18,10 @@ class Answer < ActiveRecord::Base
     end
   end
 
-
   private
 
-  def send_email_owner_question
-    # EmailOwnerQuestionJob.perform_now(self)
-  end
-
   def send_email_subscription_question
-    # SubscriptionQuestionJob.perform_now(self)
+    EmailSubscriptionQuestionJob.perform_later(question)
   end
 
 end

@@ -10,6 +10,7 @@ class Question < ActiveRecord::Base
   has_many :followers, through: :subscriptions, source: :user
 
   validates :title, :content, :user_id, presence: true
+  after_create :subscription_owner
 
   scope :created_yesterday, -> { where(created_at: (Date.today - 1.day)..Date.today) }
 
@@ -23,6 +24,12 @@ class Question < ActiveRecord::Base
 
   def unsubscription!(user)
     followers.delete(user) if subscription?(user)
+  end
+
+  private
+
+  def subscription_owner
+    subscription!(user)
   end
 
 end

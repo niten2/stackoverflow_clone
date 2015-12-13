@@ -1,11 +1,9 @@
 class EmailSubscriptionQuestionJob < ActiveJob::Base
-  queue_as :default
 
-  def perform(*args)
-
-
-    UserMailer.subscription_question(user, question, answer).deliver
-
-
+  def perform(question)
+    question.followers.find_each do |follower|
+      UserMailer.subscription_question(follower).deliver_later
+    end
   end
+
 end

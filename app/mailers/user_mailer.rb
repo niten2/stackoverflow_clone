@@ -6,17 +6,12 @@ class UserMailer < ApplicationMailer
     mail(to: user.email, subject: "Ежедневный список вопросов созданных за сегодня")
   end
 
-  def owner_question(user, question, answer)
-    @user = user
-    @question = question
-    @answer = answer
-    mail(to: user.email, subject: "Появился новый ответ в вашем вопросе")
-  end
+  def subscription_question(user)
 
-  def subscription_question(user, question, answer)
-    @user = user
-    @question = question
-    @answer = answer
+    # @answer = answer
+    # @question = @answer.question
+    # @followers = @question.followers
+
     mail(to: user.email, subject: "На вопрос, который вы подписались ответили")
   end
 
