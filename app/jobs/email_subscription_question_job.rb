@@ -1,4 +1,4 @@
-class SubscriptionQuestionJob < ActiveJob::Base
+class EmailSubscriptionQuestionJob < ActiveJob::Base
   queue_as :default
 
   def perform(*args)

@@ -11,7 +11,7 @@ class Question < ActiveRecord::Base
 
   validates :title, :content, :user_id, presence: true
 
-  # scope, :today, -> {where: ("created_at" = "?", :today) }
+  scope :created_yesterday, -> { where(created_at: (Date.today - 1.day)..Date.today) }
 
   def subscription!(user)
     followers << user unless subscription?(user)

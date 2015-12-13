@@ -1,12 +1,12 @@
 class DailyDigestJob < ActiveJob::Base
-  queue_as :default
 
-  def perform(object)
-    questions = Question.all
-
+  def perform
     User.find_each do |user|
-      UserMailer.daily_digest(user, questions).deliver
+      UserMailer.daily_digest(user).deliver_later
     end
   end
 
 end
+
+
+

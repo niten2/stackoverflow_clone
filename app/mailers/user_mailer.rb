@@ -2,7 +2,7 @@ class UserMailer < ApplicationMailer
 
   def daily_digest(user, questions)
     @user = user
-    @questions = questions
+    @questions = Question.created_yesterday
     mail(to: user.email, subject: "Ежедневный список вопросов созданных за сегодня")
   end
 
