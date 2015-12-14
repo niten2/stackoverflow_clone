@@ -15,15 +15,15 @@ class Question < ActiveRecord::Base
   scope :created_yesterday, -> { where(created_at: (Date.today - 1.day)..Date.today) }
 
   def subscribe!(user)
-    followers << user unless subscribe?(user)
+    followers << user unless subscribed?(user)
   end
 
-  def subscribe?(user)
+  def subscribed?(user)
     followers.include? user
   end
 
   def unsubscribe!(user)
-    followers.delete(user) if subscribe?(user)
+    followers.delete(user) if subscribed?(user)
   end
 
   private

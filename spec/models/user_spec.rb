@@ -19,13 +19,13 @@ describe User, type: :model do
     let(:other_question) { create(:question) }
 
     it "subscribe!" do
-      expect { other_question.subscribe!(user) }.to change(other_question.followers, :count).by 1
+      expect { other_question.subscribed!(user) }.to change(other_question.followers, :count).by 1
     end
 
     it "subscription?" do
       other_question.subscribe!(user)
       other_question.reload
-      expect(other_question.subscribe?(user)).to be_truthy
+      expect(other_question.subscribed?(user)).to be_truthy
     end
 
     it "unsubscription!" do
