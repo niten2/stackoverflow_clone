@@ -160,4 +160,32 @@ RSpec.describe QuestionsController, type: :controller do
       expect(response.body).to have_content "У вас нет прав доступах"
     end
   end
+
+  describe "subscribe" do
+    before {request.env["HTTP_REFERER"] = "where_i_came_from"}
+    describe 'PATCH #subscribe' do
+      it "redirect_to back" do
+        patch :subscribe, id: question
+        expect(response).to redirect_to "where_i_came_from"
+      end
+      it "user subscription" do
+        patch :subscribe, id: question
+        question.reload
+        expect(question.followers.take).to eq user
+      end
+    end
+    describe 'PATCH #unsubscription' do
+      it "redirect_to back" do
+        patch :subscribe, id: question
+        expect(response).to redirect_to "where_i_came_from"
+      end
+      it "user subscription" do
+        patch :unsubscribe, id: question
+        question.reload
+        expect(question.followers.take).to_not eq user
+      end
+    end
+  end
+
+
 end

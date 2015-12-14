@@ -1,0 +1,8 @@
+p
+  | Привет
+  = @user.email
+
+p Список сегодняшних вопросов:
+
+- @questions.each do |question|
+  p = question.title

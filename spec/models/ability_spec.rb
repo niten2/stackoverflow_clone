@@ -54,5 +54,13 @@ describe Ability do
 
     it { should be_able_to :vote, create(:answer, user: other), user: user }
     it { should_not be_able_to :vote, create(:answer, user: user), user: user }
+
+    it { should be_able_to :me, user }
+
+    it { should be_able_to :subscribe, create(:question), user: user }
+    it { should_not be_able_to :subscribe, create(:question, followers: [user]), user: user }
+
+    it { should_not be_able_to :unsubscribe, create(:question), user: user }
+    it { should be_able_to :unsubscribe, create(:question, followers: [user]), user: user }
   end
 end

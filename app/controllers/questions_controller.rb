@@ -1,10 +1,20 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_owner_question, only: [:update, :edit, :destroy]
-  before_action :set_question, only: [:show]
+  before_action :set_question, only: [:show, :subscribe, :unsubscribe ]
   before_action :build_answer, only: :show
   include Voted
   authorize_resource
+
+  def subscribe
+    @question.subscribe!(current_user)
+    redirect_to :back
+  end
+
+  def unsubscribe
+    @question.unsubscribe!(current_user)
+    redirect_to :back
+  end
 
   def index
     respond_with(@questions = Question.all)
