@@ -16,20 +16,21 @@ describe User, type: :model do
   let(:attachment) { create(:attachment, attachable: question) }
 
   describe "subscription" do
+    let(:other_question) { create(:question) }
 
-    it "subscription!" do
-      expect { question.subscription!(user) }.to change(question.followers, :count).by 1
+    it "subscribe!" do
+      expect { other_question.subscribe!(user) }.to change(other_question.followers, :count).by 1
     end
 
     it "subscription?" do
-      question.subscription!(user)
-      question.reload
-      expect(question.subscription?(user)).to be_truthy
+      other_question.subscribe!(user)
+      other_question.reload
+      expect(other_question.subscribe?(user)).to be_truthy
     end
 
     it "unsubscription!" do
-      question.subscription!(user)
-      expect { question.unsubscription!(user) }.to change(question.followers, :count).by -1
+      other_question.subscribe!(user)
+      expect { other_question.unsubscribe!(user) }.to change(other_question.followers, :count).by -1
     end
 
   end

@@ -1,16 +1,10 @@
 p
   | Привет,
-  / =< @user.email
+  =< @user.email
 p
   | В вопросе на который вы подписались появился новый ответ:
-  / =< link_to "Перейти к #{@question.name}", @question
+  / =< link_to "#{@question.title}", @question
 p
-  | Содержание ответа:
-  / =< @answer.content
-p
-  | Автор:
-  / =< @answer.user.name
+  | Список всех вопросов:
+  / =< link_to "здесь", questions_url
 
-p
-  | Отписаться от вопроса:
-  | !!!!!!!!!!!!!!!!!!!!!!

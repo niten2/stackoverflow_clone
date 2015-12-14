@@ -5,7 +5,6 @@
     = question.user.email
   -else
     | Нет
-/ - if can? :destroy, question
-- if current_user.autor_of?(question)
+- if current_user.try(:autor_of?, question)
   .col.s3 => link_to "Удалить", question, method: :delete
 .clearfix
