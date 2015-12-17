@@ -1,0 +1,21 @@
+h4.center Найденные результаты:
+
+- @result.each do |row|
+  .card.center
+    - if row.is_a?(User)
+      / span = "#{row.search_label} #{row.email}"
+      br
+    - elsif row.is_a? Question
+      h5 Вопрос:
+      =< link_to "#{row.title}", row
+    - elsif row.is_a? Answer
+      h5 Ответ:
+      =< link_to "#{row.content}", row.question
+    - elsif row.is_a? Comment
+      h5 Комментарий:
+      =< link_to "#{row.content}", row.commentable
+    br
+    | Содержание:
+    =< row.content
+  br
+

@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   get "welcome" => "welcomes#index"
   get "ajax" => "welcome#ajax"
 
+  get "search" => "search#search"
+  get "find" => "search#find"
+
   resources :attachments, only: :destroy
   resources :comments, only: [:create, :destroy]
 

@@ -12,7 +12,7 @@ describe UserMailer do
   end
 
   it "renders the body question.title" do
-    # expect(mail.body.encoded).to match(question.title)
+    expect(mail.body.encoded).to match(question.title)
   end
 
 end

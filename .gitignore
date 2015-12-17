@@ -6,3 +6,9 @@
 /tmp
 /config/database.yml
 /public/uploads/
+
+ump.rdb
+config/*.sphinx.conf
+db/sphinx
+
+
