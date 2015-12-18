@@ -47,5 +47,8 @@ class Ability
 
     can :me, User, id: user.id
 
+    # cannot :read, SearchController #почему то не работает
+    can :manage, SearchController #почему то не работает
+
   end
 end

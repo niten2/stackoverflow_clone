@@ -1,24 +1,22 @@
 class SearchController < ApplicationController
-  skip_authorize_resource
-  skip_authorization_check
-
-  before_action :load_search_query, only: [:search]
+  before_action :authenticate_user!
+  before_action :set_search_query, only: [:search]
+  authorize_resource class: SearchController
 
   def find
   end
 
   def search
-    # binding.pry
-    respond_with(@result = sphinx_index.search(@search_query.q))
+    respond_with(@resultes = sphinx.try(:search, @search_query.query))
   end
 
-  private
+private
 
-  def load_search_query
+  def set_search_query
     @search_query = SearchQuery.new(search_query_params)
   end
 
-  def sphinx_index
+  def sphinx
     indexes = %w(question answer comment user)
     @sphinx_index ||= if indexes.include?(@search_query.index_type)
                         Kernel.const_get(@search_query.index_type.capitalize)
@@ -28,7 +26,7 @@ class SearchController < ApplicationController
   end
 
   def search_query_params
-    params.require(:search_query).permit(:q, :index_type)
+    params.require(:search_query).permit(:query, :index_type)
   end
 
 end
