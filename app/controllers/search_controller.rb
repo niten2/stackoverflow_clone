@@ -1,7 +1,6 @@
 class SearchController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_search_query, only: [:search]
-  authorize_resource class: SearchController
+  authorize_resource class: SearchQuery
 
   def find
   end

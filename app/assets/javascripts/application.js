@@ -9,6 +9,6 @@
 //= require_tree ./templates
 //= require_tree .
 
-$(document).ready(function() {
-    $('select').material_select();
-});
+// $(document).ready(function() {
+//     $('select').material_select();
+// });
