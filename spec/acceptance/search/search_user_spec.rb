@@ -9,7 +9,6 @@ feature 'Search' do
     index
     visit find_path
     fill_in 'search_query[query]', with: user.email
-    # select('В пользователях', from: 'search_query_index_type')
     select('User', from: 'search_query_index_type')
     click_on 'Искать'
 

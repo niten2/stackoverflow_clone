@@ -9,7 +9,6 @@ feature 'Search question' do
     index
     visit find_path
     fill_in 'search_query[query]', with: question.title
-    # select('В вопросах', from: 'search_query_index_type')
     select('Question', from: 'search_query_index_type')
     click_on 'Искать'
 
@@ -21,7 +20,6 @@ feature 'Search question' do
     index
     visit find_path
     fill_in 'search_query[query]', with: question.content
-    # select('В вопросах', from: 'search_query_index_type')
     select('Question', from: 'search_query_index_type')
     click_on 'Искать'
 
