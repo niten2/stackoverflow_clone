@@ -18,7 +18,8 @@ feature 'Search' do
     index
     visit find_path
     fill_in 'search_query[query]', with: "test"
-    select('Искать везде', from: 'search_query_index_type')
+    # select('Искать везде', from: 'search_query_index_type')
+    select('nil', from: 'search_query_index_type')
     click_on 'Искать'
 
     expect(page).to have_content user.name

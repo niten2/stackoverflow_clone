@@ -14,7 +14,7 @@ class Ability
 
   def guest_abilities
     can :read, :all
-    can :manage, SearchQuery
+    can :manage, SearchController
   end
 
   def admin_abilities
@@ -48,6 +48,6 @@ class Ability
 
     can :me, User, id: user.id
 
-    can :manage, SearchQuery
+    can :manage, SearchController
   end
 end

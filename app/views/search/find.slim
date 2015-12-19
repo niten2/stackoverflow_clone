@@ -1,5 +1,6 @@
 = simple_form_for SearchQuery.new, url: '/search', method: :get do |f|
   = f.text_field :query
-  = f.select :index_type, { "Искать везде": "", "В вопросах": "question", "В ответах": "answer", "В комментариях": "comment", "В пользователях": "user" }, class: "find"
+  = f.select :index_type, options_for_select(SearchQuery::SEARCH_OPTIONS)
+  / { "Искать везде": nil, "В вопросах": "Question", "В ответах": "Answer", "В комментариях": "Comment", "В пользователях": "User" }, class: "find"
   .center = f.submit 'Искать', class: 'btn'
 

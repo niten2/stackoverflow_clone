@@ -9,7 +9,8 @@ feature 'Search' do
     index
     visit find_path
     fill_in 'search_query[query]', with: answer.content
-    select('В комментариях', from: 'search_query_index_type')
+    # select('В ответах', from: 'search_query_index_type')
+    select('Answer', from: 'search_query_index_type')
     click_on 'Искать'
 
     expect(page).to have_content answer.content
