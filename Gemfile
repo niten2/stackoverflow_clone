@@ -69,11 +69,10 @@ group :development, :test do
   gem "database_cleaner"
   gem 'faker'
   gem 'fuubar'
-
+  gem 'json_spec'
   gem 'spring'
   gem 'spring-commands-rspec'
 
-  gem 'json_spec'
 
   # guard
   gem 'guard'
