@@ -9,6 +9,9 @@ nav
       li
         - if current_user.admin?
           = link_to "Sidekiq", sidekiq_web_path
+      li
+        / = link_to "Поиск", search_path
+        = link_to "Поиск", find_path
     ul.right
       / li
         / = link_to "Описание", description_path

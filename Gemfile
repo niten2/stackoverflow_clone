@@ -1,26 +1,28 @@
 source 'https://rubygems.org'
 
-ruby "2.2.2"
+# ruby "2.2.2"
 gem 'rails', '4.2.4'
 gem 'pg'
 
 gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem "slim-rails"
 gem 'materialize-sass'
+
 gem 'devise'
 gem 'cancancan'
+
 gem "simple_form"
+gem 'nested_form'
+gem 'cocoon'
 
 gem 'carrierwave'
 gem 'remotipart'
-gem 'cocoon'
 gem 'skim'
-gem 'nested_form'
 
 gem "private_pub"
 gem "thin"
@@ -34,10 +36,18 @@ gem 'oj_mimic_json'
 
 gem 'lurker'
 
+# search
+gem 'mysql2'
+gem 'thinking-sphinx'
+gem "active_attr"
+
 # background_jobs
 gem 'whenever'
 gem 'sidekiq'
 gem 'sinatra', require: nil
+
+
+
 
 # mail
 gem "letter_opener", :group => :development
@@ -59,18 +69,17 @@ group :development, :test do
   gem "database_cleaner"
   gem 'faker'
   gem 'fuubar'
-
+  gem 'json_spec'
   gem 'spring'
   gem 'spring-commands-rspec'
 
-  gem 'json_spec'
 
   # guard
   gem 'guard'
-  gem 'guard-rspec'
   gem 'guard-livereload'
-  gem 'guard-rails'
-  gem 'guard-spring'
+  # gem 'guard-rspec'
+  # gem 'guard-rails'
+  # gem 'guard-spring'
   # gem 'guard-zeus'
 
   gem 'rubocop', require: false

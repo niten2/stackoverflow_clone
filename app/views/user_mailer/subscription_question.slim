@@ -3,8 +3,8 @@ p
   =< @user.email
 p
   | В вопросе на который вы подписались появился новый ответ:
-  / =< link_to "#{@question.title}", @question
+  =< link_to "#{@question.title}", @question
 p
   | Список всех вопросов:
-  / =< link_to "здесь", questions_url
+  =< link_to "здесь", questions_url
 

@@ -11,6 +11,10 @@ describe Ability do
     it { should be_able_to :read, Comment }
 
     it { should_not be_able_to :manage, :all }
+
+    it { should be_able_to :read, :find }
+    it { should be_able_to :read, :search }
+
   end
 
   describe 'for admin' do
@@ -62,5 +66,9 @@ describe Ability do
 
     it { should_not be_able_to :unsubscribe, create(:question), user: user }
     it { should be_able_to :unsubscribe, create(:question, followers: [user]), user: user }
+
+    it { should be_able_to :read, :find }
+    it { should be_able_to :read, :search }
+
   end
 end

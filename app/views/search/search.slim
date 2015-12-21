@@ -1,0 +1,32 @@
+
+- if @resultes.present?
+  h4.center Найденные результаты:
+  - @resultes.each do |result|
+    .card.center
+      - if result.is_a? User
+        h5 Пользователь:
+        =< result.email
+        br
+      - elsif result.is_a? Question
+        h5 Вопрос:
+        =< link_to "#{result.title}", result
+        br
+        | Содержание:
+        =< result.content
+      - elsif result.is_a? Answer
+        h5 Ответ:
+        =< link_to "#{result.content}", result.question
+        br
+        | Содержание:
+        =< result.content
+      - elsif result.is_a? Comment
+        h5 Комментарий:
+        =< link_to "#{result.content}", result.commentable
+        br
+        | Содержание:
+        =< result.content
+- else
+  h5.center Ничего не найдено
+
+br
+.center = button_to "Назад", find_path, class: "btn", method: :get
