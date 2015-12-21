@@ -8,7 +8,7 @@ set :deploy_to, "/home/deployer/qna"
 set :deploy_user, 'deployer'
 
 # Default value for :linked_files is []
-set :linked_files, %w{config/database.yml config/private_pub.yml}
+set :linked_files, %w{config/database.yml config/private_pub.yml .env}
 # set :linked_files, %w{config/database.yml config/private_pub.yml config/private_pub_thin.yml .env}
 
 # Default value for linked_dirs is []

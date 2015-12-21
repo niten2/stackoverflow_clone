@@ -106,3 +106,5 @@ group :development do
   gem 'capistrano3-unicorn', require: false
 end
 
+gem 'dotenv'
+gem 'dotenv-deployment', require: 'dotenv/deployment'
