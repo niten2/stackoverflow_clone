@@ -106,7 +106,8 @@ group :development do
 end
 
 # deploy
-# gem "dotenv-rails"
+gem 'dotenv-rails', :require => 'dotenv/rails-now'
+# gem 'gem-that-requires-env-variables'
 # gem 'dotenv-rails', require: 'dotenv/deployment'
 # gem "dotenv-rails"
 # gem 'dotenv'
