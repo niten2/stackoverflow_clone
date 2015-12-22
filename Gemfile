@@ -108,3 +108,4 @@ end
 
 gem 'dotenv'
 gem 'dotenv-deployment', require: 'dotenv/deployment'
+gem 'therubyracer'
