@@ -73,7 +73,6 @@ group :development, :test do
   gem 'spring'
   gem 'spring-commands-rspec'
 
-
   # guard
   gem 'guard'
   gem 'guard-livereload'
@@ -106,6 +105,10 @@ group :development do
   gem 'capistrano3-unicorn', require: false
 end
 
-gem 'dotenv'
-gem 'dotenv-deployment', require: 'dotenv/deployment'
+# deploy
+# gem "dotenv-rails"
+# gem 'dotenv-rails', require: 'dotenv/deployment'
+# gem "dotenv-rails"
+# gem 'dotenv'
+# gem 'dotenv-deployment', require: 'dotenv/deployment'
 gem 'therubyracer'
