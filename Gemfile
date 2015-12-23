@@ -102,14 +102,9 @@ group :development do
   gem 'capistrano-rails', require: false
   gem 'capistrano-rvm', require: false
   gem 'capistrano-sidekiq', require: false
-  gem 'capistrano3-unicorn', require: false
+  # gem 'capistrano3-unicorn', require: false
 end
 
 # deploy
 gem 'dotenv-rails', :require => 'dotenv/rails-now'
-# gem 'gem-that-requires-env-variables'
-# gem 'dotenv-rails', require: 'dotenv/deployment'
-# gem "dotenv-rails"
-# gem 'dotenv'
-# gem 'dotenv-deployment', require: 'dotenv/deployment'
 gem 'therubyracer'
