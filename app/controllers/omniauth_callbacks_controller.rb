@@ -5,6 +5,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def twitter
+    # redirect_to controller: :questions, action: :index
+  end
+
+  def finish_sign_up
   end
 
   private
