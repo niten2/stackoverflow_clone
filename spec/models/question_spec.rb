@@ -14,4 +14,8 @@ describe Question do
 
   it { should accept_nested_attributes_for :attachments }
 
+  it "adsdf", :pending
+
+
+
 end

@@ -27,6 +27,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_base_class_for_anonymous_controllers = false
 
+  config.filter_rails_from_backtrace!
 end
 
 Shoulda::Matchers.configure do |config|
