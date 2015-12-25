@@ -2,7 +2,8 @@ h3 Список вопросов:
 br
 .offset-s3.col.s3 Имя
 .col.s3 Автор
-#questions = render @questions
+- cache collection_cache_key_for :question do
+  #questions = render @questions
 br
 br
 - if can? :create, Question

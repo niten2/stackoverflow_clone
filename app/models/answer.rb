@@ -4,7 +4,7 @@ class Answer < ActiveRecord::Base
   include Commentable
   include Votable
 
-  belongs_to :question
+  belongs_to :question, touch: true
   belongs_to :user
   validates :content, :question_id, :user_id, presence: true
   after_commit :send_email_subscription_question
