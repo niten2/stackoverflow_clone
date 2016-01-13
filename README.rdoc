@@ -1,4 +1,29 @@
-В проекте используется: Rspec, Capybara, Ajax, Js шаблонизатор Skim, Comet, Omniauth, Rest Api, Sphinx, Capistrano, Cancancan, Carrierwave, Cocoon, Devise, Materializecss.
+Проект предназначен для демонстрации примеров кода.
 
-Дата окончания: до 31 декабря 2015.
+Тестирование:
+Написаны интеграционные, юнит-тесты, протестирован json, API, background jobs, mailers
+Gems: Rspec. Capybara, Lurker, Json_spec, Shoulda-matchers
+
+Авторизация: Devise
+
+Аутентификация: Cancancan
+
+Ajax: Jquery, Шаблонизатор Skim
+
+Включены: Nested Forms и полиморфные ассоциации
+
+Comet и Pub/Sub: gem Private_pub
+
+Авторизация через соц. сети (facebook, twitter): gem Omniauth
+
+Реализован REST API для вопросов, ответов, профиля.
+
+Background jobs: Sidekiq, Whenever
+
+Полнотекстовый поиск на Sphinx: Thinking-sphinx
+
+Deploy: Capistrano
+На сервере был настроен: Ngnix, Passenger, a затем Unicorn, Monit, Backup.
+
+
 
