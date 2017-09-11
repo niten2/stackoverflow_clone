@@ -1,7 +1,8 @@
 module Omniauthable
-  extend ActiveSupport::Concern
-  included do
 
+  extend ActiveSupport::Concern
+
+  included do
     has_many :authorizations
 
     def self.find_for_oauth(auth)
@@ -9,7 +10,6 @@ module Omniauthable
       return authorization.user if authorization
 
       auth.info.try(:email) ? (email = auth.info[:email]) : (return nil)
-
       user = User.where(email: email).first
 
       if user
@@ -17,6 +17,7 @@ module Omniauthable
       else
         password = Devise.friendly_token[0, 20]
         user = User.new(email: email, password: password, password_confirmation: password)
+
         if user.save
           user.create_authorization(auth)
         else

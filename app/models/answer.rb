@@ -10,7 +10,6 @@ class Answer < ActiveRecord::Base
   after_commit :send_email_subscription_question
   default_scope -> { order(best: :desc).order(created_at: :asc) }
 
-
   def make_best
     ActiveRecord::Base.transaction do
       self.question.answers.update_all(best: false)

@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-# ruby "2.2.2"
 gem 'rails', '4.2.4'
 gem 'pg'
 
@@ -72,10 +71,6 @@ group :development, :test do
   # guard
   gem 'guard'
   gem 'guard-livereload'
-  # gem 'guard-rspec'
-  # gem 'guard-rails'
-  # gem 'guard-spring'
-  # gem 'guard-zeus'
 
   gem 'rubocop', require: false
   gem 'rubocop-rspec'

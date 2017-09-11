@@ -1,11 +1,12 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+
   before_action :oauth
 
   def facebook
   end
 
   def twitter
-    # redirect_to controller: :questions, action: :index
+    # NOTE redirect_to controller: :questions, action: :index
   end
 
   def finish_sign_up

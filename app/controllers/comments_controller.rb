@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_commentable, only: :create
   before_action :set_comment, only: :destroy
@@ -32,5 +33,5 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:content)
   end
-end
 
+end

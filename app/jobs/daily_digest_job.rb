@@ -7,6 +7,3 @@ class DailyDigestJob < ActiveJob::Base
   end
 
 end
-
-
-

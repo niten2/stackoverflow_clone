@@ -7,7 +7,6 @@ feature 'make_best answer' do
   given!(:answer) { create(:answer, question: question) }
   given!(:other_answer) { create(:answer, question: question) }
   given!(:other_user) { create(:user) }
-  # given(:answers) { create(:answer, 5, question: question) }
 
   scenario 'guest tries make_best answer' do
     visit question_path(question)

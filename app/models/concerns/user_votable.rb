@@ -1,7 +1,8 @@
 module UserVotable
-  extend ActiveSupport::Concern
-  included do
 
+  extend ActiveSupport::Concern
+
+  included do
     has_many :votes, dependent: :destroy
 
     def vote_for(votable, value)
@@ -20,6 +21,6 @@ module UserVotable
     def klass_name
       self.class.to_s.downcase
     end
-
   end
+
 end

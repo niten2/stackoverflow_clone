@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+
   before_action :authenticate_user!
   before_action :set_answer, only: [:destroy, :edit, :update, :make_best]
   before_action :set_question, only: [:new, :destroy, :edit, :update, :make_best]
@@ -12,7 +13,7 @@ class AnswersController < ApplicationController
   end
 
   def create
-    respond_with( @answer = @question.answers.create(answer_params.merge(user: current_user)) )
+    respond_with(@answer = @question.answers.create(answer_params.merge(user: current_user)))
   end
 
   def update
@@ -41,4 +42,5 @@ class AnswersController < ApplicationController
   def answer_params
     params.require(:answer).permit(:content, attachments_attributes: [:file])
   end
+
 end

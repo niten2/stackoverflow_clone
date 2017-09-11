@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   include UserVotable
   include Omniauthable
 

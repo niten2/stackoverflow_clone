@@ -1,4 +1,5 @@
 class Ability
+
   include CanCan::Ability
   attr_reader :user
 
@@ -50,4 +51,5 @@ class Ability
 
     can :manage, SearchController
   end
+
 end

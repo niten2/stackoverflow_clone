@@ -10,11 +10,12 @@ class SessionsController < Devise::SessionsController
     respond_with resource, location: after_sign_in_path_for(resource)
   end
 
-protected
+  protected
 
   def clear_sign_signout_flash
     if flash.keys.include?(:notice)
       flash.delete(:notice)
     end
   end
+
 end

@@ -1,4 +1,5 @@
 class SearchQuery
+
   include ActiveAttr::Model
   SEARCH_OPTIONS = %w(nil Questions Answers Comments Users)
 

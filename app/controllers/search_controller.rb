@@ -1,4 +1,5 @@
 class SearchController < ApplicationController
+
   authorize_resource class: SearchController
   before_action :sphinx, only: [:search]
 
@@ -9,7 +10,8 @@ class SearchController < ApplicationController
     respond_with @resultes
   end
 
-private
+  private
+
   def sphinx
     @resultes = ThinkingSphinx.search query, classes: [index_type]
   end

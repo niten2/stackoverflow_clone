@@ -1,4 +1,5 @@
 module Voted
+
   extend ActiveSupport::Concern
 
   included do
@@ -30,4 +31,5 @@ module Voted
     @votable = model_klass.find(params[:id])
     instance_variable_set("@#{controller_name.singularize}", @votable)
   end
+
 end
