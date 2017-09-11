@@ -46,9 +46,6 @@ gem 'whenever'
 gem 'sidekiq'
 gem 'sinatra', require: nil
 
-
-
-
 # mail
 gem "letter_opener", :group => :development
 gem 'omniauth'
@@ -68,7 +65,6 @@ group :development, :test do
   gem 'launchy'
   gem "database_cleaner"
   gem 'faker'
-  gem 'fuubar'
   gem 'json_spec'
   gem 'spring'
   gem 'spring-commands-rspec'

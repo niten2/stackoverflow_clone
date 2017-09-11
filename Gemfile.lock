@@ -159,9 +159,6 @@ GEM
       websocket-driver (>= 0.5.1)
     ffi (1.9.10)
     formatador (0.2.5)
-    fuubar (2.0.0)
-      rspec (~> 3.0)
-      ruby-progressbar (~> 1.4)
     git-version-bump (0.15.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -488,7 +485,6 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   faker
-  fuubar
   gon
   guard
   guard-livereload
@@ -538,4 +534,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   1.11.0
+   1.12.5

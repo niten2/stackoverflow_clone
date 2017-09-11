@@ -10,6 +10,7 @@ Devise.setup do |config|
   config.password_length = 2..72
   config.reset_password_within = 6.hours
   config.sign_out_via = :delete
+
   config.omniauth :facebook, Rails.application.secrets.facebook_app_id, Rails.application.secrets.facebook_app_secret, scope: [:email]
   config.omniauth :twitter, Rails.application.secrets.twitter_app_id, Rails.application.secrets.twitter_app_secret
 end
