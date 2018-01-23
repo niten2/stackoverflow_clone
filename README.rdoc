@@ -1,29 +1,25 @@
-Проект предназначен для демонстрации примеров кода.
+Stackoverflow Clone
 
-Тестирование:
-Написаны интеграционные, юнит-тесты, протестирован json, API, background jobs, mailers
-Gems: Rspec. Capybara, Lurker, Json_spec, Shoulda-matchers
+Testing: integration tests, unit tests, tested by json, API, background jobs.
 
-Авторизация: Devise
+Mailers gems: rspec. capybara, lurker, json spec, shoulda-matchers.
 
-Аутентификация: Cancancan
+Authorization: devise.
 
-Ajax: Jquery, Шаблонизатор Skim
+Authentication: cancancan.
 
-Включены: Nested Forms и полиморфные ассоциации
+Ajax: jquery, skim.
 
-Comet и Pub/Sub: gem Private_pub
+Comet and Pub/Sub: private_pub.
 
-Авторизация через соц. сети (facebook, twitter): gem Omniauth
+Authorization through social network (facebook, twitter): omniauth.
 
-Реализован REST API для вопросов, ответов, профиля.
+Implemented: REST API for questions, answers, profile.
 
-Background jobs: Sidekiq, Whenever
+Included: Nested Forms and polymorphic associations.
 
-Полнотекстовый поиск на Sphinx: Thinking-sphinx
+Background jobs: sidekiq.
 
-Deploy: Capistrano
-На сервере был настроен: Ngnix, Passenger, a затем Unicorn, Monit, Backup.
+Full-text search on Sphinx: thinking-sphinx.
 
-
-
+Deploy: Capistrano the server was configured, Ngnix, Passenger, and then Unicorn, Monit, backup.
